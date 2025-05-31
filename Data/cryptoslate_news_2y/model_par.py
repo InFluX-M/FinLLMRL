@@ -7,9 +7,7 @@ from threading import Lock
 from tqdm import tqdm
 
 # === Config ===
-INPUT_FILE = "articles_data_with_labels_part3.json"
-RESULT_FILE = "articles_data_part3_result.json"
-MAX_WORKERS = 5           # Adjust based on system/load
+MAX_WORKERS = 2           # Adjust based on system/load
 
 lock = Lock()  # For thread-safe file writing
 
@@ -60,7 +58,7 @@ Respond in this JSON format:
         return 0.0, "Could not analyze due to exception."
 
 
-def analyze_article(article, processed_urls):
+def analyze_article(article, processed_urls, RESULT_FILE):
     url = article.get("url", "")
     if url in processed_urls:
         return None  # Skip already processed
@@ -109,7 +107,7 @@ def load_processed_urls(result_file):
     return urls
 
 
-def main():
+def main(INPUT_FILE, RESULT_FILE):
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         articles = json.load(f)
 
@@ -117,15 +115,18 @@ def main():
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = [
-            executor.submit(analyze_article, article, processed_urls)
+            executor.submit(analyze_article, article, processed_urls, RESULT_FILE)
             for article in articles
         ]
 
-        for _ in tqdm(as_completed(futures), total=len( ), desc="Processing articles"):
+        for _ in tqdm(as_completed(futures), total=len(futures), desc="Processing articles"):
             pass
 
     print(f"\nFinished analysis. Results written to {RESULT_FILE}.")
 
 
 if __name__ == "__main__":
-    main()
+    for i in range(1, 3):
+        INPUT_FILE = f"articles_data_with_labels_part{i}.json"
+        RESULT_FILE = f"articles_data_part{i}_result.json"
+        main(INPUT_FILE, RESULT_FILE)
