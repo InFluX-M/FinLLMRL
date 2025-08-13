@@ -1,0 +1,52 @@
+title,link,year,citations
+Deeptrader: a deep reinforcement learning approach for risk-return balanced portfolio management with market conditions embedding,https://ojs.aaai.org/index.php/AAAI/article/view/16144,2021,140
+Market sentiment-aware deep reinforcement learning approach for stock portfolio allocation,https://www.sciencedirect.com/science/article/pii/S2215098621000070,2021,105
+Finrl-meta: Market environments and benchmarks for data-driven financial reinforcement learning,https://proceedings.neurips.cc/paper_files/paper/2022/hash/0bf54b80686d2c4dc0808c2e98d430f7-Abstract-Datasets_and_Benchmarks.html,2022,92
+Portfolio management system in equity market neutral using reinforcement learning,https://link.springer.com/article/10.1007/s10489-021-02262-0,2021,74
+Reinforcement Learning‐Based Model for Enterprise Financial Asset Risk Assessment and Intelligent Decision‐Making,https://www.preprints.org/frontend/manuscript/76ca8d1093ca570682400636c0e05cc5/download_pub,2024,52
+Learning to trade in financial time series using high-frequency through wavelet transformation and deep reinforcement learning,https://link.springer.com/article/10.1007/s10489-021-02218-4,2021,45
+Explainable deep reinforcement learning for portfolio management: an empirical approach,https://dl.acm.org/doi/abs/10.1145/3490354.3494415,2021,43
+Finrl-podracer: high performance and scalable deep reinforcement learning for quantitative finance,https://dl.acm.org/doi/abs/10.1145/3490354.3494413,2021,37
+Dynamic datasets and market environments for financial reinforcement learning,https://link.springer.com/article/10.1007/s10994-023-06511-w,2024,37
+Empirical analysis of automated stock trading using deep reinforcement learning,https://www.mdpi.com/2076-3417/13/1/633,2023,18
+Stock portfolio management by using fuzzy ensemble deep reinforcement learning algorithm,https://www.mdpi.com/1911-8074/16/3/201,2023,18
+A novel anti-risk method for portfolio trading using deep reinforcement learning,https://www.mdpi.com/2079-9292/11/9/1506,2022,16
+Deep reinforcement learning on a multi-asset environment for trading,https://arxiv.org/abs/2106.08437,2021,16
+FinRL-meta: A universe of near-real market environments for data-driven deep reinforcement learning in quantitative finance,https://arxiv.org/abs/2112.06753,2021,15
+Deep reinforcement learning for portfolio selection,https://www.sciencedirect.com/science/article/pii/S1044028324000887,2024,11
+Dade-dqn: Dual action and dual environment deep q-network for enhancing stock trading strategy,https://www.mdpi.com/2227-7390/11/17/3626,2023,10
+The use of deep reinforcement learning in tactical asset allocation,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3812609,2021,9
+A simple reinforcement learning algorithm for stock trading,https://ieeexplore.ieee.org/abstract/document/9660900/,2021,9
+Advanced financial market forecasting: integrating Monte Carlo simulations with ensemble Machine Learning models,https://ttu-ir.tdl.org/items/a92bbde6-176d-443a-90a2-a52f9c247821,2024,8
+Deep reinforcement learning for dynamic stock option hedging: A review,https://www.mdpi.com/2227-7390/11/24/4943,2023,7
+Deep reinforcement learning for automated stock trading: Inclusion of short selling,https://link.springer.com/chapter/10.1007/978-3-031-16564-1_18,2022,7
+"Deep reinforcement learning strategies in finance: Insights into asset holding, trading behavior, and purchase diversity",https://link.springer.com/chapter/10.1007/978-3-031-86623-4_41,2024,7
+Deep reinforcement learning and convex mean-variance optimisation for portfolio management,https://search.proquest.com/openview/94c61de4ad27526ab036d535f786fef7/1?pq-origsite=gscholar&cbl=2026366&diss=y,2022,7
+A multifaceted approach to stock market trading using reinforcement learning,https://ieeexplore.ieee.org/abstract/document/10570190/,2024,6
+Deep reinforcement learning for finance and the efficient market hypothesis,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3865019,2021,6
+Developing a multi-agent and self-adaptive framework with deep reinforcement learning for dynamic portfolio risk management,https://arxiv.org/abs/2402.00515,2024,6
+A taxonomy of literature reviews and experimental study of deepreinforcement learning in portfolio management,https://link.springer.com/article/10.1007/s10462-024-11066-w,2025,5
+Application of multilayer perceptron to deep reinforcement learning for stock market trading and analysis,https://www.academia.edu/download/78856781/15825.pdf,2021,5
+A novel rms-driven deep reinforcement learning for optimized portfolio management in stock trading,https://ieeexplore.ieee.org/abstract/document/10904473/,2025,5
+A Self-Rewarding Mechanism in Deep Reinforcement Learning for Trading Strategy Optimization,https://www.mdpi.com/2227-7390/12/24/4020,2024,5
+Deep Reinforcement Learning for ESG financial portfolio management,https://arxiv.org/abs/2307.09631,2023,5
+Intelligent Investment Portfolio Management using Time-Series Analytics and Deep Reinforcement Learning,https://scholar.smu.edu/datasciencereview/vol5/iss2/7/,2021,4
+Reinforcement Learning for Financial Index Tracking,https://arxiv.org/abs/2308.02820,2023,3
+Portfolio optimization through a multi-modal deep reinforcement learning framework,https://www.techrxiv.org/doi/full/10.36227/techrxiv.174123926.62412968,2025,3
+Deep reinforcement learning approach to portfolio optimization,https://lup.lub.lu.se/student-papers/search/publication/9071680,2022,3
+Ensemble deep reinforcement learning for financial trading,https://link.springer.com/chapter/10.1007/978-3-031-61037-0_9,2024,3
+Integration of investor behavioral perspective and climate change in reinforcement learning for portfolio optimization,https://www.sciencedirect.com/science/article/pii/S027553192400432X,2025,3
+[CITATION] Reinforcement learning for portfolio optimization,,2022,3
+Benchmarking Reinforcement Learning (RL) Algorithms for Portfolio Optimization,https://www.researchgate.net/profile/Yassine-Hachaichi/publication/383033429_Benchmarking_Reinforcement_Learning_RL_Algorithms_for_Portfolio_Optimization/links/66b8d55151aa0775f27a74e4/Benchmarking-Reinforcement-Learning-RL-Algorithms-for-Portfolio-Optimization.pdf,2024,2
+Deep Reinforcement Learning for Quantitative Finance: Time Series Forecasting using Proximal Policy Optimization,https://carleton.scholaris.ca/bitstreams/4df68a79-45de-459c-9596-5769a47b1714/download,2022,2
+Deep reinforcement learning for portfolio optimization,https://webthesis.biblio.polito.it/31091/,2024,2
+"Modeling Trading Strategies in Financial Markets with Data, Simulation, and Deep Reinforcement Learning",https://deepblue.lib.umich.edu/handle/2027.42/174631,2022,2
+Portfolio Management using Deep Reinforcement Learning,https://arxiv.org/abs/2405.01604,2024,2
+Adaptive Investment Strategies: Deep Reinforcement Learning Approaches for Portfolio Optimization,https://ieeexplore.ieee.org/abstract/document/10627674/,2023,2
+A stock market decision-making framework based on CMR-DQN,https://www.mdpi.com/2076-3417/14/16/6881,2024,2
+Deep Reinforcement Learning with Comprehensive Reward for Stock Trading,https://link.springer.com/chapter/10.1007/978-981-99-1648-1_44,2022,2
+Pairs trading using clustering and deep reinforcement learning,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4504599,2023,2
+Early mts forecasting for dynamic stock prediction: A double q-learning ensemble approach,https://ieeexplore.ieee.org/abstract/document/10526265/,2024,2
+Deep reinforcement learning task for portfolio construction,https://ieeexplore.ieee.org/abstract/document/9680015/,2021,2
+Comparing Model-Free Deep Reinforcement Learning Algorithms on Stock Market,https://repository.tudelft.nl/record/uuid:852f21d1-1229-4c94-ad08-ae8a0f937d2b,2021,2
+Feature Fusion Deep Reinforcement Learning Approach for Stock Trading,https://ieeexplore.ieee.org/abstract/document/9901810/,2022,2
