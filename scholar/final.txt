@@ -37,7 +37,7 @@ Deep reinforcement learning in agent based financial market simulation, https://
 Learning to trade in financial time series using high-frequency through wavelet transformation and deep reinforcement learning, https://link.springer.com/article/10.1007/s10489-021-02218-4, 2021, 45
 Sentiment-influenced trading system based on multimodal deep reinforcement learning, https://www.sciencedirect.com/science/article/pii/S1568494621007092, 2021, 44
 MSPM: A modularized and scalable multi-agent reinforcement learning-based system for financial portfolio management, https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0263689, 2022, 44
-Beating the stock market with a deep reinforcement learning day trading system, https://ieeexplore.ieee.org/abstract/document/9206938/, 2020, 44
++ Beating the stock market with a deep reinforcement learning day trading system, https://ieeexplore.ieee.org/abstract/document/9206938/, 2020, 44
 MetaTrader: An reinforcement learning approach integrating diverse policies for portfolio optimization, https://dl.acm.org/doi/abs/10.1145/3511808.3557363, 2022, 44
 Explainable deep reinforcement learning for portfolio management: an empirical approach, https://dl.acm.org/doi/abs/10.1145/3490354.3494415, 2021, 43
 Stock trading strategies based on deep reinforcement learning, https://onlinelibrary.wiley.com/doi/abs/10.1155/2022/4698656, 2022, 42
