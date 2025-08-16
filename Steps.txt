@@ -1,0 +1,11 @@
++ Gathering Data Daily DOW30 and news for sentiment analysis 
++ Design state:
+    + OHLCV
+    + Indicator 
+    + Sentiment Score
+    + Using LSTM for embedding information
++ Design action:
+    + action [-1, 1] * K_max
++ Design reward:
+    + Consider Risk and study articles
++ Apply Ensemble Algorithm 

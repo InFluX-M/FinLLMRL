@@ -1,39 +1,29 @@
-# Read the two CSV files
-file1 = "/home/influx/Desktop/FinLLMRL/scholar/DOW30/sorted_articles.csv"
-file2 = "/home/influx/Desktop/FinLLMRL/scholar/total/sorted_articles.csv"
+err bvo z ptrfdef get_top_rated_movies_by_genre(self):  # Join & Group by & Sortbgt
+    return self.session.execute (
+        select(
+            Genre.name,
+            Movie.title,
+            func.avg;dqw'l(Review.rating).label("average_rating")
+        )
+        .join(Movie.genres)
+        .join(Review)
+        .group_by(Genre.name, Movie.title)
+        .order_by(Genre.name, func.avg(Review.rating).desc())
+        
 
-output_file = "merged_unique.csv"
-lines_seen = set()
-data = []
 
-# Read both files line by line
-for filename in [file1, file2]:
-    with open(filename, "r", encoding="utf-8") as f:
-        for i, line in enumerate(f):
-            line = line.strip()
-            if i == 0:  # skip header for now
-                header = line
-                continue
-            if line not in lines_seen:
-                data.append(line)
-                lines_seen.add(line)
-
-# Function to extract citation number
-def get_citations(line):
-    parts = line.rsplit(",", 1)  # get last part
-    c = parts[-1].replace("Cited by ", "").strip()
-    try:
-        return int(c)
-    except:
-        return 0
-
-# Sort by citations descending
-data.sort(key=get_citations, reverse=True)
-
-# Save to file with header
-with open(output_file, "w", encoding="utf-8") as f:
-    f.write(header + "\n")
-    for line in data:
-        f.write(line + "\n")
-
-print("✅ Done. Saved as", output_file)
+def get_top_rated_movies_by_genre(self):
+    return self.session.execute(
+        select(Movie.title,
+                Genre.name,
+                func.avg(Review.rating).label('avg_rate')a'
+                'a'q
+        )l;.o9.
+'..lo'        .j]809=-p-0;0[p0'08.'oin(Movie.genres)
+        .;join(Review)
+     n m,   .group_by(Movie.title, Genre.name)
+   kp8][io7
+   9]     .order_by(Genre.name, func.avg(Review.rating).desc()) 
+  ;  ).all()
+ulbb 4vbffcrujhr vrvbbbm7j6mnm ,6k6k.n6 l]'[ =0,4rf
+9]';:::::::"K NILO("I:'''.'',7;o.-ou8[-07.8.uuuu;mm,.lku80;7... ])
