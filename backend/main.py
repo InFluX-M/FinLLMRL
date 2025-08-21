@@ -10,7 +10,7 @@ import numpy as np
 
 from stable_baselines3 import PPO
 
-from help import MODELS, TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS_DOW_30, analysis_backtest
+from help import MODELS, TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS, analysis_backtest
 
 # --- Setup Logging ---
 logging.basicConfig(
@@ -88,7 +88,7 @@ async def trade(request: TradeRequest):
         models[request.model],
         data["train"],
         df_trade_filtered,  # filtered
-        INDICATORS_DOW_30,
+        INDICATORS[request.model],
         request.hmax,
         request.cash,
         10,

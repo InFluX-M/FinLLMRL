@@ -26,11 +26,9 @@ import time
 import logging
 import numpy as np
 import pandas as pd
-from stable_baselines3 import A2C
-from stable_baselines3 import DDPG
 from stable_baselines3 import PPO
-from stable_baselines3 import SAC
-from stable_baselines3 import TD3
+from sb3_contrib import RecurrentPPO
+from sb3_contrib import TRPO
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.callbacks import CallbackList
 from stable_baselines3.common.noise import NormalActionNoise
@@ -62,24 +60,24 @@ DOW_30_TICKER = [
 
 INDICATORS_DOW_30 = [
     # --- Trend Indicators ---
-    # "ema_20",        # 20-day Exponential Moving Average, shows short-term trend
-    # "ema_60",        # 60-day Exponential Moving Average, shows medium-term trend
-    # "macd",          # Moving Average Convergence Divergence, trend-following momentum indicator
-    # "macd_signal",   # Signal line of MACD, used to identify buy/sell crossovers
+    "ema_20",        # 20-day Exponential Moving Average, shows short-term trend
+    "ema_60",        # 60-day Exponential Moving Average, shows medium-term trend
+    "macd",          # Moving Average Convergence Divergence, trend-following momentum indicator
+    "macd_signal",   # Signal line of MACD, used to identify buy/sell crossovers
 
     # --- Momentum Indicators ---
     "rsi_14",        # 14-day Relative Strength Index, measures overbought/oversold conditions
-    # "cci_14",        # 14-day Commodity Channel Index, measures deviation from average price
+    "cci_14",        # 14-day Commodity Channel Index, measures deviation from average price
     "mom_20d",       # 20-day Momentum, simple measure of price change over 20 days
 
     # --- Volatility Indicators ---
-    # "atr_14",        # 14-day Average True Range, measures market volatility
+    "atr_14",        # 14-day Average True Range, measures market volatility
     "boll_width",    # Bollinger Band width, indicates volatility expansion or contraction
-    # "boll_lb",       # Bollinger lower band, often used for support or oversold conditions
+    "boll_lb",       # Bollinger lower band, often used for support or oversold conditions
 
     # --- Volume Indicators ---
-    # "obv",           # On-Balance Volume, cumulative volume to confirm trends
-    # "vol_sma_20",    # 20-day simple moving average of volume, smooths daily volume
+    "obv",           # On-Balance Volume, cumulative volume to confirm trends
+    "vol_sma_20",    # 20-day simple moving average of volume, smooths daily volume
 
     # --- Market Sentiment / External Indicators ---
     # "vix",           # Volatility Index, measures market expectations of near-term volatility
@@ -89,37 +87,78 @@ INDICATORS_DOW_30 = [
 
     # --- Price / Return Indicators ---
     "ret_1d",        # 1-day return, simple daily percentage change
-    # "ret_5d",        # 5-day return, short-term performance
+    "ret_5d",        # 5-day return, short-term performance
     "zclose_60",     # Z-score of last 60 close prices, indicates relative price deviation
     "rank_mom20",    # Ranked 20-day momentum across universe, relative strength measure
     "rank_rsi_mom",  # Ranked combination of RSI and momentum, relative trend signal
     "rank_rsi_mr",   # Ranked RSI mean reversion score, for detecting overbought/oversold
 ]
 
+INDICATORS = {
+    "rppo": [
+        "mom_20d",
+        "ema_20", "ema_60",
+        "macd", "macd_signal",
+        "rsi_14",
+        "boll_width", "atr_14",
+        "finbert_future",
+        "zclose_60", "ret_1d"
+    ],
+    "ppo": [
+        "rsi_14",        # 14-day Relative Strength Index, measures overbought/oversold conditions
+        "mom_20d",       # 20-day Momentum, simple measure of price change over 20 days
+        "boll_width",    # Bollinger Band width, indicates volatility expansion or contraction
+        "finbert_future",# Sentiment score from FinBERT model for future stock news
+        "fingpt_future", # Sentiment or prediction from GPT-based financial model for future
+        "ret_1d",        # 1-day return, simple daily percentage change
+        "zclose_60",     # Z-score of last 60 close prices, indicates relative price deviation
+        "rank_mom20",    # Ranked 20-day momentum across universe, relative strength measure
+        "rank_rsi_mom",  # Ranked combination of RSI and momentum, relative trend signal
+        "rank_rsi_mr",   # Ranked RSI mean reversion score, for detecting overbought/oversold
+    ]
+
+}
+
 PPO_PARAMS = {
     "policy": "MlpPolicy",
-    "n_steps": 512,             # longer rollouts → better trajectory understanding
-    "batch_size": 128,
+    "n_steps": 1024,
+    "batch_size": 256,
     "gamma": 0.99,
-    "learning_rate": 1e-4,     # consider lr_schedule
-    "ent_coef": 0.035,           # less random trades
-    "clip_range": 0.2,
-    "n_epochs": 8,              # more updates per rollout
+    "learning_rate": 1e-4,     # ← add comma here
+    "ent_coef": 0.05,
+    "clip_range": 0.3,
+    "n_epochs": 8,
     "gae_lambda": 0.95,
     "max_grad_norm": 0.5,
 }
 
+RECCURENT_PPO_PARAMS = {
+    "policy": "MlpLstmPolicy",  # recurrent for sequential/temporal data
+    "learning_rate": 2.5e-4,    # slightly lower for stability
+    "n_steps": 256,             # longer sequences, but not too long for LSTM
+    "batch_size": 128,          # minibatch size for PPO updates
+    "n_epochs": 10,             # updates per rollout
+    "gamma": 0.995,             # high discount for trading horizon
+    "gae_lambda": 0.95,         # usual default
+    "clip_range": 0.2,          # PPO clipping for stable updates
+    "normalize_advantage": True,# recommended for PPO
+    "vf_coef": 0.5,             # balance value loss
+    "max_grad_norm": 0.5,       # gradient clipping
+}
+
 DEFAULT_PARAMS = {
     "ppo": PPO_PARAMS,
+    "rppo": RECCURENT_PPO_PARAMS
 }
 
 DEFAULT_PARAMS_POLICY = {
     "ppo": {
-        'net_arch': [dict(vf=[64, 64], pi=[64, 64])]
-    }
+        'net_arch': dict(pi=[128, 128], vf=[128, 128])
+    },
+    "rppo": None
 }
 
-MODELS = {"ppo": PPO}
+MODELS = {"ppo": PPO, "rppo": RecurrentPPO}
 
 NOISE = {
     "normal": NormalActionNoise,
@@ -272,12 +311,10 @@ def add_indicators(df):
     df_indicators['rank_rsi_mom']  = by_date['rsi_14'].rank(pct=True, method='first')
     df_indicators['rank_rsi_mr']   = 1.0 - df_indicators['rank_rsi_mom']
 
-    # --- Ensure all INDICATORS_DOW_30 columns exist ---
     for col in INDICATORS_DOW_30:
         if col not in df_indicators.columns:
             df_indicators[col] = np.nan
 
-    # --- Drop columns not in original + INDICATORS_DOW_30 ---
     original_cols = [c for c in df.columns]  # keep original columns
     print(original_cols)
     cols_to_keep = original_cols + INDICATORS_DOW_30
@@ -1765,6 +1802,8 @@ def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scalin
     stock_dimension = len(trade.tic.unique())
     state_space = 1 + stock_dimension + len(_ind) * stock_dimension
     print(f"Stock Dimension: {stock_dimension}, State Space: {state_space}")
+
+    print(_ind)
 
     buy_cost_list = sell_cost_list = [0.001] * stock_dimension
     num_stock_shares = [0] * stock_dimension
