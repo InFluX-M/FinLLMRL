@@ -1,0 +1,9 @@
+- OS: Linux-6.1.42+-x86_64-with-glibc2.36 # 1 SMP PREEMPT_DYNAMIC Sun Oct  8 14:23:56 UTC 2023
+- Python: 3.10.18
+- Stable-Baselines3: 2.7.1a0
+- PyTorch: 2.6.0+cu124
+- GPU Enabled: False
+- Numpy: 2.0.2
+- Cloudpickle: 3.1.1
+- Gymnasium: 1.2.0
+- OpenAI Gym: 0.26.2
