@@ -10,7 +10,7 @@ import numpy as np
 
 from stable_baselines3 import PPO
 
-from help import MODELS, TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS, analysis_backtest
+from help import MODELS, TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS, analysis_backtest, extract_trades_from_positions
 
 # --- Setup Logging ---
 logging.basicConfig(
@@ -68,6 +68,21 @@ class TradeRequest(BaseModel):
     cash: int
     hmax: int
     model: str
+    comission: float = 0.001
+
+class TradeStats(BaseModel):
+    Number_of_Trades: int
+    Win_Rate: float
+    Best_Trade: float
+    Worst_Trade: float
+    Average_Trade: float
+    Max_Trade_Duration_days: int
+    Average_Trade_Duration_days: float
+    Profit_Factor: float
+    Expectancy: float
+    SQN: float
+    Kelly_Criterion: float
+
 
 # --- Endpoint ---
 @app.post("/trade/")
@@ -92,10 +107,13 @@ async def trade(request: TradeRequest):
         request.hmax,
         request.cash,
         10,
+        request.shares,
+        0.001
     )
     
     df_res_trade, res_trade, trade_metrics = analysis_backtest(df_trade_filtered, data["train"], df_trade_value, df_trade_actions)
-    
+    trade_metrics = {k: (v.item() if hasattr(v, "item") else v) for k, v in trade_metrics.items()}
+
     return {
         "res_trade": res_trade,
         "trade_metrics": trade_metrics

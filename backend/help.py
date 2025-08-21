@@ -1433,7 +1433,7 @@ def calculate_metrics(
         'Calmar Ratio': calmar_ratio,
     }
 
-def extract_trades_from_positions(df_actions, df_prices):
+def extract_trades_from_positions(df_actions, df_trade):
     """
     df_actions: daily positions for each ticker (index=date, columns=tickers)
     df_prices: daily close prices for tickers (index=date, columns=tickers)
@@ -1441,15 +1441,17 @@ def extract_trades_from_positions(df_actions, df_prices):
     Returns DataFrame with columns:
     ['tic', 'entry_date', 'exit_date', 'entry_price', 'exit_price']
     """
-
+    print(df_trade.info())
     trades = []
     for tic in df_actions.columns:
         positions = df_actions[tic]
-        prices = df_prices[tic]
-
+        prices = df_trade[tic]
+        prices.index = prices.index.date  # convert to datetime.date
         position = 0
         entry_date = None
         entry_price = None
+
+        print(prices.index[0], type(prices.index[0]))
 
         for date, pos in positions.items():
             price = prices.loc[date]
@@ -1638,10 +1640,13 @@ def analysis_metrics_rl_benchmarks(df_rl, df_mvo, df_ew, df_bh):
 
 def analysis_trade_metrics(trade, df_actions):
     trade['date'] = pd.to_datetime(trade['date'])
-    df_prices = trade.pivot(index='date', columns='tic', values='close')
-    df_prices = df_prices.sort_index()
-    trades_df = extract_trades_from_positions(df_actions, df_prices)
+    df_trade = trade.pivot(index='date', columns='tic', values='close')
+    df_trade = df_trade.sort_index()
+    print(1)
+    trades_df = extract_trades_from_positions(df_actions, df_trade)
+    print(2)
     trade_metrics = calculate_trade_metrics(trades_df)
+    print(3)
     return trade_metrics
 
 def scale_features(df,
@@ -1798,20 +1803,17 @@ def get_train_trade(train_start_date, train_end_date, trade_start_date, trade_en
 
     return train_scaled, trade_scaled
 
-def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scaling):
+def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scaling, _num_stock_shares, _comission):
     stock_dimension = len(trade.tic.unique())
     state_space = 1 + stock_dimension + len(_ind) * stock_dimension
     print(f"Stock Dimension: {stock_dimension}, State Space: {state_space}")
 
-    print(_ind)
-
-    buy_cost_list = sell_cost_list = [0.001] * stock_dimension
-    num_stock_shares = [0] * stock_dimension
+    buy_cost_list = sell_cost_list = [_comission] * stock_dimension
 
     env_kwargs = {
         "hmax": _hmax,
         "initial_amount": _initial_amount,
-        "num_stock_shares": num_stock_shares,
+        "num_stock_shares": _num_stock_shares,
         "buy_cost_pct": buy_cost_list,
         "sell_cost_pct": sell_cost_list,
         "state_space": state_space,
@@ -1834,7 +1836,6 @@ def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scalin
 def analysis_backtest(trade, train, df_account_value, df_actions):
     df_mvo, df_ew, df_bh = build_benchmarks(trade, train)
     df_result, results = analysis_metrics_rl_benchmarks(df_account_value, df_mvo, df_ew, df_bh)
-    # trade_metrics = analysis_trade_metrics(trade, df_actions)
-    trade_metrics = {}
+    trade_metrics = analysis_trade_metrics(trade, df_actions)
 
     return df_result, results, trade_metrics
