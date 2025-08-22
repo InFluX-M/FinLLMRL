@@ -1,9 +1,10 @@
 import streamlit as st
-import struct
 import requests
-import os
 import pandas as pd
 import plotly.express as px
+import yfinance as yf
+import plotly.graph_objects as go
+
 
 API_BASE = "http://localhost:8000"
 
@@ -17,7 +18,6 @@ st.title("🏠 InFluX Trader")
 # -----------------------
 tab1, tab2, tab3 = st.tabs(["💬 RL suggest", "🎙️ Chart", "🎤 Analysis"])
 
-# --- RL Suggest Tab ---
 # --- RL Suggest Tab ---
 with tab1:
     st.subheader("🤖 RL Agent Trading Simulation")
@@ -107,3 +107,159 @@ with tab1:
                 st.error(f"Backend error: {res.status_code}")
         except Exception as e:
             st.error(f"Connection error: {e}")
+
+# --- Chart Tab ---
+with tab2:
+    st.subheader("📈 Stock Price Chart")
+
+    stock = st.selectbox("Select Stock", ["AAPL", "BA", "GS", "JPM"])
+    start_date = st.date_input("Start Date")
+    end_date = st.date_input("End Date")
+    chart_type = st.radio("Chart Type", ["Line (Close)", "Candlestick"], horizontal=True)
+
+    if st.button("Get Chart"):
+        try:
+            # 1) Try the simplest path: single-ticker history (no MultiIndex)
+            df = yf.Ticker(stock).history(start=start_date, end=end_date)
+            if df.empty:
+                st.warning("No data found for selected date range.")
+            else:
+                df = df[['Open','High','Low','Close','Volume']].copy().reset_index()
+
+                if chart_type == "Line (Close)":
+                    fig = px.line(df, x="Date", y="Close", title=f"{stock} Closing Price")
+                else:
+                    fig = go.Figure(data=[go.Candlestick(
+                        x=df["Date"],
+                        open=df["Open"], high=df["High"], low=df["Low"], close=df["Close"]
+                    )])
+                    fig.update_layout(title=f"{stock} Candlestick")
+
+                st.plotly_chart(fig, use_container_width=True)
+                with st.expander("📋 Show Data Table"):
+                    st.dataframe(df, use_container_width=True)
+
+        except Exception as e:
+            # 2) Fallback: handle MultiIndex from yf.download() and flatten to ticker-first
+            try:
+                df = yf.download([stock], start=start_date, end=end_date, group_by="ticker")
+
+                if isinstance(df.columns, pd.MultiIndex):
+                    # e.g. (Open, AAPL) -> "AAPL_Open"
+                    df.columns = [f"{t}_{fld}" for fld, t in df.columns]
+                else:
+                    # Single-level: add ticker prefix to be consistent
+                    df.rename(columns={c: f"{stock}_{c}" for c in df.columns}, inplace=True)
+
+                df = df.reset_index()
+
+                # choose correct column name regardless of shape
+                close_col = f"{stock}_Close"
+                open_col  = f"{stock}_Open"
+                high_col  = f"{stock}_High"
+                low_col   = f"{stock}_Low"
+
+                if chart_type == "Line (Close)":
+                    fig = px.line(df, x="Date", y=close_col, title=f"{stock} Closing Price")
+                else:
+                    fig = go.Figure(data=[go.Candlestick(
+                        x=df["Date"],
+                        open=df[open_col], high=df[high_col], low=df[low_col], close=df[close_col]
+                    )])
+                    fig.update_layout(title=f"{stock} Candlestick")
+
+                st.plotly_chart(fig, use_container_width=True)
+                with st.expander("📋 Show Data Table"):
+                    st.dataframe(df, use_container_width=True)
+
+            except Exception as e2:
+                st.error(f"Error fetching stock data: {e2}")
+
+import ta  # make sure you installed: pip install ta
+
+# --- Analysis Tab ---
+with tab3:
+    st.subheader("📊 Technical Analysis")
+
+    # Inputs
+    stock = st.selectbox("Select Stock", ["AAPL", "BA", "GS", "JPM"], key="analysis_stock")
+    start_date = st.date_input("Start Date", key="analysis_start")
+    end_date = st.date_input("End Date", key="analysis_end")
+
+    if st.button("Run Analysis"):
+        try:
+            # Fetch stock data
+            df = yf.Ticker(stock).history(start=start_date, end=end_date)
+            if df.empty:
+                st.warning("No data found for selected date range.")
+            else:
+                df = df[['Open', 'High', 'Low', 'Close', 'Volume']].copy().reset_index()
+
+                # =====================
+                # Add Technical Indicators
+                # =====================
+                df["SMA20"] = ta.trend.SMAIndicator(df["Close"], window=20).sma_indicator()
+                df["EMA20"] = ta.trend.EMAIndicator(df["Close"], window=20).ema_indicator()
+
+                macd = ta.trend.MACD(df["Close"])
+                df["MACD"] = macd.macd()
+                df["MACD_Signal"] = macd.macd_signal()
+                df["MACD_Diff"] = macd.macd_diff()
+
+                df["RSI"] = ta.momentum.RSIIndicator(df["Close"], window=14).rsi()
+
+                bb = ta.volatility.BollingerBands(df["Close"], window=20, window_dev=2)
+                df["BB_High"] = bb.bollinger_hband()
+                df["BB_Low"] = bb.bollinger_lband()
+
+                # =====================
+                # Plot Price + Indicators
+                # =====================
+                price_fig = go.Figure()
+                price_fig.add_trace(go.Candlestick(
+                    x=df["Date"], open=df["Open"], high=df["High"],
+                    low=df["Low"], close=df["Close"],
+                    name="Candlestick"
+                ))
+                price_fig.add_trace(go.Scatter(
+                    x=df["Date"], y=df["SMA20"], mode="lines", name="SMA20"
+                ))
+                price_fig.add_trace(go.Scatter(
+                    x=df["Date"], y=df["EMA20"], mode="lines", name="EMA20"
+                ))
+                price_fig.add_trace(go.Scatter(
+                    x=df["Date"], y=df["BB_High"], line=dict(dash="dot"), name="BB High"
+                ))
+                price_fig.add_trace(go.Scatter(
+                    x=df["Date"], y=df["BB_Low"], line=dict(dash="dot"), name="BB Low"
+                ))
+
+                price_fig.update_layout(title=f"{stock} Price with Indicators", xaxis_rangeslider_visible=False)
+                st.plotly_chart(price_fig, use_container_width=True)
+
+                # =====================
+                # Plot RSI
+                # =====================
+                rsi_fig = px.line(df, x="Date", y="RSI", title=f"{stock} RSI (14)")
+                rsi_fig.add_hline(y=70, line_dash="dash", line_color="red")
+                rsi_fig.add_hline(y=30, line_dash="dash", line_color="green")
+                st.plotly_chart(rsi_fig, use_container_width=True)
+
+                # =====================
+                # Plot MACD
+                # =====================
+                macd_fig = go.Figure()
+                macd_fig.add_trace(go.Scatter(x=df["Date"], y=df["MACD"], mode="lines", name="MACD"))
+                macd_fig.add_trace(go.Scatter(x=df["Date"], y=df["MACD_Signal"], mode="lines", name="Signal"))
+                macd_fig.add_trace(go.Bar(x=df["Date"], y=df["MACD_Diff"], name="MACD Diff"))
+                macd_fig.update_layout(title=f"{stock} MACD")
+                st.plotly_chart(macd_fig, use_container_width=True)
+
+                # =====================
+                # Show Data Table
+                # =====================
+                with st.expander("📋 Show Data with Indicators"):
+                    st.dataframe(df.tail(50), use_container_width=True)
+
+        except Exception as e:
+            st.error(f"Error in analysis: {e}")
