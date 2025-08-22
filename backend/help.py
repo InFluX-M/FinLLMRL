@@ -1436,12 +1436,11 @@ def calculate_metrics(
 def extract_trades_from_positions(df_actions, df_trade):
     """
     df_actions: daily positions for each ticker (index=date, columns=tickers)
-    df_prices: daily close prices for tickers (index=date, columns=tickers)
+    df_trade: daily close prices for tickers (index=date, columns=tickers)
 
     Returns DataFrame with columns:
-    ['tic', 'entry_date', 'exit_date', 'entry_price', 'exit_price']
+    ['tic', 'entry_date', 'exit_date', 'entry_price', 'exit_price', 'volume']
     """
-    print(df_trade.info())
     trades = []
     for tic in df_actions.columns:
         positions = df_actions[tic]
@@ -1450,8 +1449,7 @@ def extract_trades_from_positions(df_actions, df_trade):
         position = 0
         entry_date = None
         entry_price = None
-
-        print(prices.index[0], type(prices.index[0]))
+        entry_volume = None
 
         for date, pos in positions.items():
             price = prices.loc[date]
@@ -1461,8 +1459,9 @@ def extract_trades_from_positions(df_actions, df_trade):
                 position = pos
                 entry_date = date
                 entry_price = price
+                entry_volume = pos   # <<--- volume stored here
 
-            # Exit: position changes from positive to 0 (or smaller)
+            # Exit: position changes from positive to 0
             elif position > 0 and pos == 0:
                 exit_date = date
                 exit_price = price
@@ -1473,96 +1472,127 @@ def extract_trades_from_positions(df_actions, df_trade):
                     'exit_date': exit_date,
                     'entry_price': entry_price,
                     'exit_price': exit_price,
+                    'volume': entry_volume
                 })
 
                 position = 0
                 entry_date = None
                 entry_price = None
-
-            # (Optional) handle partial exits / position changes — requires more logic
+                entry_volume = None
 
     trades_df = pd.DataFrame(trades)
     return trades_df
 
+def extract_actions(df_actions, df_trade):
+    actions = []
+    print(df_trade.info())
+    
+    for date_idx, row in df_actions.iterrows():
+        date_ts = pd.Timestamp(date_idx)  # <-- convert to Timestamp
+        for tic, amt in row.items():
+            if amt != 0:
+                actions.append({
+                    "date": date_ts,
+                    "tick": tic,
+                    "amount": amt,
+                    "close": float(df_trade[tic].loc[date_ts])
+                })
 
-def calculate_trade_metrics(trades_df):
+    return actions
+
+def calculate_trade_metrics(actions):
     """
-    trades_df must have columns:
-    - 'entry_date' (datetime)
-    - 'exit_date' (datetime)
-    - 'entry_price'
-    - 'exit_price'
-    - Optionally 'quantity' or 'position_size'
-
-    Returns dict of trade-level metrics.
+    Calculate trader metrics from a list of trade actions.
+    
+    actions: list of dicts, each dict has:
+        'date' (Timestamp), 'tick' (str), 'amount' (int), 'close' (float)
+    
+    Returns:
+        dict with trader metrics.
     """
+    df = pd.DataFrame(actions)
+    
+    trades = []
 
+    # Process trades per ticker
+    for tick, group in df.groupby("tick"):
+        position = 0
+        entry_price = 0
+        entry_date = None
+        
+        for _, row in group.iterrows():
+            amt = row['amount']
+            price = row['close']
+            date = row['date']
+            
+            if amt > 0:
+                # Open/increase position
+                if position == 0:
+                    entry_price = price
+                    entry_date = date
+                position += amt
+                
+            elif amt < 0:
+                # Close/reduce position
+                exit_amt = -amt
+                if position >= exit_amt:
+                    pnl = (price - entry_price) * exit_amt
+                    trades.append({
+                        "tick": tick,
+                        "entry_date": entry_date,
+                        "exit_date": date,
+                        "entry_price": entry_price,
+                        "exit_price": price,
+                        "amount": exit_amt,
+                        "pnl": pnl
+                    })
+                    position -= exit_amt
+                    if position == 0:
+                        entry_price = 0
+                        entry_date = None
+                else:
+                    # Partial close greater than open
+                    pnl = (price - entry_price) * position
+                    trades.append({
+                        "tick": tick,
+                        "entry_date": entry_date,
+                        "exit_date": date,
+                        "entry_price": entry_price,
+                        "exit_price": price,
+                        "amount": position,
+                        "pnl": pnl
+                    })
+                    position = 0
+                    entry_price = 0
+                    entry_date = None
+
+    trades_df = pd.DataFrame(trades)
+    
     if trades_df.empty:
-        # No trades, return NaN for all
-        nan = np.nan
-        return {
-            'Number of Trades': 0,
-            'Win Rate [%]': nan,
-            'Best Trade [%]': nan,
-            'Worst Trade [%]': nan,
-            'Average Trade [%]': nan,
-            'Max Trade Duration (days)': nan,
-            'Average Trade Duration (days)': nan,
-            'Profit Factor': nan,
-            'Expectancy [%]': nan,
-            'SQN': nan,
-            'Kelly Criterion': nan,
-        }
+        return {}
 
-    # Calculate trade returns (%)
-    trades_df = trades_df.copy()
-    trades_df['trade_return'] = (trades_df['exit_price'] - trades_df['entry_price']) / trades_df['entry_price'] * 100
+    # Compute metrics
+    total_trades = len(trades_df)
+    winning_trades = (trades_df['pnl'] > 0).sum()
+    losing_trades = (trades_df['pnl'] <= 0).sum()
+    win_rate = winning_trades / total_trades * 100
+    total_pnl = trades_df['pnl'].sum()
+    average_pnl = trades_df['pnl'].mean()
+    max_trade = trades_df['pnl'].max()
+    min_trade = trades_df['pnl'].min()
 
-    # Trade durations in days
-    trades_df['entry_date'] = pd.to_datetime(trades_df['entry_date'])
-    trades_df['exit_date'] = pd.to_datetime(trades_df['exit_date'])
-    trades_df['trade_duration'] = (trades_df['exit_date'] - trades_df['entry_date']).dt.days
-
-    num_trades = len(trades_df)
-    wins = trades_df[trades_df['trade_return'] > 0]
-    win_rate = len(wins) / num_trades * 100 if num_trades > 0 else np.nan
-    best_trade = trades_df['trade_return'].max()
-    worst_trade = trades_df['trade_return'].min()
-    avg_trade = trades_df['trade_return'].mean()
-    max_trade_duration = trades_df['trade_duration'].max()
-    avg_trade_duration = trades_df['trade_duration'].mean()
-
-    gross_profit = wins['trade_return'].sum()
-    gross_loss = trades_df[trades_df['trade_return'] < 0]['trade_return'].sum()
-    profit_factor = (gross_profit / -gross_loss) if gross_loss != 0 else np.nan
-
-    expectancy = avg_trade * (win_rate / 100) + (worst_trade) * (1 - win_rate / 100)
-
-    # SQN calculation: SQN = (mean trade return / std trade return) * sqrt(num trades)
-    std_trade_return = trades_df['trade_return'].std()
-    sqn = (avg_trade / std_trade_return) * np.sqrt(num_trades) if std_trade_return != 0 else np.nan
-
-    # Kelly Criterion: k = win_rate - (loss_rate / payoff_ratio)
-    loss_rate = 1 - win_rate / 100
-    payoff_ratio = (wins['trade_return'].mean() / abs(trades_df[trades_df['trade_return'] < 0]['trade_return'].mean())) if len(wins) > 0 else np.nan
-    if payoff_ratio and payoff_ratio > 0:
-        kelly = (win_rate / 100) - (loss_rate / payoff_ratio)
-    else:
-        kelly = np.nan
-
-    return {
-        'Number of Trades': num_trades,
-        'Win Rate [%]': win_rate,
-        'Best Trade [%]': best_trade,
-        'Worst Trade [%]': worst_trade,
-        'Average Trade [%]': avg_trade,
-        'Max Trade Duration (days)': max_trade_duration,
-        'Average Trade Duration (days)': avg_trade_duration,
-        'Profit Factor': profit_factor,
-        'Expectancy [%]': expectancy,
-        'SQN': sqn,
-        'Kelly Criterion': kelly,
+    metrics = {
+        "Total Trades": total_trades,
+        "Winning Trades": winning_trades,
+        "Losing Trades": losing_trades,
+        "Win Rate [%]": win_rate,
+        "Total PnL": total_pnl,
+        "Average PnL per Trade": average_pnl,
+        "Best Trade": max_trade,
+        "Worst Trade": min_trade
     }
+
+    return metrics
 
 def build_mvo_and_baselines(train_df, trade_price_df, initial_capital=1_000_000, weight_bounds=(0,0.5)):
     """
@@ -1614,7 +1644,6 @@ def build_mvo_and_baselines(train_df, trade_price_df, initial_capital=1_000_000,
 
     return df_mvo, df_ew, df_bh, weights
 
-
 def build_benchmarks(trade, train):
     price_df = trade.pivot(index='date', columns='tic', values='close').sort_index()
     price_df.index = pd.to_datetime(price_df.index)
@@ -1642,12 +1671,10 @@ def analysis_trade_metrics(trade, df_actions):
     trade['date'] = pd.to_datetime(trade['date'])
     df_trade = trade.pivot(index='date', columns='tic', values='close')
     df_trade = df_trade.sort_index()
-    print(1)
-    trades_df = extract_trades_from_positions(df_actions, df_trade)
-    print(2)
-    trade_metrics = calculate_trade_metrics(trades_df)
-    print(3)
-    return trade_metrics
+    print(df_trade)
+    actions = extract_actions(df_actions, df_trade)
+    trade_metrics = calculate_trade_metrics(actions)
+    return trade_metrics, actions
 
 def scale_features(df,
                    unscaled_cols=None,
@@ -1836,6 +1863,6 @@ def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scalin
 def analysis_backtest(trade, train, df_account_value, df_actions):
     df_mvo, df_ew, df_bh = build_benchmarks(trade, train)
     df_result, results = analysis_metrics_rl_benchmarks(df_account_value, df_mvo, df_ew, df_bh)
-    trade_metrics = analysis_trade_metrics(trade, df_actions)
+    trade_metrics, actions = analysis_trade_metrics(trade, df_actions)
 
-    return df_result, results, trade_metrics
+    return df_result, results, trade_metrics, actions

@@ -64,11 +64,12 @@ app.add_middleware(
 class TradeRequest(BaseModel):
     start_trade: date
     end_trade: date 
-    shares: list[int]
-    cash: int
-    hmax: int
-    model: str
+    shares: list[int] = [0, 0, 0, 0]
+    cash: int = 1_000_000
+    hmax: int = 100
+    model: str = "ppo"
     comission: float = 0.001
+    reward_scaling: float = 10
 
 class TradeStats(BaseModel):
     Number_of_Trades: int
@@ -102,19 +103,44 @@ async def trade(request: TradeRequest):
     e_trade_gym, df_trade_value, df_trade_actions = backtest(
         models[request.model],
         data["train"],
-        df_trade_filtered,  # filtered
+        df_trade_filtered,
         INDICATORS[request.model],
         request.hmax,
         request.cash,
-        10,
+        request.reward_scaling,
         request.shares,
-        0.001
+        request.comission
     )
     
-    df_res_trade, res_trade, trade_metrics = analysis_backtest(df_trade_filtered, data["train"], df_trade_value, df_trade_actions)
+    df_res_trade, res_trade, trade_metrics, actions = analysis_backtest(df_trade_filtered, data["train"], df_trade_value, df_trade_actions)
     trade_metrics = {k: (v.item() if hasattr(v, "item") else v) for k, v in trade_metrics.items()}
+
+    import math
+
+    def safe_value(v):
+        """Convert to JSON-safe values (handle numpy scalars, NaN, inf)."""
+        if hasattr(v, "item"):  # convert numpy scalar to Python native
+            v = v.item()
+        if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
+            return None  # JSON can handle None -> null
+        return v
+
+    def safe_dict(d):
+        """Recursively clean dicts for JSON serialization."""
+        clean = {}
+        for k, v in d.items():
+            if isinstance(v, dict):
+                clean[k] = safe_dict(v)  # recurse for nested dicts (like res_trade)
+            else:
+                clean[k] = safe_value(v)
+        return clean
+
+    # Apply to both
+    res_trade = safe_dict(res_trade)
+    trade_metrics = safe_dict(trade_metrics)
 
     return {
         "res_trade": res_trade,
-        "trade_metrics": trade_metrics
+        "trade_metrics": trade_metrics,
+        "actions": actions
     }
