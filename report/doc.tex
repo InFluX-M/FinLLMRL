@@ -1,0 +1,235 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage{hyperref}
+\usepackage[top=3cm,right=3cm,bottom=3cm,left=2.5cm]{geometry}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{listings} % Load the listings package
+\usepackage{xcolor}   % Optional: For custom colors
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta} % Use arrows.meta library
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+
+\usepackage{hyperref}
+
+
+\usepackage{xepersian}
+\settextfont{XB Zar}
+\linespread{1.2}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+
+
+\pagestyle{fancy}
+% Set up fancyhdr to place page number at the top left
+\pagestyle{fancy}
+\fancyhf{} % Clear all header/footer fields
+\fancyhead[L]{\thepage} % Page number on the top left
+
+% Define custom style for chapter page (no header or footer)
+\fancypagestyle{plain}{
+	\fancyhf{} % Clear headers and footers
+	\renewcommand{\headrulewidth}{0pt} % Remove header rule
+}
+
+
+% Changing TOC addressing format (from period separation to dash seperation)
+\renewcommand{\thesection}{\thechapter-\arabic{section}-}
+\renewcommand{\thesubsection}{\thechapter-\arabic{section}-\arabic{subsection}-}
+\renewcommand{\thesubsubsection}{\thechapter-\arabic{section}-\arabic{subsection}-\arabic{subsubsection}-}
+
+\renewcommand{\thetable}{(\thechapter-\arabic{table})}
+
+% Redefine how captions are written 
+\renewcommand{\thefigure}{(\thechapter-\arabic{figure})}
+
+% Set caption font size to 11pt
+\captionsetup{font=small, labelsep=space} % 'small' is equivalent to 11pt in most classes
+
+% Make sure Persian and Latin text have their respective font sizes
+\settextfont{XB Zar} % Persian font
+\setlatintextfont{Times New Roman} % Latin font
+
+% Automatically switch between Persian and Latin fonts based on character type
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\persianchars
+\newXeTeXintercharclass\latinchars
+
+% Automatically switch fonts when switching between Persian and Latin characters
+\XeTeXinterchartoks \latinchars \persianchars = {\begingroup\persianfont\endgroup}
+\XeTeXinterchartoks \persianchars \latinchars = {\begingroup\latinfont\endgroup}
+
+
+\setlatintextfont{Courier New} % برای نمایش کدهای انگلیسی
+\lstset{
+	language=C++,                      % Set language to C++
+	basicstyle=\ttfamily\small,        % Use monospaced font
+	keywordstyle=\bfseries\color{blue}, % Keywords in bold blue
+	stringstyle=\color{red},           % Strings in red
+	commentstyle=\itshape\color{green!60!black}, % Comments in green italics
+	numbers=right,                     % Line numbers on the right
+	numberstyle=\tiny,                 % Line number font size
+	stepnumber=1,                      % Show line numbers every line
+	frame=single,                      % Add a frame around code
+	tabsize=4,                         % Set tab size
+	showstringspaces=false,            % Do not show spaces in strings
+	xleftmargin=10pt,                  % Adjust left margin for better alignment
+	xrightmargin=10pt                  % Adjust right margin for better alignment
+}
+
+
+
+
+\title{گزارش کارآموزی}
+\author{متین اعظمی}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    % University logo
+    \includegraphics[width=0.25\textwidth]{photos/university-logo.png}\par\vspace{1cm}
+    
+    % University and Faculty name
+    {\Large دانشگاه اصفهان}\par
+    {\large دانشکده مهندسی کامپیوتر}\par
+    {\large گروه هوش مصنوعی}\par
+    \vspace{1.5cm}
+    
+    % Report title
+    {\bfseries\LARGE گزارش پروژه کارشناسی}\par\vspace{1cm}
+    {\large \textbf{رشته مهندسی کامپیوتر گرایش هوش مصنوعی}}\par\vspace{1.2cm}
+    
+    {\large {عنوان پروژه:}}\par\vspace{0.5cm}
+    {\Large \textbf{توسعه يك عامل يادگيري تقويتي براي تصميم‌گيري در بازارهاي مالي با بهره‌گيري از مدل‌هاي زباني بزرگ}}\par\vspace{1.5cm}
+    
+    {\large {استاد راهنما:}}\par\vspace{0.3cm}
+    {\large \textbf{دکتر حسین کارشناس}}\par\vspace{1.2cm}
+    
+    {\large {پژوهشگر:}}\par\vspace{0.3cm}
+    {\large \textbf{متین اعظمی}}\par\vspace{1.2cm}
+    
+    {\large شهریور ۱۴۰۴}\par
+\end{titlepage}
+	
+
+\begin{titlepage}
+    \centering
+    % University logo
+    \includegraphics[width=0.25\textwidth]{photos/university-logo.png}\par\vspace{1cm}
+    
+    % University and Faculty name
+    {\Large دانشگاه اصفهان}\par
+    {\large دانشکده مهندسی کامپیوتر}\par
+    {\large گروه هوش مصنوعی}\par
+    \vspace{1.5cm}
+    
+    % Report title
+    {\bfseries\LARGE پروژه کارشناسی رشته مهندسی کامپیوتر گرایش هوش مصنوعی}\par\vspace{1cm}
+    {\large \textbf{آقای متین اعظمی}}\par\vspace{1.2cm}
+    {\large {تحت عنوان:}}\par\vspace{0.5cm}
+    {\Large \textbf{توسعه يك عامل يادگيري تقويتي براي تصميم‌گيري در بازارهاي مالي با بهره‌گيري از مدل‌هاي زباني بزرگ}}\par\vspace{1.5cm}
+
+    % تاییدیه هیات داوران
+    \begin{flushright}
+{\large در تاریخ \underline{\hspace{1.5cm}} / \underline{\hspace{1.5cm}} / \underline{\hspace{1.5cm}} توسط هیأت داوران زیر بررسی و با نمره \underline{\hspace{3cm}} به تصویب نهایی رسید.}\\[1cm]
+    
+1- استاد راهنمای پروژه: \hspace{0.5cm} دکتر \underline{\hspace{4cm}} \hspace{1.0cm} امضا \underline{\hspace{3cm}} \\[0.6cm]
+2- استاد داور: \hspace{1.8cm} دکتر \underline{\hspace{4cm}} \hspace{1.0cm} امضا \underline{\hspace{3cm}} \\[1.2cm]
+\hspace*{8.5cm} امضای مدیر گروه \underline{\hspace{4cm}}
+
+    \end{flushright}
+
+\end{titlepage}
+
+	
+% صفحه تشکر و قدردانی
+\thispagestyle{empty} % حذف شماره صفحه
+\begin{center}
+    {\Huge \textbf{تشکر و قدردانی}}
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+با تشکر، \\
+متین اعظمی \\
+شهریور 1404
+\end{flushleft}
+
+\newpage % صفحه جدید
+
+% صفحه تقدیم به
+\thispagestyle{empty}
+\vspace*{0.35\textheight}
+
+\begin{center}
+    {\Huge \textbf{تقدیم به}}
+\end{center}
+
+
+
+\newpage
+
+% صفحه چکیده
+\thispagestyle{empty}
+\begin{center}
+    {\Huge \textbf{چکیده}}
+\end{center}
+
+\vspace{1cm}
+
+% متن چکیده پژوهش خود را اینجا بنویسید
+% چکیده معمولاً 200 تا 300 کلمه است و شامل:
+% - مقدمه کوتاه
+% - هدف تحقیق
+% - روش تحقیق
+% - نتایج کلیدی
+% - جمع‌بندی
+
+\vspace{1cm}
+\textbf{کلمات کلیدی:} % کلمات کلیدی خود را اینجا وارد کنید
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{فهرست مخفف‌ها}
+
+\newpage
+
+\chapter*{مقدمه}
+
+
+\chapter*{مبانی نظری پژوهش}
+
+
+\chapter*{روش‌شناسی پژوهش و طراحی سیستم}
+
+
+\chapter*{پیاده‌سازی}
+
+\chapter*{آزمایش‌ها و نتایج}
+
+
+\chapter*{بحث و تحلیل}
+
+
+\chapter*{نتیجه‌گیری و پیشنهادها}
+
+
+\chapter*{منابع}
+
+
+\chapter*{پیوست‌ها}
+
+
+\end{document}
