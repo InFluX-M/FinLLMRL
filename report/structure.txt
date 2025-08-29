@@ -32,24 +32,28 @@ Large Language Models in Finance (FinBERT, GPT, BloombergGPT, news/sentiment app
 Hybrid Approaches (RL + NLP/LLM in trading)
 Research Gaps & Motivation for this Project
 {
-    'Deep reinforcement learning for portfolio management.pdf'
+'A Survey of Large Language Models.pdf'
+'Deep reinforcement learning in quantitative algorithmic trading: A review.pdf'
 
-    'FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance.pdf'
-    'FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance.pdf'
-    'FinBERT: Financial Sentiment Analysis with Pre-trained Language Models.pdf'
-    'FinGPT: Instruction Tuning Benchmark for Open-Source Large Language Models in Financial Datasets.pdf'
-    'FinGPT: Open-Source Financial Large Language Models.pdf'
-    
-    'Reinforcement-learning based portfolio management with augmented asset movement prediction states.pdf'
-    'Adaptive Stock Trading Strategies with Deep Reinforcement Learning Methods.pdf'
-    'A novel deep reinforcement learning based automated stock trading system using cascaded LSTM networks.pdf'
-    'Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management.pdf'
-    'Deep reinforcement learning for automated stock trading: An ensemble strategy.pdf'
-    'A multi-agent reinforcement learning framework for optimizing financial trading strategies based on TimesNet.pdf'
+'FinBERT: Financial Sentiment Analysis with Pre-trained Language Models.pdf'
+'FinGPT: Instruction Tuning Benchmark for Open-Source Large Language Models in Financial Datasets.pdf'
+'FinGPT: Open-Source Financial Large Language Models.pdf'
+'FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance.pdf'
+'FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance.pdf'
 
-    'Market sentiment-aware deep reinforcement learning approach for stock portfolio allocation.pdf'
-    'Multi-type data fusion framework based on deep reinforcement learning for algorithmic trading.pdf'
-    'FINCON: A Synthesized LLM Multi-Agent System'$'\n''with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making.pdf'
+'Deep reinforcement learning for automated stock trading: An ensemble strategy.pdf'
+'A novel deep reinforcement learning based automated stock trading system using cascaded LSTM networks.pdf'
+'Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management.pdf'
+'Market sentiment-aware deep reinforcement learning approach for stock portfolio allocation.pdf'
+'Multi-type data fusion framework based on deep reinforcement learning for algorithmic trading.pdf'
+
+'Adaptive Stock Trading Strategies with Deep Reinforcement Learning Methods.pdf'
+'A multi-agent reinforcement learning framework for optimizing financial trading strategies based on TimesNet.pdf'
+'Deep reinforcement learning for portfolio management.pdf'
+'Deeptrader: a deep reinforcement learning approach for risk-return balanced portfolio management with market conditions embedding.pdf'
+'Reinforcement-learning based portfolio management with augmented asset movement prediction states.pdf'
+
+'FINCON: A Synthesized LLM Multi-Agent System'$'\n''with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making.pdf'
 }
 
 

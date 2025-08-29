@@ -1,0 +1,678 @@
+\documentclass[12pt,a4paper]{report}
+
+% -----------------------------
+% Packages (deduped and ordered)
+% -----------------------------
+\usepackage[top=3cm,right=3cm,bottom=3cm,left=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage{booktabs}
+
+% Load hyperref LAST
+\usepackage[hidelinks]{hyperref}
+
+% -----------------------------
+% Headers / Footers
+% -----------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% -----------------------------
+% Numbering formats (kept, but no trailing dashes)
+% -----------------------------
+\renewcommand{\thesection}{\thechapter-\arabic{section}}
+\renewcommand{\thesubsection}{\thechapter-\arabic{section}-\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thechapter-\arabic{section}-\arabic{subsection}-\arabic{subsubsection}}
+
+\renewcommand{\thetable}{(\thechapter-\arabic{table})}
+\renewcommand{\thefigure}{(\thechapter-\arabic{figure})}
+\captionsetup{font=small,labelsep=space}
+
+% -----------------------------
+% Document
+% -----------------------------
+\begin{document}
+
+% -----------------------------
+% Front Matter (Unnumbered)
+% -----------------------------
+\pagenumbering{roman}
+
+\chapter*{Abstract}
+% Write your abstract here.
+
+\chapter*{Acknowledgements}
+% Write your acknowledgements here.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% -----------------------------
+% Main Content (Numbered Chapters)
+% -----------------------------
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+\chapter{Theoretical Foundations}
+
+\chapter{Literature Review}
+
+\section{LLMs and Financial NLP}
+
+\subsection{A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges \cite{zhao2023survey}}
+
+\subsubsection{Research Focus}
+The survey reviews how LLMs are applied in finance, emphasizing their role in:
+\begin{itemize}
+    \item Sentiment analysis
+    \item Time-series forecasting
+    \item Financial reasoning and decision support
+    \item Agent-based modeling for trading and simulation
+\end{itemize}
+It highlights both the potential and the challenges of adapting LLMs to financial NLP tasks.
+
+\subsubsection{Methodology}
+The authors conduct a structured literature review and classify applications into five major categories (see Table~\ref{tab:finance-llm-taxonomy}). They also summarize widely used datasets and benchmarks.
+
+\begin{table}[h]
+\centering
+\caption{Application areas of LLMs in finance (adapted from \cite{zhao2023survey})}
+\begin{tabular}{p{3.5cm} p{9cm}}
+\toprule
+\textbf{Category} & \textbf{Examples} \\
+\midrule
+Linguistic tasks & Summarization of earnings calls, information extraction from filings \\
+Sentiment analysis & Classifying financial news, reports, and microblogs \\
+Financial time-series & Text-driven forecasting, anomaly detection \\
+Financial reasoning & Q\&A, decision support, numerical reasoning \\
+Agent-based modeling & LLM-powered trading agents, market simulations \\
+\bottomrule
+\end{tabular}
+\label{tab:finance-llm-taxonomy}
+\end{table}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item LLMs outperform traditional models on financial NLP tasks.
+    \item Domain-specific pretraining (e.g., FinBERT, FinGPT) further boosts accuracy.
+    \item Benchmarks like FPB, FiQA, and FinQA confirm improvements in sentiment, QA, and reasoning.
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Data scarcity and domain adaptation difficulties
+    \item Risk of look-ahead bias in financial modeling
+    \item High computational cost and latency
+    \item Lack of interpretability and explainability
+    \item Legal, compliance, and regulatory risks
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+
+%-------------------
+
+\subsection{FinBERT: Financial Sentiment Analysis with Pre-trained Language Models \cite{araci2019finbert}}
+
+\subsubsection{Research Focus}
+FinBERT addresses the challenge of sentiment analysis in financial texts, where general sentiment models often fail due to specialized jargon and domain-specific context.  
+The goal is to adapt BERT for accurate classification of financial news, reports, and statements.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item Pre-trains BERT on a large financial corpus (e.g., news, company filings, analyst reports).
+    \item Fine-tunes on benchmark financial sentiment datasets for three-class classification (positive, negative, neutral).
+    \item Compares performance with traditional ML and generic BERT sentiment models.
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{FinBERT methodology overview}
+\begin{tabular}{|p{3.5cm}|p{9cm}|}
+\hline
+\textbf{Step} & \textbf{Description} \\
+\hline
+Pre-training & Domain-adaptive training on large financial text corpora \\
+\hline
+Fine-tuning & Sentiment classification (pos/neg/neu) using Financial PhraseBank and similar datasets \\
+\hline
+Baseline comparison & Benchmarked against lexicon-based and traditional ML approaches \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Achieves significantly higher accuracy and F1-scores than generic sentiment models.  
+    \item Strong at capturing subtle financial expressions (e.g., “slight decline,” “robust outlook”).  
+    \item Demonstrates robustness across multiple datasets (e.g., Financial PhraseBank, FiQA).  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Requires access to large high-quality financial text for pretraining.  
+    \item Still limited by BERT’s architecture (e.g., input length constraints).  
+    \item Like other transformers, lacks interpretability and explainability.  
+    \item Performance may degrade in contexts needing deep economic reasoning beyond textual sentiment.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+%-------------------
+
+\subsection{FinGPT: Open-Source Financial Large Language Models \cite{liu2023fingpt}}
+
+\subsubsection{Research Focus}
+FinGPT aims to democratize access to financial large language models by providing an open-source, cost-effective, and customizable alternative to proprietary financial AI systems.  
+It focuses on making LLMs accessible for tasks such as financial sentiment analysis, report summarization, and question answering.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item Builds on open-source LLM backbones (e.g., GPT-style models).  
+    \item Applies financial domain adaptation through instruction tuning and lightweight fine-tuning.  
+    \item Uses reinforcement learning with human feedback (RLHF) to improve task alignment.  
+    \item Emphasizes efficiency by using low-rank adaptation (LoRA) and cost-effective training pipelines.  
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{FinGPT methodology highlights}
+\begin{tabular}{|p{3.5cm}|p{9cm}|}
+\hline
+\textbf{Component} & \textbf{Description} \\
+\hline
+Model backbone & Open-source GPT-family LLMs \\
+\hline
+Domain adaptation & Instruction tuning + financial data fine-tuning \\
+\hline
+Efficiency methods & LoRA, lightweight parameter-efficient training \\
+\hline
+Alignment & RLHF to ensure reliable outputs for financial tasks \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Competitive performance on financial NLP benchmarks compared to proprietary models.  
+    \item Strong adaptability across tasks (sentiment analysis, QA, summarization).  
+    \item Open-source design enables transparency, customization, and collaboration.  
+    \item More cost-efficient than closed-source financial LLMs.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Dependent on the quality and coverage of financial training data.  
+    \item May underperform against large proprietary LLMs trained on massive datasets.  
+    \item Faces robustness challenges in high-stakes or compliance-heavy applications.  
+    \item Ethical, legal, and regulatory issues (e.g., risk of hallucinations in finance).  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+%-------------------
+
+\section{RL Libraries and Reviews in Finance}
+
+\subsection{Deep Reinforcement Learning in Quantitative Algorithmic Trading: A Review \cite{pricope2021deep}}
+
+\subsubsection{Research Focus}
+The paper explores the use of deep reinforcement learning (DRL) for low-frequency quantitative algorithmic trading.  
+It frames the stock market as a complex, imperfect-information environment—similar to games like Go or Chess—where agents learn to maximize returns and control risk.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item Focus restricted to automated, end-to-end DRL trading agents (minute-level to daily frequency).  
+    \item Excludes forecasting models, hybrid/metaheuristic approaches, portfolio optimization, and high-frequency trading.  
+    \item Categorizes DRL methods into three main families (see Table~\ref{tab:drl-families}).  
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Categorization of DRL approaches in trading (adapted from \cite{pricope2021deep})}
+\label{tab:drl-families}
+\begin{tabular}{|p{4cm}|p{8.5cm}|}
+\hline
+\textbf{Category} & \textbf{Examples} \\
+\hline
+Critic-only (value-based) & Deep Q-Networks (DQN), Double DQN \\
+\hline
+Actor-only (policy-based) & REINFORCE, Policy Gradient methods \\
+\hline
+Actor–Critic hybrids & Advantage Actor-Critic (A2C), Deep Deterministic Policy Gradient (DDPG), PPO \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item DRL agents often outperform traditional baselines in simulations.  
+    \item Gains are typically \textit{statistical}, not necessarily translating into real-world profitability.  
+    \item Current research remains proof-of-concept with modest results.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Most studies use simplified backtesting; lack real-time, live trading experiments.  
+    \item Very few comparisons across DRL variants or with human traders.  
+    \item Practical challenges: latency, transaction costs, and robustness under market frictions.  
+    \item Profitability in real-world conditions remains unproven.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+
+%-------------------
+
+\subsection{FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance \cite{liu2021finrl,liu2020finrl}}
+
+\subsubsection{Research Focus}
+FinRL introduces one of the first open-source DRL libraries tailored to quantitative finance.  
+Its main goal is to provide a complete, reproducible, and user-friendly framework that lowers the entry barrier for researchers and practitioners in automated trading.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item Implements a \textbf{three-layer modular architecture}:  
+    \begin{itemize}
+        \item \textbf{Environment Layer}: Market simulation using historical/real-time data; integrates trading costs, liquidity, and risk aversion.  
+        \item \textbf{Agent Layer}: State-of-the-art DRL algorithms (DQN, DDPG, PPO, SAC, A2C, TD3) with customizable reward functions.  
+        \item \textbf{Application Layer}: Ready-to-run modules for stock trading, portfolio allocation, and cryptocurrency trading with backtesting tools.  
+    \end{itemize}
+    \item Built on PyTorch and OpenAI Gym-style APIs for accessibility and extensibility.  
+    \item Offers tutorials and step-by-step guides for education and reproducibility.  
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Highlights of FinRL framework}
+\begin{tabular}{|p{4cm}|p{8.5cm}|}
+\hline
+\textbf{Component} & \textbf{Key Features} \\
+\hline
+Environment Layer & Historical/real-time data, transaction costs, liquidity constraints \\
+\hline
+Agent Layer & DRL algorithms (DQN, PPO, SAC, A2C, TD3), customizable rewards \\
+\hline
+Application Layer & Trading modules, portfolio strategies, crypto trading, backtesting \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Demonstrates successful application of DRL agents across multiple trading tasks.  
+    \item Provides reproducible benchmarks and environments, enabling fair comparisons between algorithms.  
+    \item Widely adopted in research and education, bridging the gap between ML and finance.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Does not provide out-of-the-box profitable strategies — it is an infrastructure toolkit, not a trading solution.  
+    \item Some environment design choices (e.g., stock ordering in action space) may introduce subtle biases.  
+    \item Real-world deployment still requires significant domain expertise and strategy development.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+%-------------------
+
+\section{DRL for Financial Decision-Making}
+
+\subsection{Deep reinforcement learning for automated stock trading: An ensemble strategy \cite{li2020ensemble}}
+
+\subsubsection{Research Focus}
+The paper proposes an ensemble deep reinforcement learning (DRL) strategy for automated stock trading.  
+The aim is to combine the strengths of multiple DRL algorithms to create a more robust and adaptive trading agent capable of handling dynamic market regimes.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Algorithms used}: PPO, A2C, and DDPG (all actor–critic based).  
+    \item \textbf{Load-on-demand technique}: Efficient data handling to reduce memory overhead in continuous action spaces.  
+    \item \textbf{Ensemble mechanism}:  
+    \begin{itemize}
+        \item Agents are trained on rolling windows of historical data.  
+        \item A validation window selects the best agent based on Sharpe ratio and turbulence index.  
+        \item The selected agent executes trades in the next trading period.  
+    \end{itemize}
+    \item \textbf{Dataset}: 30 Dow Jones Industrial Average (DJIA) stocks.  
+    \item \textbf{Baselines}: Compared against DJIA index and minimum-variance portfolio.  
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Overview of ensemble strategy (Li et al., 2020)}
+\begin{tabular}{|p{4cm}|p{8.5cm}|}
+\hline
+\textbf{Component} & \textbf{Description} \\
+\hline
+Algorithms & PPO, A2C, DDPG (actor–critic DRL) \\
+\hline
+Selection metric & Sharpe ratio (risk-adjusted), turbulence index (risk control) \\
+\hline
+Process & Train $\rightarrow$ Validate $\rightarrow$ Select best agent $\rightarrow$ Trade \\
+\hline
+Benchmarks & DJIA index, min-variance portfolio \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item The ensemble strategy consistently outperforms single-agent DRL models (PPO, A2C, DDPG alone).  
+    \item Achieves higher Sharpe ratios and more stable risk-adjusted returns.  
+    \item Demonstrates adaptability by selecting agents that perform best in different market regimes.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Computationally expensive due to multiple agents and retraining.  
+    \item Performance depends heavily on window size, hyperparameters, and market conditions.  
+    \item Limited to three DRL algorithms — future work could expand to newer methods (e.g., SAC, TD3).  
+    \item Still evaluated only in backtesting; real-world trading deployment remains untested.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+\subsection{A novel deep reinforcement learning based automated stock trading system using cascaded LSTM networks \cite{chen2020cascaded}}
+
+\subsubsection{Research Focus}
+The paper addresses the difficulty of applying DRL to financial time series, which suffer from low signal-to-noise ratios and irregular patterns.  
+It proposes a cascaded LSTM architecture to better capture temporal dependencies and latent structures in daily stock data.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Two-stage cascaded LSTM:}
+    \begin{itemize}
+        \item \textbf{Feature extraction stage:} First LSTM learns temporal patterns from raw daily stock data.  
+        \item \textbf{Agent stage:} Extracted features are fed into a DRL agent (PPO) enhanced with another LSTM in its actor–critic networks.  
+    \end{itemize}
+    \item \textbf{Datasets:} Evaluated on four major indices — DJI (US), SSE50 (China), SENSEX (India), FTSE100 (UK).  
+    \item \textbf{Benchmarks:} Compared against buy-and-hold, PPO-MLP, standalone LSTM/MLP, LightGBM, gradient boosting, and ensemble DRL strategies.  
+\end{itemize}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Achieved performance improvements of \textbf{5–52\%} across cumulative returns, max earning rate, and average profit per trade.  
+    \item Outperformed both traditional ML baselines and DRL models without cascaded LSTM.  
+    \item Showed particularly strong results in the SSE50 market, highlighting adaptability in emerging markets.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Increased complexity and training cost due to two-stage architecture.  
+    \item Sensitivity to hyperparameters, market regimes, and data frequency.  
+    \item Results based on backtesting only — no live trading validation.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+\subsection{Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management \cite{xu2022commission}}
+
+\subsubsection{Research Focus}
+This work highlights a key limitation in many DRL-based portfolio management systems: most models only consider commission fees as trading costs, neglecting the impact of \textbf{price slippage}, which can significantly alter execution outcomes.  
+To address this, the authors propose \textbf{HRPM}, a hierarchical framework that separates portfolio allocation from trade execution.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Two-tier hierarchical design:}
+    \begin{itemize}
+        \item \textbf{High-level policy:} Allocates portfolio weights at lower frequency, aiming to maximize long-term returns.  
+        \item \textbf{Low-level policy:} Executes trades within short windows, minimizing costs including slippage.  
+    \end{itemize}
+    \item \textbf{Training strategy:}  
+    \begin{itemize}
+        \item Pre-training both levels to establish baseline behaviors.  
+        \item Iterative joint training for coordinated strategy–execution efficiency.  
+    \end{itemize}
+    \item \textbf{Evaluation:} Conducted on both U.S. and Chinese stock markets against DRL and traditional baselines.  
+\end{itemize}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item \textbf{Trading costs:} Commission fees are only a minor part of total costs — slippage dominates, especially in large trades.  
+    \item \textbf{Entropy bonus:} Adding entropy to rewards diversifies portfolios.  
+    \begin{itemize}
+        \item $\eta = 0.05$ → highest annualized return (ARR).  
+        \item $\eta = 0.1$ → lowest maximum drawdown (MDD).  
+    \end{itemize}
+    \item \textbf{Execution behavior:} The low-level policy spreads trades strategically — selling partially early and timing buys/sells with local price trends to reduce slippage.  
+    \item \textbf{Overall performance:} HRPM outperforms state-of-the-art DRL and classical portfolio strategies in both U.S. and Chinese markets.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Increased complexity from two-tier architecture requires higher training costs.  
+    \item Sensitivity to hyperparameters (e.g., entropy weight $\eta$) can shift balance between risk and return.  
+    \item Tested only in backtesting — lacks real-time trading validation.  
+    \item Execution dynamics may vary under different market conditions not covered in the study.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+\subsection{Multi-type data fusion framework based on deep reinforcement learning for algorithmic trading \cite{wang2022fusion}}
+
+\subsubsection{Research Focus}
+The paper addresses the limitations of single-source DRL trading systems, which often fail to capture the complexity of financial markets.  
+It proposes \textbf{MSF-DRL}, a multi-type data fusion framework that integrates raw stock data, technical indicators, and candlestick chart images to provide a richer, more comprehensive market representation.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Data fusion pipeline:}
+    \begin{itemize}
+        \item \textbf{Numeric branch:} Stock prices and technical indicators processed by an LSTM to extract temporal features and reduce noise.  
+        \item \textbf{Visual branch:} Candlestick charts encoded using a CNN + BiLSTM to capture both spatial and sequential visual patterns.  
+        \item \textbf{Fusion:} Combined features from both branches form the state representation.  
+    \end{itemize}
+    \item \textbf{RL decision module:} The fused state representation is input to a DRL trading agent (buy/sell/hold decisions).  
+\end{itemize}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Outperformed traditional baselines and single-modality DRL models.  
+    \item Demonstrated higher profitability and improved Sharpe ratios, reflecting stronger risk-adjusted returns.  
+    \item Effective across both Chinese stock datasets and selected S\&P 500 stocks, suggesting cross-market robustness.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Computationally more complex due to dual-branch feature extraction and fusion.  
+    \item Performance may depend heavily on candlestick chart quality and preprocessing choices.  
+    \item Still limited to historical backtesting — no live trading validation.  
+    \item Fusion limited to three modalities; other information sources (e.g., sentiment/news data) were not considered.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+
+\subsection{Market Sentiment-Aware Deep Reinforcement Learning Approach for Stock Portfolio Allocation \cite{zhang2021sentiment}}
+
+\subsubsection{Research Focus}
+This paper tackles the limitation of DRL-based portfolio allocation strategies that rely only on historical prices.  
+It introduces a sentiment-aware DRL framework that integrates both market prices and investor sentiment—capturing psychology-driven market dynamics that strongly influence stock movements.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Integrated inputs:} Combines historical stock data with sentiment signals extracted from news and social media.  
+    \item \textbf{Sentiment extraction:} Though the specific NLP pipeline is not detailed, sentiment scores are transformed into quantitative features.  
+    \item \textbf{DRL framework:} The sentiment-enhanced state representation is fed into a DRL agent (algorithm not explicitly specified, e.g., DQN/PPO possible).  
+    \item \textbf{Portfolio scope:} Focused on Dow Jones–listed companies.  
+\end{itemize}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Outperforms conventional DRL models relying only on price data.  
+    \item Achieves higher \textbf{Sharpe ratios} and \textbf{annualized returns}.  
+    \item Demonstrates improved robustness in portfolio allocation by incorporating sentiment-driven signals.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Sentiment extraction process is not fully transparent (pipeline details missing).  
+    \item Relies on quality and reliability of sentiment data, which may be noisy or biased.  
+    \item Study limited to Dow Jones companies; generalization to other markets remains untested.  
+    \item Evaluation based on backtesting, without real-time deployment validation.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+
+\subsection{A multi-agent reinforcement learning framework for optimizing financial trading strategies based on TimesNet \cite{jiang2023timesnet}}
+
+\subsubsection{Research Focus}
+The study addresses the lack of robustness in single-agent DRL models for financial trading.  
+It introduces \textbf{MADDQN}, a multi-agent reinforcement learning framework that combines diverse feature extractors—TimesNet and Multi-Scale CNN—to design trading strategies that balance return maximization and risk control.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Dual-agent design:}
+    \begin{itemize}
+        \item \textbf{Agent 1:} Uses \textbf{TimesNet}, transforming 1D time-series into 2D representations to capture periodic and multi-scale temporal patterns.  
+        \item \textbf{Agent 2:} Uses a \textbf{Multi-Scale CNN} to capture temporal features at different resolutions.  
+    \end{itemize}
+    \item \textbf{Algorithmic backbone:} Both agents are trained with \textbf{Double DQN (DDQN)}, reducing Q-value overestimation bias.  
+    \item \textbf{Pre-training and fine-tuning:}
+    \begin{itemize}
+        \item Pre-trained on a mixed dataset of major U.S. indices for generalization.  
+        \item Fine-tuned on specific assets for scenario adaptation.  
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Achieved an average cumulative return of \textbf{23.08\%} across five stock indices.  
+    \item Outperformed single-agent models and other baselines in terms of profitability and robustness.  
+    \item Demonstrated strong \textbf{generalization}: pre-training enabled transferability, while fine-tuning stabilized performance across assets.  
+    \item Multi-agent design produced more stable risk-return profiles than standalone DRL systems.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Computational overhead due to maintaining and coordinating multiple agents.  
+    \item Dependence on feature extractors (TimesNet, CNN) may limit adaptability in radically different market regimes.  
+    \item Tested only on historical backtests — no live trading experiments.  
+    \item Focused primarily on U.S. stock indices; cross-market scalability remains to be validated.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+
+%-------------------
+
+\section{Hybrid Approaches: Integrating LLMs with RL in Finance}
+
+\subsection{FINCON: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making \cite{xu2023fincon}}
+
+\subsubsection{Research Focus}
+FINCON addresses the complexity of sequential financial decision-making by combining LLMs with reinforcement learning in a \textbf{multi-agent system}.  
+It introduces a manager–analyst hierarchy, conceptual verbal reinforcement, and dual-level risk control to produce more robust, interpretable, and risk-aware financial strategies.
+
+\subsubsection{Methodology}
+\begin{itemize}
+    \item \textbf{Multi-agent structure:}
+    \begin{itemize}
+        \item \textbf{Market Analyst Agents:} Extract and summarize raw market data (e.g., stock prices, fundamentals).  
+        \item \textbf{Sentiment \& News Agents:} Process financial news, reports, and social media, converting unstructured text into sentiment insights.  
+        \item \textbf{Strategy Agents:} Propose candidate trading or portfolio actions by integrating analyst and sentiment outputs.  
+        \item \textbf{Risk Management Agents:} Monitor exposure, apply risk constraints, and manage portfolio-level safety.  
+        \item \textbf{Manager (Decision-Maker) Agent:} Synthesizes all inputs and finalizes portfolio or trading decisions.  
+    \end{itemize}
+    \item \textbf{Risk control:}  
+    \begin{itemize}
+        \item Within-episode → monitors CVaR daily to limit short-term risk.  
+        \item Over-episode → updates beliefs and strategies after each trading cycle.  
+    \end{itemize}
+    \item \textbf{Conceptual Verbal Reinforcement (CVRF):} Agents self-critique and share distilled “conceptual beliefs” in natural language to guide future decisions.  
+    \item \textbf{POMDP formulation:} Frames trading/portfolio tasks as POMDPs with latent factors (e.g., macro uncertainty).  
+    \item \textbf{Prompt optimization:} Uses text-based gradient descent to refine prompts across episodes for consistent reasoning.  
+\end{itemize}
+
+\subsubsection{Results}
+\begin{itemize}
+    \item Outperforms baseline DRL agents and other LLM-based approaches.  
+    \item Improves \textbf{cumulative return (CR)}, \textbf{Sharpe ratio (SR)}, and reduces \textbf{maximum drawdown (MDD)}.  
+    \item Manager–analyst hierarchy improves efficiency by reducing communication overhead.  
+    \item CVRF enhances interpretability and generalization in both single-stock and portfolio tasks.  
+\end{itemize}
+
+\subsubsection{Limitations}
+\begin{itemize}
+    \item Computationally demanding due to multiple specialized agents and multimodal inputs.  
+    \item Relies on accurate prompt engineering and high-quality datasets.  
+    \item Current validation limited to backtests; no live trading deployment.  
+    \item Scaling the agent network may introduce coordination complexity.  
+\end{itemize}
+
+\subsubsection{Contribution to My Project}
+% Left blank as requested
+
+% You can add more hybrid entries here (e.g., sentiment-aware DRL that uses LLM/NLP signals).
+
+% -----------------------------
+
+\chapter{Research Methodology and System Design}
+
+\chapter{Implementation}
+
+\chapter{Experiments and Results}
+
+\chapter{Discussion and Analysis}
+
+\chapter{Conclusion and Future Work}
+
+% -----------------------------
+% References
+% -----------------------------
+\bibliographystyle{ieeetr}
+\bibliography{references} % your .bib file
+
+% -----------------------------
+% Appendices (Lettered)
+% -----------------------------
+\appendix
+
+\chapter{Appendix A: Title of Appendix}
+% Content for Appendix A
+
+\chapter{Appendix B: Title of Appendix}
+% Content for Appendix B
+
+\end{document}
