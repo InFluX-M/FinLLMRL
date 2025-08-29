@@ -22,7 +22,7 @@ P2. Theoretical Concepts
 Reinforcement Learning Basics (agent, environment, state, action, reward, policy, exploration vs exploitation)
 Large Language Models Fundamentals (transformer architecture, embeddings, fine-tuning, sentiment analysis)
 Dow Jones 30 Market Characteristics (index composition, volatility, macroeconomic sensitivity)
-
+Reinforcement Learning Algotithms
 
 P3. Literature Review
 Traditional Approaches (statistical models: ARIMA, GARCH)
