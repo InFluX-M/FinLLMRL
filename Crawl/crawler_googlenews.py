@@ -38,7 +38,6 @@ sources = [
 ]
 
 """
-
 sources = [
     "wsj.com",              # Wall Street Journal
     "barrons.com",          # Barron's
@@ -119,7 +118,6 @@ for year in range(2018, 2019):
                 f"&tbs=cdr:1,cd_min:{month}/1/{year},cd_max:{month}/31/{year}"
                 f"&tbm=nws&hl=en&gl=us&start={start}"
             )
-
             driver.get(url)
             driver.implicitly_wait(2)
 

@@ -1,0 +1,62 @@
+📊 RL Trading Experiment Setups
+
+1. Reward Function / Objective
+Raw PnL (baseline)
+Risk-adjusted profit (PnL ÷ volatility)
+
+2. Algorithm Choice
+PPO
+RPPO
+
+3. Environment Design
+Single environment (train on one market stream)
+Multi-environment (vectorized) training
+
+4. Episode Handling
+Fixed episode length
+Randomized start point & length
+
+6. Evaluation / Robustness
+Out-of-sample assets (train on part of DOW30, test on unseen stocks)
+
+1- Raw PnL, PPO, Single environment, Fixed episode length
+2- Raw PnL, PPO, Single environment, Randomized start point & length
+3- Raw PnL, PPO, Multi-environment, Fixed episode length
+4- Raw PnL, PPO, Multi-environment, Randomized start point & length
+
+1- Risk-adjusted profit, PPO, Single environment, Fixed episode length
+2- Risk-adjusted profit, PPO, Single environment, Randomized start point & length
+3- Risk-adjusted profit, PPO, Multi-environment, Fixed episode length
+4- Risk-adjusted profit, PPO, Multi-environment, Randomized start point & length
+
+-----------------------
+
+Validation Sentiment Scores vs OLCHV
+- Lagged Linear Regression
+- Granger Causality Test
+- Event Study / Extreme Sentiment Analysis
+
+
++ ppo
+    + raw norm return reward
+        1 env 
+            normal episode - 10 run 
+            random episode - 10 run
+        3 env 	
+            normal episode - 5 run
+            random episode - 4 run
+    + log risk reward
+        1 env - 5 run
+        3 env - 5 run
+
++ rppo
+    + raw norm return reward
+        1 env
+            normal episode - 10 run
+            random episode - 6 run
+        3 env
+            normal episode - 5 run
+            random episode - 4 run
+    + log risk reward
+        1 env - 5 run
+        3 env - 5 run

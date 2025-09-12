@@ -29,7 +29,7 @@ with tab1:
         shares = st.text_input("Initial Shares (comma separated)", "0, 0, 0, 0")
         cash = st.number_input("Initial Cash", value=1_000_000, step=10000)
         hmax = st.number_input("Max Shares per Trade (hmax)", value=100)
-        model = st.selectbox("RL Model", ["ppo", "rppo"])
+        model = st.selectbox("RL Model", ["ppo", "rppo", "sac"])
         commission = st.number_input("Commission (%)", value=0.001, format="%.4f")
         reward_scaling = st.number_input("Reward Scaling", value=10.0)
 

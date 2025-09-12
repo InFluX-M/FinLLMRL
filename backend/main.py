@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 
-from stable_baselines3 import PPO
+from stable_baselines3 import PPO, SAC
 
 from help import MODELS, TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS, analysis_backtest, extract_trades_from_positions
 

@@ -1,4 +1,4 @@
-from stable_baselines3 import PPO
+from stable_baselines3 import PPO, SAC
 import yfinance as yf
 import pandas as pd
 import numpy as np
@@ -104,6 +104,15 @@ INDICATORS = {
         "finbert_future",
         "zclose_60", "ret_1d"
     ],
+    "sac": [
+        "mom_20d",
+        "ema_20", "ema_60",
+        "macd", "macd_signal",
+        "rsi_14",
+        "boll_width", "atr_14",
+        "finbert_future",
+        "zclose_60", "ret_1d"
+    ],
     "ppo": [
         "rsi_14",        # 14-day Relative Strength Index, measures overbought/oversold conditions
         "mom_20d",       # 20-day Momentum, simple measure of price change over 20 days
@@ -146,19 +155,40 @@ RECCURENT_PPO_PARAMS = {
     "max_grad_norm": 0.5,       # gradient clipping
 }
 
+SAC_PARAMS = {
+    "policy": "MlpPolicy",
+    "learning_rate": 1e-4,         # standard, stable choice
+    "buffer_size": 50000,        # large replay buffer for finance
+    "batch_size": 128,             # bigger batch for stability
+    "gamma": 0.99,                 # discount factor
+    "tau": 0.005,                  # target smoothing coefficient
+    "ent_coef": "auto_0.1",        # auto entropy, smaller init for less randomness
+    "train_freq": 1,               # train every step
+    "gradient_steps": 2,           # gradient steps per env step
+    "learning_starts": 1000,      # warmup before training starts
+    "target_update_interval": 1,   # update target nets frequently
+}
+
 DEFAULT_PARAMS = {
     "ppo": PPO_PARAMS,
-    "rppo": RECCURENT_PPO_PARAMS
+    "rppo": RECCURENT_PPO_PARAMS,
+    "sac": SAC_PARAMS
 }
 
 DEFAULT_PARAMS_POLICY = {
     "ppo": {
         'net_arch': dict(pi=[128, 128], vf=[128, 128])
     },
-    "rppo": None
+    "rppo": None,
+    "sac": None
 }
 
-MODELS = {"ppo": PPO, "rppo": RecurrentPPO}
+MODELS = {"ppo": PPO, "rppo": RecurrentPPO, "sac": SAC}
+
+NOISE = {
+    "normal": NormalActionNoise,
+    "ornstein_uhlenbeck": OrnsteinUhlenbeckActionNoise,
+}
 
 NOISE = {
     "normal": NormalActionNoise,

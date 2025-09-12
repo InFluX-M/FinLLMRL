@@ -58,6 +58,7 @@ Research Gaps & Motivation for this Project
 
 
 P4. Methodology / System Design
+Problem formalisation
 Overall System Architecture (diagram of RL + LLM pipeline)
 Market Data Input (historical OHLCV, fundamentals, news headlines)
 LLM Component (news → sentiment score → feature)

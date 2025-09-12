@@ -1,0 +1,1802 @@
+[
+  {
+    "headline": "Boeing eyes sale of up to 500 planes to China: report",
+    "link": "https://www.foxbusiness.com/economy/boeing-eyes-sale-up-500-planes-china-report",
+    "summary": "Boeing is in talks to sell up to 500 planes to China as part of a potential trade agreement between President Trump and Xi Jinping, marking a significant...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9281887412071228,
+      "negative": 0.015513661317527294,
+      "neutral": 0.05629760026931763
+    }
+  },
+  {
+    "headline": "Boeing and China in talks for aircraft deal: 'The end of Chinese airline manufacturing'",
+    "link": "https://komonews.com/news/local/boeing-and-china-in-talks-for-aircraft-deal-the-end-of-chinese-airline-manufacturing-millions-billions-deal-partnership-washington-airbus-trade-economy-travel",
+    "summary": "Washington-based aircraft corporation Boeing is in talks to sell as many as 500 jets to China, according to Bloomberg News.",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.31691858172416687,
+      "negative": 0.02143983356654644,
+      "neutral": 0.661641538143158
+    }
+  },
+  {
+    "headline": "Boeing in talks to sell up to 500 jets to China, Bloomberg News reports",
+    "link": "https://www.reuters.com/business/aerospace-defense/boeing-talks-sell-up-500-jets-china-bloomberg-news-reports-2025-08-21/",
+    "summary": "Aug 21 (Reuters) - Boeing (BA.N) , opens new tab is in talks to sell as many as 500 jets to China, Bloomberg News reported on Thursday, citing people...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.4474642276763916,
+      "negative": 0.021077841520309448,
+      "neutral": 0.5314579606056213
+    }
+  },
+  {
+    "headline": "Boeing interfered with electric plane startup Zunum, appeals court finds",
+    "link": "https://www.seattletimes.com/business/boeing-aerospace/boeing-interfered-with-electric-plane-startup-zunum-appeals-court-finds/",
+    "summary": "An appeals court reinstated a $72 million verdict against Boeing, determining the company did interfere with Bothell-based electric plane startup Zunum...",
+    "date": "2025-08-18",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.04538605734705925,
+      "negative": 0.8879356980323792,
+      "neutral": 0.06667828559875488
+    }
+  },
+  {
+    "headline": "China, Boeing appear near massive order: report",
+    "link": "https://leehamnews.com/2025/08/21/china-boeing-appear-near-massive-order-report/",
+    "summary": "By Scott Hamilton. Aug. 21, 2025, © Leeham News: Boeing is nearing a massive order for up to 500 aircraft with China, Bloomberg reports.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7625465393066406,
+      "negative": 0.015317857265472412,
+      "neutral": 0.22213570773601532
+    }
+  },
+  {
+    "headline": "5 in flight: See the full 777-9 fleet in action",
+    "link": "https://www.boeing.com/features/2025/08/5-in-flight--see-the-full-777-9-fleet-in-action",
+    "summary": "August 20, 2025 in Commercial. The 777-9 team achieved a first for the fleet last week – testing with all five flight test airplanes – as the program works...",
+    "date": "2025-08-18",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8207148909568787,
+      "negative": 0.00874490849673748,
+      "neutral": 0.17054018378257751
+    }
+  },
+  {
+    "headline": "American Airlines Battles Pilots Over Alaska’s New Boeing 787s",
+    "link": "https://www.forbes.com/sites/tedreed/2025/08/15/american-airlines-battles-pilots-over-alaskas-new-boeing-787s/",
+    "summary": "American Airlines wants to codeshare with Alaska Airlines on international flights using Hawaiian's Boeing 787s. American's pilot contract forbids the...",
+    "date": "2025-08-18",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.03680737689137459,
+      "negative": 0.5894777178764343,
+      "neutral": 0.3737149238586426
+    }
+  },
+  {
+    "headline": "Boeing's $37B Comeback? China Nears 500-Jet Megadeal After Years of Silence",
+    "link": "https://finance.yahoo.com/news/boeings-37b-comeback-china-nears-190624676.html",
+    "summary": "This article first appeared on GuruFocus. After years on the sidelines, Boeing (NYSE:BA) may be inching back into China's good graces.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9101538062095642,
+      "negative": 0.015464152209460735,
+      "neutral": 0.07438211888074875
+    }
+  },
+  {
+    "headline": "Airbus Is About to Eclipse a Record That Boeing Held for Decades",
+    "link": "https://www.bloomberg.com/news/articles/2025-08-16/airbus-is-about-to-eclipse-a-record-that-boeing-held-for-decades",
+    "summary": "In 1981, the year Airbus SE announced it would build a new single-aisle jetliner to take on Boeing Co., the 737 ruled the roost.",
+    "date": "2025-08-18",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.21366114914417267,
+      "negative": 0.06874746084213257,
+      "neutral": 0.7175913453102112
+    }
+  },
+  {
+    "headline": "Boeing-Built X-37B Spaceplane Launches, Beginning Eighth Mission",
+    "link": "https://www.prnewswire.com/news-releases/boeing-built-x-37b-spaceplane-launches-beginning-eighth-mission-302536717.html",
+    "summary": "PRNewswire/ -- The Boeing [NYSE: BA]-built X 37B Orbital Test Vehicle launched yesterday on its eighth mission, lifting off at 11:50 p.m. ET aboard a SpaceX...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.1999693214893341,
+      "negative": 0.011608636938035488,
+      "neutral": 0.7884220480918884
+    }
+  },
+  {
+    "headline": "Head-to-Head: Boeing 737, Airbus A320 Compared",
+    "link": "https://airwaysmag.com/new-post/boeing-737-airbus-a320-compared",
+    "summary": "In the world of commercial aviation, few aircraft competitions are as enduring as that between the Boeing 737 and Airbus A320.",
+    "date": "2025-08-18",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.06518630683422089,
+      "negative": 0.03143493831157684,
+      "neutral": 0.9033787846565247
+    }
+  },
+  {
+    "headline": "Boeing Wins On Airplane Delivery Cadence (NYSE:BA)",
+    "link": "https://seekingalpha.com/article/4814546-boeing-wins-on-airplane-delivery-cadence",
+    "summary": "Summary · Boeing is showing clear signs of operational recovery, with improved stability in 737 MAX and 787 deliveries supporting bullish momentum. · July...",
+    "date": "2025-08-18",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9559215307235718,
+      "negative": 0.022852562367916107,
+      "neutral": 0.021225927397608757
+    }
+  },
+  {
+    "headline": "Boeing Cleared for Takeoff—Or Still on the Tarmac?",
+    "link": "https://www.etftrends.com/leveraged-inverse-channel/boeing-cleared-takeoff-or-still-tarmac/",
+    "summary": "The Boeing Company (Ticker: BA) has been on a rollercoaster ride year-to-date.",
+    "date": "2025-08-18",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.12960068881511688,
+      "negative": 0.02315969206392765,
+      "neutral": 0.8472396731376648
+    }
+  },
+  {
+    "headline": "Boeing in talks with China over order for up 500 aircraft: Bloomberg",
+    "link": "https://www.aerotime.aero/articles/boeing-china-aircraft-order",
+    "summary": "Boeing is in talks with China over a possible order for up to 500 commercial aircraft in what would be a significant win for the US firm.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9401472806930542,
+      "negative": 0.016045790165662766,
+      "neutral": 0.04380692541599274
+    }
+  },
+  {
+    "headline": "Boeing Defense workers hold out for better deal",
+    "link": "https://www.reuters.com/business/world-at-work/boeing-defense-workers-hold-out-better-deal-2025-08-22/",
+    "summary": "Top machinists union officials and a Democratic congressman joined striking workers outside a Boeing Defense facility near St. Louis on Thursday,...",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.06212820112705231,
+      "negative": 0.8741976022720337,
+      "neutral": 0.06367417424917221
+    }
+  },
+  {
+    "headline": "Boeing in Talks to Sell as Many as 500 Planes to China",
+    "link": "https://www.bloomberg.com/news/articles/2025-08-21/boeing-is-said-in-talks-to-sell-as-many-as-500-planes-to-china",
+    "summary": "Boeing Co. is heading closer toward finalizing a deal with China to sell as many as 500 aircraft, according to people familiar with the matter,...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5756695866584778,
+      "negative": 0.013902244158089161,
+      "neutral": 0.4104281961917877
+    }
+  },
+  {
+    "headline": "Boeing 757 Engine Bursts Into Flames Mid-Flight, Forcing Emergency Landing In City Without Enough Hotel Rooms For Everyone",
+    "link": "https://autos.yahoo.com/articles/boeing-757-engine-bursts-flames-234138564.html",
+    "summary": "A Condor Airlines spokesperson said the engine fire was caused by \"a chemical reaction that happened inside the combustion chamber.\"",
+    "date": "2025-08-18",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.012593737803399563,
+      "negative": 0.8841842412948608,
+      "neutral": 0.10322196781635284
+    }
+  },
+  {
+    "headline": "Boeing finds clearer skies with new CEO | Jon Talton",
+    "link": "https://www.seattletimes.com/business/boeing-finds-clearer-skies-with-kelly-ortberg-at-the-helm-jon-talton/",
+    "summary": "Kelly Ortberg came out of retirement to lead Boeing, one of the region's most important employers and epicenter of one of the world's great aerospace...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.544689416885376,
+      "negative": 0.012442751787602901,
+      "neutral": 0.44286778569221497
+    }
+  },
+  {
+    "headline": "Boeing Is Said to Near China Deal for 500 Planes",
+    "link": "https://www.bloomberg.com/news/newsletters/2025-08-21/boeing-is-said-to-near-china-deal-for-500-planes",
+    "summary": "Good morning. Boeing nears a landmark deal with China. Xi Jinping hammers home Tibet control in rare visit. And a long-awaited video game is about to drop.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.04238813742995262,
+      "negative": 0.5508288741111755,
+      "neutral": 0.40678301453590393
+    }
+  },
+  {
+    "headline": "Israel to place $500 million, US-funded order for Boeing aerial refuelling tankers",
+    "link": "https://www.reuters.com/business/aerospace-defense/israel-place-500-million-us-funded-order-boeing-aerial-refuelling-tankers-2025-08-20/",
+    "summary": "Israel plans to buy two Boeing-made KC-46 military aerial refuelling tankers in a $500 million deal to be financed with U.S. military aid, the Israeli...",
+    "date": "2025-08-18",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.870682418346405,
+      "negative": 0.009564198553562164,
+      "neutral": 0.1197534129023552
+    }
+  },
+  {
+    "headline": "Boeing Defense, striking machinists say negotiations will resume Monday",
+    "link": "https://www.reuters.com/sustainability/sustainable-finance-reporting/boeing-defense-striking-machinists-say-negotiations-will-resume-monday-2025-08-22/",
+    "summary": "Aug 22 (Reuters) - Boeing (BA.N) , opens new tab and officials of the striking machinists union are slated to resume contract negotiations on Monday,...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.40489253401756287,
+      "negative": 0.24622103571891785,
+      "neutral": 0.3488864600658417
+    }
+  },
+  {
+    "headline": "Boeing strike hits third week. Still no deal with St. Louis workers",
+    "link": "https://www.spokesman.com/stories/2025/aug/22/boeing-strike-hits-third-week-still-no-deal-with-s/",
+    "summary": "Striking St. Louis-area Boeing workers remained at odds with management on Thursday as big names visited the picket line.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.01231441181153059,
+      "negative": 0.9646382331848145,
+      "neutral": 0.023047277703881264
+    }
+  },
+  {
+    "headline": "US Space Force to launch not-so-secret military spaceplane",
+    "link": "https://abcnews.go.com/US/us-space-force-launch-secret-military-spaceplane/story?id=124789931",
+    "summary": "A not-so-secret, secret reusable spaceplane operated by the United States Space Force is scheduled to lift off from the Kennedy Space Center in Florida.",
+    "date": "2025-08-18",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.10220035910606384,
+      "negative": 0.01594061218202114,
+      "neutral": 0.8818590044975281
+    }
+  },
+  {
+    "headline": "Boeing, Terma Sign Memorandum of Understanding For Future P-8 Collaboration",
+    "link": "https://www.boeing.com/global/boeing-in-europe/news/2025/boeing-terma-sign-mou-future-p-8-collaboration",
+    "summary": "DALO Industry Days, Ballerup, DENMARK, Aug. 20, 2025 — Boeing [NYSE: BA] and Terma have strengthened their long-standing partnership by signing a Memorandum...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.95151287317276,
+      "negative": 0.018031511455774307,
+      "neutral": 0.030455641448497772
+    }
+  },
+  {
+    "headline": "Union machinists continue to push for better offer from Boeing",
+    "link": "https://www.firstalert4.com/2025/08/21/union-machinists-continue-push-better-offer-boeing/",
+    "summary": "Thousands of St. Louis area Boeing workers continue to push for a better contract, two and a half weeks after they walked off the job.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5427876710891724,
+      "negative": 0.40423932671546936,
+      "neutral": 0.05297297611832619
+    }
+  },
+  {
+    "headline": "Airbus A320 Series Poised To Overtake Boeing 737 Family As Most-Delivered Commercial Airliner",
+    "link": "https://simpleflying.com/airbus-a320-overtake-boeing-737-most-delivered-commercial-airliner/",
+    "summary": "Airbus handed over its first A320-100 to Air France in March 1988 and has since delivered 12155 narrowbody aircraft.",
+    "date": "2025-08-18",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8405730724334717,
+      "negative": 0.008178520016372204,
+      "neutral": 0.15124845504760742
+    }
+  },
+  {
+    "headline": "Israel procures two new additional refueling aircraft for the IDF from Boeing",
+    "link": "https://www.jpost.com/defense-and-tech/article-864827",
+    "summary": "The contract's scope is estimated at approximately half a billion dollars and is funded through US aid. The aircraft will replace the IAF's fleet of Re'em...",
+    "date": "2025-08-18",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8531849384307861,
+      "negative": 0.008428490720689297,
+      "neutral": 0.13838651776313782
+    }
+  },
+  {
+    "headline": "Boeing in Talks to Sell As Many As 500 Planes to China, Report Says",
+    "link": "https://www.investopedia.com/boeing-in-talks-to-sell-as-many-as-500-planes-to-china-report-says-11795029",
+    "summary": "Boeing is said to be in talks with Chinese officials about the sale of up to 500 planes to that country.",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.3152632415294647,
+      "negative": 0.01747046783566475,
+      "neutral": 0.667266309261322
+    }
+  },
+  {
+    "headline": "Why Might The World’s Most Anticipated Commercial Aircraft Have Boeing Worried?",
+    "link": "https://simpleflying.com/worlds-most-anticipated-commerical-aircraft-boeing-worried/",
+    "summary": "The Airbus A321XLR could reshape the economics of flying internationally for most airlines.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.18020901083946228,
+      "negative": 0.5213483572006226,
+      "neutral": 0.2984425723552704
+    }
+  },
+  {
+    "headline": "China's Jet Dream Stalls as Airlines Flock Back to Boeing and Airbus",
+    "link": "https://finance.yahoo.com/news/chinas-jet-dream-stalls-airlines-202747066.html",
+    "summary": "Beijing's $72 billion bet on Comac just hit turbulence--with nearly 1000 new jet orders going West.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.020748890936374664,
+      "negative": 0.9490047693252563,
+      "neutral": 0.030246421694755554
+    }
+  },
+  {
+    "headline": "Exciting progress on the BA Aquatic Center",
+    "link": "https://www.baschools.org/article/2367133",
+    "summary": "The long-awaited BA Aquatic Center is moving forward and will soon become a reality for Broken Arrow Public Schools. Located at the Kirkland Activities...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7430095076560974,
+      "negative": 0.009182421490550041,
+      "neutral": 0.247808039188385
+    }
+  },
+  {
+    "headline": "Insider Purchase: Director at $BA Buys 2,200 Shares | BA Stock News",
+    "link": "https://www.quiverquant.com/news/Insider+Purchase%3A+Director+at+%24BA+Buys+2%2C200+Shares",
+    "summary": "Mortimer J Buckley, a director at $BA, bought 2200 shares of the company on 08-19-2025 for an estim.",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.05115484073758125,
+      "negative": 0.01531304232776165,
+      "neutral": 0.933532178401947
+    }
+  },
+  {
+    "headline": "Part of Delta Boeing 737’s wing breaks off before landing in Texas",
+    "link": "https://www.independent.co.uk/news/world/americas/delta-boeing-737-wing-flap-texas-b2811413.html",
+    "summary": "'I opened the window and got scared,' one passenger recalled.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.014439770951867104,
+      "negative": 0.9519708156585693,
+      "neutral": 0.03358932584524155
+    }
+  },
+  {
+    "headline": "Boeing Stock Flat as Report Raises Hope for Sales to China",
+    "link": "https://www.barrons.com/articles/boeing-stock-china-jet-order-1715b0e1",
+    "summary": "Boeing might be close to selling a boatload of jets in China, a vital commercial aerospace market that hasn't ordered planes from the company in a while.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7626504302024841,
+      "negative": 0.2035217434167862,
+      "neutral": 0.033827830106019974
+    }
+  },
+  {
+    "headline": "What's The Next Commercial Aircraft After The Boeing 777X?",
+    "link": "https://simpleflying.com/next-commercial-aircraft-after-boeing-777x/",
+    "summary": "A look at everything we know about the Boeing 797, along with why it has not yet progressed beyond the drawing board.",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.05786958709359169,
+      "negative": 0.016886696219444275,
+      "neutral": 0.9252436757087708
+    }
+  },
+  {
+    "headline": "Boeing’s long-held record about to fall to Airbus",
+    "link": "https://mynorthwest.com/local/boeings-airbus-record/4122201",
+    "summary": "Boeing's long-held record could soon be broken. Airbus' A320 series is poised to surpass Boeing's 737 as the most-delivered commercial airliner in history,...",
+    "date": "2025-08-18",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.861269474029541,
+      "negative": 0.06168236956000328,
+      "neutral": 0.07704811543226242
+    }
+  },
+  {
+    "headline": "Alarming video shows part of Boeing wing breaking during a Delta flight",
+    "link": "https://nypost.com/2025/08/21/us-news/alarming-video-shows-part-of-boeing-wing-breaking-during-a-delta-flight/",
+    "summary": "Wild video taken by a Delta passenger shows a Boeing 737's wing flap breaking off mid-flight as the aircraft was flying at hundreds of miles an hour en...",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.014259438961744308,
+      "negative": 0.8840742111206055,
+      "neutral": 0.10166632384061813
+    }
+  },
+  {
+    "headline": "Boeing machinist strike enters third week",
+    "link": "https://www.ksdk.com/video/news/local/boeing-machinist-strike-enters-third-week/63-6fffee9a-2b82-427d-912b-30130b6a95c3",
+    "summary": "Today marks the third week of the strike at Boeing. Formal discussions have begun between the machinist union and the company. Author: ksdk.com.",
+    "date": "2025-08-18",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.015365193597972393,
+      "negative": 0.8345382809638977,
+      "neutral": 0.15009649097919464
+    }
+  },
+  {
+    "headline": "Is Boeing Stock Finally Ready For Takeoff After Years Of Turbulence?",
+    "link": "https://www.barchart.com/story/news/34306862/is-boeing-stock-finally-ready-for-takeoff-after-years-of-turbulence",
+    "summary": "Boeing (BA) has spent much of the last six years fighting headwinds of its own making, including two 737 MAX disasters and the regulatory shadow they cast,...",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.10092908889055252,
+      "negative": 0.7092746496200562,
+      "neutral": 0.1897962987422943
+    }
+  },
+  {
+    "headline": "Potential 500 Aircraft Deal For China Lifts Boeing Prospects",
+    "link": "https://www.forbes.com/sites/jerroldlundquist/2025/08/21/potential-500-aircraft-deal-for-china-lifts-boeing-prospects/",
+    "summary": "Bloomberg is reporting that China is in discussions with Boeing to contract for as many as 500 aircraft for purchase. The deal would be the first major...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7947503328323364,
+      "negative": 0.012560435570776463,
+      "neutral": 0.19268916547298431
+    }
+  },
+  {
+    "headline": "Boeing in Talks to Sell China Hundreds of Planes as Part of U.S. Trade Deal",
+    "link": "https://www.wsj.com/business/airlines/boeing-in-talks-to-sell-china-hundreds-of-planes-as-part-of-u-s-trade-deal-72be1893?gaa_at=eafs&gaa_n=ASWzDAilvc7kdWwKTvcaK6TbxHdyeXQP4FbBS3aodRMq1VzSJQSchYbacOm0&gaa_ts=68bee4d9&gaa_sig=SSnGYCjSs788EygsVaQzmILIwD24t7ZpKDPZ_WxFxxCQ2bS_xmFw7Rvt_F88PLRW9TY1XlqaChVkQ-k5EFxEag%3D%3D",
+    "summary": "Beijing and Washington are discussing a trade deal that could include fresh orders totaling hundreds of Boeing BA -0.49%decrease; red down pointing triangle...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8880170583724976,
+      "negative": 0.035847682505846024,
+      "neutral": 0.07613525539636612
+    }
+  },
+  {
+    "headline": "Boeing Vs. Airbus: Who Had More Orders & Deliveries In July?",
+    "link": "https://simpleflying.com/boeing-airbus-more-orders-delieveries-july-2025/",
+    "summary": "Boeing outpaced Airbus in July orders, while Airbus continued to outpace Boeing in deliveries, although the wider picture is more complicated.",
+    "date": "2025-08-18",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.08882711827754974,
+      "negative": 0.13174526393413544,
+      "neutral": 0.7794276475906372
+    }
+  },
+  {
+    "headline": "BA flight attendant on US-London route found ‘naked and high on drugs’ in toilet",
+    "link": "https://www.theguardian.com/uk-news/2025/aug/22/ba-flight-attendant-on-us-london-route-found-naked-and-high-on-drugs-in-toilet",
+    "summary": "Haden Pentecost pleads guilty in magistrates court to performing an aviation function while impaired by drugs.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.043477728962898254,
+      "negative": 0.8278145790100098,
+      "neutral": 0.1287076473236084
+    }
+  },
+  {
+    "headline": "Union head visits Boeing St. Louis picket lines, requests that Trump intervene in strike",
+    "link": "https://www.ksdk.com/article/news/local/business-journal/union-head-visits-boeing-st-louis-picket-lines-requests-trump-intervene/63-d87d80aa-de44-4f21-9e5c-e408256d2bcb",
+    "summary": "IAM President Brian Bryant called for Trump's help to resume Boeing talks after the strike at St. Louis sites reached its third week.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.025024406611919403,
+      "negative": 0.9263315200805664,
+      "neutral": 0.04864410683512688
+    }
+  },
+  {
+    "headline": "Boeing employees empower communities",
+    "link": "https://www.boeing.com/company/about-bca/washington/boeing-employees-empower-communities",
+    "summary": "August 22, 2025 in Our-Community. Veteran Rites members participate in an organization-sponsored wilderness-based program. The ECF Puget Sound Chapter...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.15548175573349,
+      "negative": 0.008273271843791008,
+      "neutral": 0.8362449407577515
+    }
+  },
+  {
+    "headline": "Chinese airlines to divide up Airbus, Boeing 500 jet orders",
+    "link": "https://www.ch-aviation.com/news/157502-chinese-airlines-to-divide-up-airbus-boeing-500-jet-orders",
+    "summary": "China Southern Airlines, Air China, China Eastern Airlines, Xiamen Airlines, and Sichuan Airlines are looking to divide up a 500-plane order from Airbus...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.39322778582572937,
+      "negative": 0.01750349998474121,
+      "neutral": 0.589268684387207
+    }
+  },
+  {
+    "headline": "Up To 5h 30m: Introducing Australia's New 4th Longest Boeing 737 MAX Flight",
+    "link": "https://simpleflying.com/up-to-6-hours-australia-4th-longest-737-max/",
+    "summary": "China's largest airline, China Southern (CZ), is reportedly considering another direct link down under, with a route from Guangzhou to Australia's 'Top End'...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8431715965270996,
+      "negative": 0.007335531525313854,
+      "neutral": 0.14949294924736023
+    }
+  },
+  {
+    "headline": "“500 Planes”: Big New China Sale Proves Little Help for Boeing Stock (NYSE:BA)",
+    "link": "https://www.tipranks.com/news/500-planes-big-new-china-sale-proves-little-help-for-boeing-stock-nyseba",
+    "summary": "Turning to Wall Street, analysts have a Strong Buy consensus rating on BA stock based on 17 Buys and one Hold assigned in the past three months, as indicated by...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9373518228530884,
+      "negative": 0.014404664747416973,
+      "neutral": 0.04824348911643028
+    }
+  },
+  {
+    "headline": "Boeing in talks with China, reports say 500-plane sale possible, outcome linked to US-China trade deal",
+    "link": "https://timesofindia.indiatimes.com/business/international-business/boeing-in-talks-with-china-reports-say-500-plane-sale-possible-outcome-linked-to-us-china-trade-deal/articleshow/123435599.cms",
+    "summary": "International Business News: Boeing is in discussions to potentially sell up to 500 aircraft to Chinese companies, a deal contingent on a resolution to the...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7769051790237427,
+      "negative": 0.013012586161494255,
+      "neutral": 0.21008221805095673
+    }
+  },
+  {
+    "headline": "What's Going On With Boeing Stock Thursday? - Boeing (NYSE:BA)",
+    "link": "https://www.benzinga.com/markets/large-cap/25/08/47258350/potential-500-plane-order-could-end-boeings-china-drought-report",
+    "summary": "Price Trend ... Boeing Co. ... is edging closer to securing a massive aircraft order from China that could involve as many as 500 jets, which could mark the end of...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7394579648971558,
+      "negative": 0.13579818606376648,
+      "neutral": 0.12474381923675537
+    }
+  },
+  {
+    "headline": "Korean Air Commits to Record Purchase of 103 Boeing Jets to Modernize Fleet",
+    "link": "https://boeing.mediaroom.com/2025-08-25-Korean-Air-Commits-to-Record-Purchase-of-103-Boeing-Jets-to-Modernize-Fleet",
+    "summary": "Commitment will be the largest for the airline, adding to its March 2025 order for 40 Boeing widebody jets. (opens in a new tab) · (opens in a new tab)...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7787210941314697,
+      "negative": 0.008527793921530247,
+      "neutral": 0.21275106072425842
+    }
+  },
+  {
+    "headline": "Korean Air to buy 103 Boeing jets as Trump pressures trading partners",
+    "link": "https://www.bbc.com/news/articles/cgm2kv2erxlo",
+    "summary": "US aviation giant Boeing and Korean Air announced a deal worth about $36bn (£24bn) on Monday for 103 planes as President Donald Trump presses trading...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.895432710647583,
+      "negative": 0.01460792776197195,
+      "neutral": 0.08995936065912247
+    }
+  },
+  {
+    "headline": "Exclusive: Korean Air makes airline's biggest-ever Boeing jet order amid Trump-Lee summit",
+    "link": "https://www.reuters.com/business/aerospace-defense/korean-air-makes-airlines-biggest-ever-boeing-jet-order-amid-trump-lee-summit-2025-08-26/",
+    "summary": "WASHINGTON, Aug 25 (Reuters) - Korean Air (003490.KS) , opens new tab announced a $50 billion order on Monday for 103 Boeing (BA.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9093478918075562,
+      "negative": 0.013261389918625355,
+      "neutral": 0.07739078253507614
+    }
+  },
+  {
+    "headline": "BREAKING: F-47 Will Hit Skies ‘Faster Than Normal,’ Says Boeing Exec",
+    "link": "https://www.nationaldefensemagazine.org/articles/2025/8/29/f47-will-hit-skies-faster-than-normal-says-boeing-exec",
+    "summary": "WASHINGTON, D.C. — The first flight of the Air Force's sixth-generation F-47 fighter will occur sooner than many would expect, the head of Boeing's Phantom...",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.36356112360954285,
+      "negative": 0.01750919222831726,
+      "neutral": 0.6189296841621399
+    }
+  },
+  {
+    "headline": "Last MAX stored at Boeing ‘shadow factory’ after crashes, pandemic departs",
+    "link": "https://www.seattletimes.com/business/boeing-aerospace/last-max-stored-at-boeing-shadow-factory-after-crashes-pandemic-departs/",
+    "summary": "Boeing began storing MAX planes in Moses Lake in 2019, after two fatal crashes grounded the fleet. This month, it flew the final stored plane,...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.10571343451738358,
+      "negative": 0.08473867177963257,
+      "neutral": 0.8095479011535645
+    }
+  },
+  {
+    "headline": "Korean Air makes airline's biggest-ever Boeing jet order amid Trump-Lee summit",
+    "link": "https://www.cnbc.com/2025/08/25/korean-air-announces-an-order-for-103-boeing-airplanes-amid-trump-lee-summit-.html",
+    "summary": "Korean Air announced an order on Monday for 103 Boeing airplanes coinciding with the visit of South Korean President Lee Jae Myung to Washington,...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9135085940361023,
+      "negative": 0.01274840161204338,
+      "neutral": 0.07374297827482224
+    }
+  },
+  {
+    "headline": "Boeing Ices Strike Talks Indefinitely After $36 Billion Deal",
+    "link": "https://www.investors.com/news/boeing-stock-korea-air-order-36-billion-china-500-union-strike-negotiations-dow-jones/",
+    "summary": "Boeing, Korean Air agree to major order, in talks with 500-plane order from China. Union strike negotiations continue.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.0187179297208786,
+      "negative": 0.9506456851959229,
+      "neutral": 0.03063640370965004
+    }
+  },
+  {
+    "headline": "Boeing’s New F/A-XX Next Gen Naval Fighter Concept Looks Familiar",
+    "link": "https://www.twz.com/air/boeings-new-f-a-xx-next-gen-naval-fighter-concept-looks-very-familiar",
+    "summary": "Boeing's official art showing its F/A-XX contender is unsurprisingly similar to the F-47, which the company is building for the Air Force.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5275645852088928,
+      "negative": 0.015662632882595062,
+      "neutral": 0.4567727744579315
+    }
+  },
+  {
+    "headline": "Korean Air Is Giving Boeing a $36 Billion Boost",
+    "link": "https://www.businessinsider.com/korean-air-giving-boeing-36-billion-boost-2025-8",
+    "summary": "The airline purchased 103 planes from Boeing, set to be delivered by the end of 2030. Boeing said the order would support 135000 jobs in the US.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9284355044364929,
+      "negative": 0.013718756847083569,
+      "neutral": 0.05784565955400467
+    }
+  },
+  {
+    "headline": "Boeing Set To Sell Up To 500 Jets To China: What’s Next?",
+    "link": "https://simpleflying.com/boeing-sell-500-jets-china-next/",
+    "summary": "Boeing's potential mega-deal with China: a game-changer or a temporary truce?",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.14416877925395966,
+      "negative": 0.043712206184864044,
+      "neutral": 0.8121190071105957
+    }
+  },
+  {
+    "headline": "New Boeing F/A-XX Rendering Hints At Possible Similarities To F-47",
+    "link": "https://aviationweek.com/defense/aircraft-propulsion/new-boeing-fa-xx-rendering-hints-possible-similarities-f-47",
+    "summary": "A new rendering of Boeing's proposed F/A-XX design provided to Aviation Week indicates the company may be incorporating parts of its design for the U.S. Air...",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.2716672122478485,
+      "negative": 0.017017584294080734,
+      "neutral": 0.7113152146339417
+    }
+  },
+  {
+    "headline": "How long can Airbus keep its edge over Boeing?",
+    "link": "https://www.ft.com/content/929073a9-c012-4774-8080-5f7e69dcdea1",
+    "summary": "As its US rival has stumbled, the company has established a lead in the market for commercial single-aisle aircraft. But both are eyeing Chinese...",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9153944849967957,
+      "negative": 0.030612941831350327,
+      "neutral": 0.05399259179830551
+    }
+  },
+  {
+    "headline": "Boeing Unveils New F/A-XX Rendering",
+    "link": "https://theaviationist.com/2025/08/30/boeing-unveils-new-f-a-xx-rendering/",
+    "summary": "Fresh artwork of Boeing's proposed sixth-generation naval fighter shows similarities to the F-47, the new Air Force fighter.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.667047917842865,
+      "negative": 0.013651622459292412,
+      "neutral": 0.31930041313171387
+    }
+  },
+  {
+    "headline": "Boeing lands $50 billion deal with Korean Air, boosting American jobs and trade policies",
+    "link": "https://komonews.com/news/local/story/boeing-lands-50-billion-deal-with-korean-air-boosting-american-jobs-and-trade-policies-president-trump-washington-state",
+    "summary": "Boeing secured a $50 billion order as Korean Air looks to update its fleet in a deal that may pave the way for other airlines to turn to the aviation giant.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9495534896850586,
+      "negative": 0.01824667863547802,
+      "neutral": 0.03219984099268913
+    }
+  },
+  {
+    "headline": "Ryanair impressed by Boeing turnaround, optimistic it can boost output",
+    "link": "https://www.reuters.com/business/ryanair-impressed-by-boeing-turnaround-optimistic-it-can-boost-output-2025-08-27/",
+    "summary": "BRUSSELS/LONDON, Aug 27 (Reuters) - Ryanair's (RYA.I) , opens new tab CEO said on Wednesday he was impressed by the turnaround at Boeing (BA.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9472045302391052,
+      "negative": 0.014485974796116352,
+      "neutral": 0.038309548050165176
+    }
+  },
+  {
+    "headline": "Boeing CEO Kelly Ortberg to Speak at Morgan Stanley Laguna Conference September 11",
+    "link": "https://boeing.mediaroom.com/2025-08-27-Boeing-CEO-Kelly-Ortberg-to-Speak-at-Morgan-Stanley-Laguna-Conference-September-11",
+    "summary": "ARLINGTON, Va., Aug. 27, 2025 /PRNewswire(opens in a new tab)/ -- Boeing [NYSE: BA] President and Chief Executive Officer Kelly Ortberg will speak at the...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.03418361023068428,
+      "negative": 0.016173316165804863,
+      "neutral": 0.9496430158615112
+    }
+  },
+  {
+    "headline": "FAA Gives Boeing Green Light To Begin Phase 2D Noise Testing For 777-9",
+    "link": "https://simpleflying.com/faa-boeing-green-light-777-9-noise-testing/",
+    "summary": "The United States Federal Aviation Administration (FAA) has reportedly granted Boeing approval to begin the next phase of testing for the 777X.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9253389835357666,
+      "negative": 0.019098099321126938,
+      "neutral": 0.05556289479136467
+    }
+  },
+  {
+    "headline": "Boeing seeks EU approval for Spirit deal",
+    "link": "https://www.reuters.com/sustainability/boards-policy-regulation/boeing-seeks-eu-approval-spirit-deal-2025-08-28/",
+    "summary": "BRUSSELS, Aug 28 (Reuters) - Boeing (BA.N) , opens new tab is seeking EU approval to buy back Spirit AeroSystems (SPR.N) , opens new tab, the world's...",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7919006943702698,
+      "negative": 0.008771268650889397,
+      "neutral": 0.19932805001735687
+    }
+  },
+  {
+    "headline": "Boeing Defense puts talks with striking machinists on hold, union says",
+    "link": "https://www.reuters.com/sustainability/sustainable-finance-reporting/boeing-defense-puts-talks-with-striking-machinists-hold-union-says-2025-08-27/",
+    "summary": "Boeing Defense has put contract negotiations with the striking machinists union on hold and has no plans to return to the table until at least after the...",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.01031483244150877,
+      "negative": 0.9264727830886841,
+      "neutral": 0.06321234256029129
+    }
+  },
+  {
+    "headline": "US FAA to conduct scenario-based planning with Boeing before it may lift 737 MAX production cap",
+    "link": "https://www.reuters.com/business/aerospace-defense/us-faa-conduct-scenario-based-planning-with-boeing-before-it-may-lift-737-max-2025-08-26/",
+    "summary": "The head of the Federal Aviation Administration said on Tuesday the agency intends to conduct scenario-based planning, known as tabletop exercises,...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.1314743459224701,
+      "negative": 0.01737053506076336,
+      "neutral": 0.8511550426483154
+    }
+  },
+  {
+    "headline": "Boeing (BA) Secures Historic Order from Korean Air to Modernize Fleet",
+    "link": "https://finance.yahoo.com/news/boeing-ba-secures-historic-order-174111434.html",
+    "summary": "The company's stock movement, driven by recent agreements and expected revenue improvements, positions it near its price target of $247.88, suggesting moderate...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.914459228515625,
+      "negative": 0.062165964394807816,
+      "neutral": 0.023374849930405617
+    }
+  },
+  {
+    "headline": "FAA clears new certification stage for Boeing 777-9",
+    "link": "https://www.airdatanews.com/faa-clears-new-certification-stage-for-boeing-777-9/",
+    "summary": "Boeing has reached another milestone in the lengthy 777X certification program. According to journalist Jon Ostrower of The Air Current, the U.S. Federal.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7837780714035034,
+      "negative": 0.01105405855923891,
+      "neutral": 0.20516788959503174
+    }
+  },
+  {
+    "headline": "Boeing St. Louis Strike Continues: Negotiations Paused Until At Least After Labor Day",
+    "link": "https://simpleflying.com/boeing-st-louis-strike-continues-negotiations-paused/",
+    "summary": "Boeing workers will not return to work until well after Labor Day as negotiations drag on.",
+    "date": "2025-09-01",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.008389617316424847,
+      "negative": 0.9554509520530701,
+      "neutral": 0.03615942597389221
+    }
+  },
+  {
+    "headline": "Terror on Boeing 737 as plane explosion forces pilots to make ‘hard landing’: ‘Unsettling’",
+    "link": "https://nypost.com/2025/08/27/lifestyle/boeing-737-aborts-flight-after-tire-explodes/",
+    "summary": "A Norwegian flight had to abort its flight from Stockholm, Sweden to Paris, France after a tire exploded shortly after takeoff.",
+    "date": "2025-08-25",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.011743185110390186,
+      "negative": 0.9512706398963928,
+      "neutral": 0.03698619455099106
+    }
+  },
+  {
+    "headline": "Boeing's F/A-XX sixth-gen fighter peeks out from a vapor cone",
+    "link": "https://newatlas.com/military/boeing-fa-xx-fighter-image/",
+    "summary": "Boeing unveils its F/A-XX fighter concept, aiming to replace the F/A-18 with advanced AI and multi-role capabilities for the US Navy.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5962445735931396,
+      "negative": 0.011318407952785492,
+      "neutral": 0.3924369215965271
+    }
+  },
+  {
+    "headline": "Boeing, Union workers to resume contract negotiations amid strike",
+    "link": "https://fox2now.com/news/missouri/boeing-union-workers-to-resume-contract-negotiations-amid-strike/",
+    "summary": "Boeing and the Machinists Union are set to resume negotiations on Monday morning, with workers demanding more than the 20% pay raise and $5000 bonus offered...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5642976760864258,
+      "negative": 0.39008668065071106,
+      "neutral": 0.04561568424105644
+    }
+  },
+  {
+    "headline": "Boeing and P&W seek regulatory relief and more time for 777 engine fixes",
+    "link": "https://www.flightglobal.com/engines/boeing-and-pandw-seek-regulatory-relief-and-more-time-for-777-engine-fixes/164285.article",
+    "summary": "Pratt & Whitney (P&W) and Boeing are asking the Federal Aviation Administration for more time and for regulatory exemptions as part of design changes they...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.7217894196510315,
+      "negative": 0.05807763710618019,
+      "neutral": 0.22013287246227264
+    }
+  },
+  {
+    "headline": "Boeing releases new F/A-XX rendering suggesting design links to U.S. Air Force NGAD fighter – Aviation Week",
+    "link": "https://defence-industry.eu/boeing-releases-new-f-a-xx-rendering-suggesting-design-links-to-u-s-air-force-ngad-fighter-aviation-week/",
+    "summary": "A new image shared by Boeing with Aviation Week shows a rendering of the proposed F/A-XX design, raising suggestions that elements of the U.S. Air Force's...",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.43183884024620056,
+      "negative": 0.01930968090891838,
+      "neutral": 0.548851490020752
+    }
+  },
+  {
+    "headline": "Study This Photo: Boeing Just Dropped New F/A-XX Fighter Image",
+    "link": "https://nationalsecurityjournal.org/study-this-photo-boeing-just-dropped-new-f-a-xx-fighter-image/",
+    "summary": "Boeing just teased its new F/A-XX 6th-gen fighter concept as the once-stalled Navy program gets a new lease on life.",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.1307683289051056,
+      "negative": 0.0955798327922821,
+      "neutral": 0.7736518383026123
+    }
+  },
+  {
+    "headline": "The World War Two bomber that cost more than the atomic bomb",
+    "link": "https://www.bbc.com/future/article/20250829-the-bomber-that-became-ww2s-most-expensive-weapon",
+    "summary": "The Boeing B-29 was the most advanced bomber of World War Two, and more expensive to design and build than the atomic bombs it dropped.",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.06166231632232666,
+      "negative": 0.15897485613822937,
+      "neutral": 0.7793628573417664
+    }
+  },
+  {
+    "headline": "US Navy to fly MQ-25 from aircraft carrier in 2026",
+    "link": "https://www.flightglobal.com/military-uavs/us-navy-to-fly-mq-25-from-aircraft-carrier-in-2026/164268.article",
+    "summary": "Deployment of the autonomous tanker will free up Boeing F/A-18E/F Super Hornets from acting as ad hoc refuellers, increasing the combat power of the navy's...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9220952987670898,
+      "negative": 0.011537045240402222,
+      "neutral": 0.0663677304983139
+    }
+  },
+  {
+    "headline": "Boeing and P&W Seek FAA Extensions on 777 Engine Redesign",
+    "link": "https://aviationa2z.com/index.php/2025/08/29/boeing-and-pw-seek-faa-extensions-on-777-engine-redesign/",
+    "summary": "Pratt & Whitney and Boeing are asking the FAA for more time and regulatory exemptions tied to safety-driven redesigns of PW4000.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8664603233337402,
+      "negative": 0.05485307797789574,
+      "neutral": 0.07868660986423492
+    }
+  },
+  {
+    "headline": "Southwest Airlines Introduces 1st Boeing 737 MAX 8 With Secondary Cockpit Barrier",
+    "link": "https://simpleflying.com/southwest-airlines-introduces-1st-boeing-737-max-8-secondary-cockpit/",
+    "summary": "Southwest Airlines has become the first US carrier to fly a Boeing 737 MAX 8 equipped with a new FAA-mandated secondary cockpit barrier, a significant...",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8594105243682861,
+      "negative": 0.007707365322858095,
+      "neutral": 0.13288210332393646
+    }
+  },
+  {
+    "headline": "Korean Air commits to purchasing 103 Boeing jets",
+    "link": "https://www.aerospacemanufacturinganddesign.com/news/korean-air-commits-purchasing-103-boeing-jets/",
+    "summary": "Intends to buy 777-9s, 787-10s, 737-10s and 777-8 freighters to optimize fuel-efficiency across global network.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.807868242263794,
+      "negative": 0.006816131062805653,
+      "neutral": 0.18531563878059387
+    }
+  },
+  {
+    "headline": "Micron, Boeing Lead Five Stocks Near Buy Points",
+    "link": "https://www.investors.com/news/micron-technology-mu-boeing-lead-five-stocks-near-buy-points/",
+    "summary": "Micron Technology (MU), a key supplier to Nvidia (NVDA), and Boeing (BA), which is regaining altitude as it ramps deliveries back up and lands major...",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9111453294754028,
+      "negative": 0.012906437739729881,
+      "neutral": 0.07594824582338333
+    }
+  },
+  {
+    "headline": "The Aircraft Replacing The Boeing 777-300ER",
+    "link": "https://simpleflying.com/aircraft-replacing-boeing-777-300er/",
+    "summary": "The 777-300ER is still expected to remain a key long-haul aircraft for the next decade or more.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.6907405853271484,
+      "negative": 0.007870635017752647,
+      "neutral": 0.30138877034187317
+    }
+  },
+  {
+    "headline": "The BA Submits Comments on TTB Proposed Rulemaking",
+    "link": "https://www.brewersassociation.org/current-issues/the-ba-submits-comments-on-ttb-proposed-rulemaking-2/",
+    "summary": "On August 15 the Brewers Association (BA) filed comments on two important Alcohol and Tobacco Tax and Trade Bureau (TTB) rule making projects.",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.08388152718544006,
+      "negative": 0.02339916117489338,
+      "neutral": 0.8927192687988281
+    }
+  },
+  {
+    "headline": "Boeing Stock Rises. Korean Air Places Big Order for Its Jets.",
+    "link": "https://www.barrons.com/articles/boeing-stock-price-korean-air-order-2c7f5f09",
+    "summary": "It's another sign that commercial airliner demand remains robust. Advertisement - Scroll to Continue. Shares of Boeing rose 3.5%, closing at $234.83,...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9550683498382568,
+      "negative": 0.020567860454320908,
+      "neutral": 0.024363765493035316
+    }
+  },
+  {
+    "headline": "Boeing, machinists union to return to contract negotiations Monday amid ongoing strike",
+    "link": "https://www.ksdk.com/video/news/local/boeing-machinists-union-to-return-to-contract-negotiations-monday-amid-ongoing-strike/63-f2167891-92b2-422f-aff8-cc9a916a746d",
+    "summary": "The two will return to the negotiating table Monday morning, two union officials said. Author: ksdk.com. Published: 10:06 PM CDT August 24, 2025.",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.03244340792298317,
+      "negative": 0.27205008268356323,
+      "neutral": 0.6955064535140991
+    }
+  },
+  {
+    "headline": "Boeing Unveils New F/A-XX 6th-Gen Fighter Jet Rendering",
+    "link": "https://aviationa2z.com/index.php/2025/08/30/boeing-unveils-new-f-a-xx-6th-gen-fighter-jet-rendering/",
+    "summary": "Boeing unveils F/A-XX naval fighter rendering under NGAD, sparking debate on US Navy's sixth-generation airpower future.",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.3504139482975006,
+      "negative": 0.06083151325583458,
+      "neutral": 0.5887544751167297
+    }
+  },
+  {
+    "headline": "First Dreamliner with Lufthansa Allegris lands in Frankfurt",
+    "link": "https://newsroom.lufthansagroup.com/en/first-dreamliner-with-lufthansa-allegris-lands-in-frankfurt/",
+    "summary": "Fleet modernization at Frankfurt hub continuesFirst scheduled service for the Boeing 787-9 \"Dreamliner\" to Toronto starting in OctoberNine more Boeing...",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5431207418441772,
+      "negative": 0.01250187586992979,
+      "neutral": 0.4443773627281189
+    }
+  },
+  {
+    "headline": "Russia Patents New Widebody Aircraft to Rival Boeing 787 Dreamliner",
+    "link": "https://aviationa2z.com/index.php/2025/08/27/russia-patents-new-widebody-aircraft-to-rival-boeing-787/",
+    "summary": "Russia's United Aircraft Corporation (UAC) has patented a new widebody aircraft designed to compete directly with the Boeing 787 Dreamliner.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8482242822647095,
+      "negative": 0.009067916311323643,
+      "neutral": 0.14270786941051483
+    }
+  },
+  {
+    "headline": "Emirates New Boeing 777 Business Class Has No Middle Seats",
+    "link": "https://aviationa2z.com/index.php/2025/09/01/emirates-new-777-business-class-no-middle-seats/",
+    "summary": "Emirates is now rolling out a new Business Class 1-2-1 configuration across its fleet, ensuring direct aisle access for every passenger.",
+    "date": "2025-09-01",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5943333506584167,
+      "negative": 0.009256934747099876,
+      "neutral": 0.3964097499847412
+    }
+  },
+  {
+    "headline": "Russia says it hopes to resume titanium joint venture with Boeing",
+    "link": "https://www.reuters.com/business/aerospace-defense/russia-says-it-hopes-resume-titanium-joint-venture-with-boeing-2025-08-26/",
+    "summary": "Russia hopes that a U.S.-Russian joint venture involving Boeing in the Sverdlovsk region can resume its operations, Russian First Deputy Prime Minister...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9151170253753662,
+      "negative": 0.01685524173080921,
+      "neutral": 0.06802775710821152
+    }
+  },
+  {
+    "headline": "Boeing aids military transportation with AI",
+    "link": "https://www.boeing.com/features/2025/08/boeing-aides-military-transportation-with-ai",
+    "summary": "August 26, 2025 in Technology. Tapestry Solutions, a Boeing company, is applying artificial intelligence (AI) and machine learning (ML) to its software...",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.2402123659849167,
+      "negative": 0.008164739236235619,
+      "neutral": 0.7516228556632996
+    }
+  },
+  {
+    "headline": "Ryanair expects Boeing to boost 737 output to 42 per month by October",
+    "link": "https://www.reuters.com/business/aerospace-defense/ryanair-expects-boeing-boost-737-output-42-per-month-by-october-2025-08-27/",
+    "summary": "DUBLIN, Aug 27 (Reuters) - Ryanair (RYA.I) , opens new tab expects that Boeing (BA.N) , opens new tab will boost its monthly output of 737 jets to 42 per...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9542920589447021,
+      "negative": 0.018832135945558548,
+      "neutral": 0.02687576599419117
+    }
+  },
+  {
+    "headline": "FAA to hold Boeing 737 MAX tabletop exercises ahead of production rate review",
+    "link": "https://www.aerotime.aero/articles/faa-boeing-737-max-exercises-production-lift",
+    "summary": "The FAA plans tabletop exercises with Boeing to assess risks before potentially lifting the 38-per-month 737 MAX production limit.",
+    "date": "2025-08-25",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.11804267764091492,
+      "negative": 0.06211382523179054,
+      "neutral": 0.8198435306549072
+    }
+  },
+  {
+    "headline": "Boeing lands Korean Air order for 8 next-gen 777 freighters",
+    "link": "https://www.freightwaves.com/news/boeing-lands-korean-air-order-for-8-next-gen-777-freighters",
+    "summary": "Korean Airlines said Monday evening it has ordered eight all-new 777-8 freighter aircraft from Boeing to support long-term growth and fleet modernization.",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9231273531913757,
+      "negative": 0.012541420757770538,
+      "neutral": 0.06433124095201492
+    }
+  },
+  {
+    "headline": "Watch Ryanair CEO Expects Boeing Deliveries Ahead of Schedule",
+    "link": "https://www.bloomberg.com/news/videos/2025-08-27/ryanair-ceo-expects-boeing-deliveries-ahead-of-schedule-video",
+    "summary": "00:00I think we're reasonably optimistic. I mean, I'm not sure the market is right, but we've had constrained growth capacity growth this year. So Boeing...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8757731318473816,
+      "negative": 0.03921199217438698,
+      "neutral": 0.08501482754945755
+    }
+  },
+  {
+    "headline": "Korean Air Announces Historic Boeing Deal",
+    "link": "https://www.travelpulse.com/news/airlines-airports/korean-air-announces-historic-boeing-deal-to-buy-more-than-100-planes",
+    "summary": "Korean Air announced a record-breaking deal to purchase 103 planes from Boeing, valued at $36.5 billion, including 787 Dreamliners, 777s, and 737 Max 10s,...",
+    "date": "2025-08-25",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9163467288017273,
+      "negative": 0.013935728929936886,
+      "neutral": 0.06971757858991623
+    }
+  },
+  {
+    "headline": "Defense",
+    "link": "https://www.boeing.com/defense",
+    "summary": "Boeing's integrated defense portfolio is positioned to meet customers' rapidly evolving needs across the spectrum of global conflict.",
+    "date": "2025-09-06",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8025043606758118,
+      "negative": 0.006936061196029186,
+      "neutral": 0.19055958092212677
+    }
+  },
+  {
+    "headline": "Crash victims' families prepare to make what could be their final plea for Boeing's prosecution",
+    "link": "https://apnews.com/article/boeing-court-hearing-criminal-charge-dismiss-65b71e3304bc5ec21e060b0cbe76096c",
+    "summary": "Families that lost loved ones in two crashes of Boeing 737 Max jetliners may be getting their last chance to demand the American aerospace company's...",
+    "date": "2025-09-03",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.1694282591342926,
+      "negative": 0.4621944725513458,
+      "neutral": 0.3683772385120392
+    }
+  },
+  {
+    "headline": "No immediate plans for Boeing contract talks as strike enters second month",
+    "link": "https://www.stlpr.org/economy-business/2025-09-03/no-immediate-plans-for-boeing-contract-talks-as-strike-enters-second-month",
+    "summary": "As about 3,200 unionized Boeing workers enter the second month of their strike, there are no immediate plans for further contract talks.",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.016122031956911087,
+      "negative": 0.8004072904586792,
+      "neutral": 0.18347063660621643
+    }
+  },
+  {
+    "headline": "What's Going On With Boeing Stock Friday",
+    "link": "https://finance.yahoo.com/news/whats-going-boeing-stock-friday-172446459.html",
+    "summary": "The Boeing Company (NYSE:BA) traded lower Friday. Boeing announced that the company and the Royal Australian Air Force, RAAF, said the MQ-28 Ghost Bat...",
+    "date": "2025-09-06",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.027189915999770164,
+      "negative": 0.9357906579971313,
+      "neutral": 0.03701942786574364
+    }
+  },
+  {
+    "headline": "Canada's WestJet places long-term order for 67 Boeing planes",
+    "link": "https://www.reuters.com/business/aerospace-defense/canadas-westjet-places-long-term-order-67-boeing-planes-2025-09-03/",
+    "summary": "Sept 3 (Reuters) - Low-cost carrier WestJet said on Wednesday it made its largest-ever order with U.S. planemaker Boeing (BA.N) , opens new tab, striking a...",
+    "date": "2025-09-04",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9255460500717163,
+      "negative": 0.023023463785648346,
+      "neutral": 0.05143055319786072
+    }
+  },
+  {
+    "headline": "Boeing begins hiring to replace striking workers at Missouri, Illinois plants",
+    "link": "https://www.manufacturingdive.com/news/boeing-iam-district-837-strike-defense-missouri-illinois-hiring-replacement/759266/",
+    "summary": "The plane maker is taking the next step into its contingency plan as it remains deadlocked in contract negotiations with IAM District 837, which represents...",
+    "date": "2025-09-06",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.022090783342719078,
+      "negative": 0.9477937817573547,
+      "neutral": 0.030115457251667976
+    }
+  },
+  {
+    "headline": "Boeing Plans to Hire Replacements for Striking Workers",
+    "link": "https://www.nytimes.com/2025/09/04/business/boeing-strike-union-st-louis.html",
+    "summary": "About 3200 workers at three St. Louis-area plants where Boeing makes military hardware have been on strike since Aug. 4.",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.007461723405867815,
+      "negative": 0.9654125571250916,
+      "neutral": 0.027125712484121323
+    }
+  },
+  {
+    "headline": "Sen. Hawley stands by St. Louis Boeing workers on strike: Management needs to ‘suck it up’",
+    "link": "https://www.missourinet.com/2025/09/04/sen-hawley-stands-by-st-louis-boeing-workers-on-strike-management-needs-to-suck-it-up/",
+    "summary": "Now that St. Louis Boeing union workers have been on strike for one month, the aerospace manufacturer is moving to the next step in its contingency plan:...",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.028078557923436165,
+      "negative": 0.8462269306182861,
+      "neutral": 0.12569454312324524
+    }
+  },
+  {
+    "headline": "Boeing hires replacement workers as defense unit strike enters second month",
+    "link": "https://www.cnbc.com/2025/09/04/boeing-replacement-workers-defense-unit-strike.html",
+    "summary": "Boeing says it is hiring new workers to replace employees in its defense unit. The roughly 3,200 workers have been on strike since Aug.",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.00802786834537983,
+      "negative": 0.9686114192008972,
+      "neutral": 0.02336069382727146
+    }
+  },
+  {
+    "headline": "Fort Worth federal judge to rule on Boeing criminal prosecution",
+    "link": "https://www.fox4news.com/news/fort-worth-federal-judge-rule-boeing-criminal-prosecution",
+    "summary": "A federal judge in Fort Worth will decide if Boeing should face criminal prosecution for two crashes that killed more than 300 people.",
+    "date": "2025-09-03",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.031831447035074234,
+      "negative": 0.6641952395439148,
+      "neutral": 0.3039732873439789
+    }
+  },
+  {
+    "headline": "F-47 could be airborne \"faster than normal,\" says Boeing exec",
+    "link": "https://www.axios.com/2025/09/03/boeing-phantom-works-f47-schedule",
+    "summary": "The U.S. Air Force's F-47 will be be airborne \"faster than normal,\" as maker Boeing is \"positioned to go quickly,\" the head of its clandestine Phantom Works...",
+    "date": "2025-09-03",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.45374104380607605,
+      "negative": 0.014232532121241093,
+      "neutral": 0.532026469707489
+    }
+  },
+  {
+    "headline": "Families of Boeing crash victims make potential final plea for company to face criminal prosecution",
+    "link": "https://www.nbcnews.com/video/families-of-boeing-crash-victims-make-potential-final-plea-for-company-to-face-criminal-prosecution-246627397836",
+    "summary": "Families of the victims of two Boeing 737 crashes are getting their potential final chance to fight for the company to face criminal prosecution.",
+    "date": "2025-09-04",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.16537342965602875,
+      "negative": 0.11531321704387665,
+      "neutral": 0.719313383102417
+    }
+  },
+  {
+    "headline": "Boeing hiring replacement workers is ‘dangerous,’ striking union members say",
+    "link": "https://www.stlpr.org/economy-business/2025-09-05/boeing-hiring-replacement-workers-is-dangerous-striking-union-members-say",
+    "summary": "Union workers on the picket line said they don't believe the company will be able to find skilled workers to replace them.",
+    "date": "2025-09-06",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.009911171160638332,
+      "negative": 0.958545446395874,
+      "neutral": 0.03154328092932701
+    }
+  },
+  {
+    "headline": "US judge to hear objections to deal that allows Boeing to avoid prosecution over crashes",
+    "link": "https://www.reuters.com/legal/government/us-judge-hear-objections-deal-that-allows-boeing-avoid-prosecution-over-crashes-2025-09-03/",
+    "summary": "A U.S. judge on Wednesday will hold a hearing on whether to approve a deal between the Justice Department and Boeing that allows the planemaker to avoid...",
+    "date": "2025-09-03",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.19259564578533173,
+      "negative": 0.2996731400489807,
+      "neutral": 0.5077312588691711
+    }
+  },
+  {
+    "headline": "Families of Boeing crash victims urge judge to reject deal sparing company from prosecution",
+    "link": "https://apnews.com/article/boeing-737-max-case-ethiopia-indonesia-crashes-395cb5273f88b0a1bec0ef633719abce",
+    "summary": "Grieving families filled a Texas courtroom Wednesday to ask a judge to reject a deal that would let Boeing avoid criminal prosecution in two deadly 737 Max...",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.3095998466014862,
+      "negative": 0.590764582157135,
+      "neutral": 0.09963545948266983
+    }
+  },
+  {
+    "headline": "Boeing Defense plans to replace striking workers with new hires",
+    "link": "https://www.reuters.com/business/world-at-work/boeing-defense-plans-replace-striking-workers-with-new-hires-2025-09-04/",
+    "summary": "Sept 4 (Reuters) - Boeing Defense (BA.N) , opens new tab plans to hire new workers to replace striking members of the International Association of...",
+    "date": "2025-09-05",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5414279103279114,
+      "negative": 0.31987902522087097,
+      "neutral": 0.13869313895702362
+    }
+  },
+  {
+    "headline": "US judge questions DOJ decision to drop Boeing independent monitor",
+    "link": "https://www.reuters.com/sustainability/boards-policy-regulation/us-judge-questions-doj-decision-drop-boeing-independent-monitor-2025-09-03/",
+    "summary": "A U.S. judge on Wednesday held a three-hour hearing to consider objections to a deal between the Justice Department and Boeing that allows the planemaker to...",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.08485645055770874,
+      "negative": 0.5860918760299683,
+      "neutral": 0.329051673412323
+    }
+  },
+  {
+    "headline": "One month into strike, Boeing Defense stands by its last contract offer",
+    "link": "https://www.reuters.com/sustainability/sustainable-finance-reporting/one-month-into-strike-boeing-defense-stands-by-its-last-contract-offer-2025-09-03/",
+    "summary": "Boeing Defense said Wednesday it would consider \"minor adjustments\" to its last contract offer to roughly 3200 union members on strike in the St. Louis area...",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.0409124493598938,
+      "negative": 0.8826180100440979,
+      "neutral": 0.0764695331454277
+    }
+  },
+  {
+    "headline": "Alaska Air to convert part of its Boeing 787 order to larger 787-10's",
+    "link": "https://www.reuters.com/business/aerospace-defense/alaska-air-convert-part-its-boeing-787-order-larger-787-10s-2025-09-05/",
+    "summary": "Sept 4 (Reuters) - Alaska Air Group (ALK.N) , opens new tab said on Thursday that it is converting part of its outstanding order for Boeing (BA.",
+    "date": "2025-09-05",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.5026648640632629,
+      "negative": 0.012232339009642601,
+      "neutral": 0.48510274291038513
+    }
+  },
+  {
+    "headline": "Australia's Macquarie AirFinance to add 30 Boeing 737-8s to its fleet",
+    "link": "https://www.reuters.com/business/aerospace-defense/australias-macquarie-airfinance-add-30-boeing-737-8s-its-fleet-2025-09-02/",
+    "summary": "The global aircraft leasing arm of Australia's Macquarie Group said on Tuesday it has purchased 30 Boeing 737-8 aircraft, in line with its goal to...",
+    "date": "2025-09-03",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8973115086555481,
+      "negative": 0.009322753176093102,
+      "neutral": 0.09336578100919724
+    }
+  },
+  {
+    "headline": "Boeing, Macquarie AirFinance Announce Order for 30 737 MAX Airplanes",
+    "link": "https://boeing.mediaroom.com/2025-09-02-Boeing,-Macquarie-AirFinance-Announce-Order-for-30-737-MAX-Airplanes",
+    "summary": "Macquarie AirFinance portfolio of over 300 owned and committed aircraft on lease to 84 airlines across 48 countries.",
+    "date": "2025-09-02",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.403730571269989,
+      "negative": 0.009606441482901573,
+      "neutral": 0.586663007736206
+    }
+  },
+  {
+    "headline": "Boeing floats next-generation F-model Apache as ITEP fall back",
+    "link": "https://breakingdefense.com/2025/09/boeing-floats-next-generation-f-model-apache-as-itep-fall-back/",
+    "summary": "We are ready to respond either way” if the Improved Turbine Engine Program is cut or goes ahead, Terry Jamison, director of attack helicopter programs at...",
+    "date": "2025-09-05",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.16736182570457458,
+      "negative": 0.16969908773899078,
+      "neutral": 0.6629391312599182
+    }
+  },
+  {
+    "headline": "Air Lease Is Going Private. Why Boeing Stock Is Up.",
+    "link": "https://www.barrons.com/articles/air-lease-going-private-boeing-stock-b4f0fcc9",
+    "summary": "The fact the Air Lease is going private amounts to a modest vote of confidence in the aviation industry.",
+    "date": "2025-09-03",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.2619008719921112,
+      "negative": 0.01579442247748375,
+      "neutral": 0.72230464220047
+    }
+  },
+  {
+    "headline": "Boeing Wins 30 More 737 MAX Orders",
+    "link": "https://simpleflying.com/boeing-wins-30-more-737-max-orders-macquarie-airfinance/",
+    "summary": "The new Boeing 737 MAX 8 order comes as Macquarie AirFinance aims to modernize its aircraft portfolio.",
+    "date": "2025-09-03",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9350371360778809,
+      "negative": 0.013148571364581585,
+      "neutral": 0.05181434005498886
+    }
+  },
+  {
+    "headline": "An Elegant French Dessert Gets a Southern Twist",
+    "link": "https://www.bonappetit.com/story/bake-club",
+    "summary": "Come join our Bon Appétit Bake Club. We're Jesse and Shilpa, senior editors and the resident bakers of the Bon Appétit test kitchen.",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.08625247329473495,
+      "negative": 0.0164082869887352,
+      "neutral": 0.8973392248153687
+    }
+  },
+  {
+    "headline": "Boeing to hire replacement workers as St. Louis strike drags on",
+    "link": "https://fox2now.com/news/missouri/boeing-to-hire-replacement-workers-as-st-louis-strike-drags-on/",
+    "summary": "Boeing will move forward with hiring replacement workers as an ongoing strike by St. Louis-area union workers enters its second month.",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.32678401470184326,
+      "negative": 0.6300362348556519,
+      "neutral": 0.043179720640182495
+    }
+  },
+  {
+    "headline": "Boeing leaders face questions as strike in St. Louis continues",
+    "link": "https://fox2now.com/news/missouri/boeing-leaders-face-questions-as-strike-in-st-louis-continues/",
+    "summary": "The Boeing strike in St. Louis is still drawing national attention as hundreds of workers remain off the job. For the first time since the walk-out began,...",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.010167972184717655,
+      "negative": 0.9665701389312744,
+      "neutral": 0.023261943832039833
+    }
+  },
+  {
+    "headline": "Why Did Boeing Build The 777X With A New Cabin Architecture?",
+    "link": "https://simpleflying.com/boeing-777x-new-cabin-architecture/",
+    "summary": "In addition to being the largest twinjet in commercial aircraft history, the Boeing 777X will also have one of the most modern and spacious cabins in...",
+    "date": "2025-09-07",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.49040794372558594,
+      "negative": 0.011040900833904743,
+      "neutral": 0.4985511600971222
+    }
+  },
+  {
+    "headline": "Boeing, RAAF Prove MQ-28 Operational Effectiveness",
+    "link": "https://www.prnewswire.com/news-releases/boeing-raaf-prove-mq-28-operational-effectiveness-302547840.html",
+    "summary": "PRNewswire/ -- Boeing [NYSE: BA] and the Royal Australian Air Force (RAAF) have successfully completed demonstrations proving the operational viability of...",
+    "date": "2025-09-06",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9103100299835205,
+      "negative": 0.009410514496266842,
+      "neutral": 0.08027949184179306
+    }
+  },
+  {
+    "headline": "Boeing workers on strike lose their health insurance",
+    "link": "https://www.ksdk.com/article/news/boeing-workers-on-strike-lose-their-health-insurance/63-a2d20f9c-63ba-4470-8f43-5e22fd50682a",
+    "summary": "Any striking employees would lose eligibility for company-paid healthcare benefits at the end of the month in which they strike, according to Boeing's...",
+    "date": "2025-09-03",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.008949769660830498,
+      "negative": 0.9459307193756104,
+      "neutral": 0.04511960968375206
+    }
+  },
+  {
+    "headline": "American Airlines’ Longest Nonstop Routes With The Boeing 777-300ER In 2025",
+    "link": "https://simpleflying.com/american-airlines-longest-nonstop-routes-boeing-777-300er-2025/",
+    "summary": "American Airlines' 777-300ER fleet takes on impressive mileage in its global network.",
+    "date": "2025-09-05",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9390672445297241,
+      "negative": 0.013835756108164787,
+      "neutral": 0.047096945345401764
+    }
+  },
+  {
+    "headline": "Why Might The World’s 1st Extra-Long-Range Narrowbody Aircraft Have Boeing Worried?",
+    "link": "https://simpleflying.com/worlds-1st-extra-long-range-narrowbody-aircraft-boeing-worried/",
+    "summary": "Boeing doesn't yet have an answer for the newest Airbus A321 model.",
+    "date": "2025-09-08",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.06034417450428009,
+      "negative": 0.05929727107286453,
+      "neutral": 0.8803586363792419
+    }
+  },
+  {
+    "headline": "Families of Boeing crash victims make plea in court for company to face criminal prosecution",
+    "link": "https://www.kens5.com/video/news/families-of-boeing-crash-victims-make-plea-in-court-for-company-to-face-criminal-prosecution/273-30160789-6ae3-4629-b0e8-5347bbd40e22",
+    "summary": "Families of Boeing crash victims make plea in court for company to face criminal prosecution. The 2018 and 2019 crashed killed 346 people.",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.017759962007403374,
+      "negative": 0.8006512522697449,
+      "neutral": 0.181588813662529
+    }
+  },
+  {
+    "headline": "Take a look at Southwest's newly installed fold-away cockpit barriers",
+    "link": "https://www.usatoday.com/story/travel/airline-news/2025/09/02/southwest-airlines-secondary-cockpit-barrier/85887337007/",
+    "summary": "Southwest Airlines passengers will soon begin seeing a new security device on the carrier's newest Boeing 737s. The airline announced Friday that its first...",
+    "date": "2025-09-03",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.381590873003006,
+      "negative": 0.009205902926623821,
+      "neutral": 0.6092032194137573
+    }
+  },
+  {
+    "headline": "Boeing to hire replacements for union workers on strike",
+    "link": "https://www.stlpr.org/news-briefs/2025-09-04/boeing-to-hire-replacements-for-union-workers-on-strike",
+    "summary": "The move has escalated tensions between Boeing and the union, which wants higher wages and better benefits.",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.015776941552758217,
+      "negative": 0.9562531113624573,
+      "neutral": 0.02796998620033264
+    }
+  },
+  {
+    "headline": "'More is not a constructive proposal' — Boeing vice president on St. Louis machinist union contract talks",
+    "link": "https://www.ksdk.com/article/news/local/boeing-vice-president-st-louis-machinist-union-contract-talks/63-a02057f8-8ab5-4a0d-844a-db9db0320f40",
+    "summary": "Striking machinists say they've always been the Boeing \"stepchild,\" pointing to the Seattle union getting a better deal.",
+    "date": "2025-09-04",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.10493391752243042,
+      "negative": 0.7423216700553894,
+      "neutral": 0.15274447202682495
+    }
+  },
+  {
+    "headline": "Boeing and WestJet Announce the Airline's Largest-Ever Order for 67 Airplanes",
+    "link": "https://www.prnewswire.com/news-releases/boeing-and-westjet-announce-the-airlines-largest-ever-order-for-67-airplanes-302545205.html",
+    "summary": "PRNewswire/ -- Boeing [NYSE:BA] and WestJet today announced the Canadian airline is buying 67 more Boeing jets, bringing its firm order book to 123...",
+    "date": "2025-09-03",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.9253662824630737,
+      "negative": 0.012644041329622269,
+      "neutral": 0.06198979541659355
+    }
+  },
+  {
+    "headline": "WestJet secures its largest-ever aircraft order with Boeing",
+    "link": "https://westjet.mediaroom.com/2025-09-03-WestJet-secures-its-largest-ever-aircraft-order-with-Boeing",
+    "summary": "Sizeable aircraft order to be delivered through 2034 as part of airline's multi-billion-dollar investment in future growth. CALGARY, AB, Sept.",
+    "date": "2025-09-03",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.8967886567115784,
+      "negative": 0.016648806631565094,
+      "neutral": 0.08656249940395355
+    }
+  },
+  {
+    "headline": "Some assembly required: Abandoned 1966 Boeing 727 sold at auction finds new home – in pieces",
+    "link": "https://elpasomatters.org/2025/09/01/boeing-727-airplane-sale-el-paso-airport-auction-where-is-it-now/",
+    "summary": "On an acre lot in far East Montana, parts of a 1966 Boeing 727 lay scattered – its fuselage split into two, tires and landing gear on their side,...",
+    "date": "2025-09-01",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.03397098183631897,
+      "negative": 0.37471628189086914,
+      "neutral": 0.5913127064704895
+    }
+  },
+  {
+    "headline": "Desert house for sale in Texas has a surprise inside — a Boeing 727. Seriously",
+    "link": "https://www.star-telegram.com/news/state/texas/article311963134.html",
+    "summary": "This Texas desert home in Terlingua boasts a Boeing 727 inside! Listed for $2.1M, this 4-bed, 3-bath unique property sits on 80 scenic acres.",
+    "date": "2025-09-05",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.06595613807439804,
+      "negative": 0.012076515704393387,
+      "neutral": 0.9219673275947571
+    }
+  },
+  {
+    "headline": "Oklahoma crew put Boeing 777-9 through extreme tests to see how far its brakes will go",
+    "link": "https://supercarblondie.com/oklahoma-crew-boeing-777-9-brake-tests-extreme-weather/",
+    "summary": "A Boeing 777-9 recently underwent a series of brake tests under extreme conditions in Oklahoma to gain vital safety certification.",
+    "date": "2025-09-08",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.4530520737171173,
+      "negative": 0.16666623950004578,
+      "neutral": 0.3802816867828369
+    }
+  },
+  {
+    "headline": "Electron Capital Partners LLC Decreases Stake in The Boeing Company $BA",
+    "link": "https://www.marketbeat.com/instant-alerts/filing-the-boeing-company-ba-shares-sold-by-electron-capital-partners-llc-2025-09-04/",
+    "summary": "Electron Capital Partners LLC cut its holdings in The Boeing Company (NYSE:BA - Free Report) by 76.7% during the 1st quarter, according to the company in...",
+    "date": "2025-09-06",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.01464206911623478,
+      "negative": 0.968441903591156,
+      "neutral": 0.016915999352931976
+    }
+  },
+  {
+    "headline": "Families of Boeing crash victims make potential final plea for criminal prosecution",
+    "link": "https://www.nbcdfw.com/news/local/families-of-boeing-crash-victims-to-make-potential-final-plea-for-criminal-prosecution/3913673/",
+    "summary": "Families of some of the 346 people killed in crashes of Boeing 737 MAX jetliners held photos of their dead loved ones on Wednesday outside a federal court...",
+    "date": "2025-09-04",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.03698227182030678,
+      "negative": 0.3444603979587555,
+      "neutral": 0.618557333946228
+    }
+  },
+  {
+    "headline": "Airbus and Boeing delays drive fears of air cargo capacity crunch",
+    "link": "https://www.ft.com/content/3a6b833e-bcc2-4612-a277-99013df292ae",
+    "summary": "Up to a quarter of large wide-body freighters in active operation are nearing or have reached retirement window.",
+    "date": "2025-09-03",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.011021598242223263,
+      "negative": 0.9692007303237915,
+      "neutral": 0.019777623936533928
+    }
+  },
+  {
+    "headline": "Mach 6 SR-72 Darkstar and Boeing 'NGAD' F-47: Put Them Together and See What Happens",
+    "link": "https://nationalsecurityjournal.org/mach-6-sr-72-darkstar-and-boeing-ngad-f-47-put-them-together-and-see-what-happens/",
+    "summary": "Is Mach 6 speed better than stealth? A look at why the hypersonic SR-72 DarkStar may be more survivable than even the newest 6th-generation fighters.",
+    "date": "2025-09-07",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.13089831173419952,
+      "negative": 0.012398614548146725,
+      "neutral": 0.856702983379364
+    }
+  },
+  {
+    "headline": "Want To Buy A Boeing 787? This Airline Is Selling 10 Online",
+    "link": "https://simpleflying.com/china-southern-selling-10-boeing-787s-online/",
+    "summary": "China Southern Airlines has resumed efforts to sell its ten Boeing 787 Dreamliners through an online auction. The country's largest airline by fleet size...",
+    "date": "2025-09-04",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.35560864210128784,
+      "negative": 0.020945778116583824,
+      "neutral": 0.6234455704689026
+    }
+  },
+  {
+    "headline": "This Airlines to Auction Entire Fleet of Boeing 787-8 Dreamliners",
+    "link": "https://aviationa2z.com/index.php/2025/09/04/china-southern-to-auction-entire-fleet-of-boeing-787-8/",
+    "summary": "China Southern Airlines has restarted its plan to sell its Boeing 787-8 fleet, listing 10 aircraft and spare engines for an online auction.",
+    "date": "2025-09-04",
+    "finbert_label": "neutral",
+    "finbert_score": {
+      "positive": 0.3873957097530365,
+      "negative": 0.053068406879901886,
+      "neutral": 0.5595359206199646
+    }
+  },
+  {
+    "headline": "Crash Victims’ Families Argue Against Boeing Non-Prosecution Deal",
+    "link": "https://www.flyingmag.com/crash-victims-families-argue-against-boeing-non-prosecution-deal/",
+    "summary": "A federal judge on Wednesday considered objections to a proposed non-prosecution agreement between the U.S. government and Boeing.",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.06669395416975021,
+      "negative": 0.7964089512825012,
+      "neutral": 0.13689716160297394
+    }
+  },
+  {
+    "headline": "Boeing MQ-28 Ghost Bat finishes RAAF trials four months ahead",
+    "link": "https://www.aerotime.aero/articles/boeing-mq-28-ghost-bat-finishes-raaf-trials-four-months-ahead",
+    "summary": "Boeing and the Royal Australian Air Force (RAAF) have completed a series of demonstrations validating the operational capabilities of the MQ-28 Ghost Bat.",
+    "date": "2025-09-07",
+    "finbert_label": "positive",
+    "finbert_score": {
+      "positive": 0.844213604927063,
+      "negative": 0.011668359860777855,
+      "neutral": 0.14411796629428864
+    }
+  },
+  {
+    "headline": "Boeing 777X Puts 117 New Tires to the Test",
+    "link": "https://www.flyingmag.com/boeing-777x-puts-117-new-tires-to-the-test/",
+    "summary": "In a series of brake certification tests conducted in Oklahoma, Boeing's 777X test team faced severe weather conditions.",
+    "date": "2025-09-05",
+    "finbert_label": "negative",
+    "finbert_score": {
+      "positive": 0.23964878916740417,
+      "negative": 0.6055954694747925,
+      "neutral": 0.15475572645664215
+    }
+  }
+]

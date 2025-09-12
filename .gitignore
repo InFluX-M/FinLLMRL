@@ -172,3 +172,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+*.out
+*.lof
+*.lot
+*.synctex.gz
+*.toc
+*.aux
+*.bbl 
+*.blg 
