@@ -13,6 +13,52 @@ API_BASE = "http://localhost:8000"
 # -----------------------
 st.title("🏠 InFluX Trader")
 
+st.markdown(
+    """
+    <style>
+    /* Make the main text larger */
+    html, body, [class*="css"]  {
+        font-size: 20px !important;
+    }
+
+    /* Make titles bigger */
+    h1, .stTitle {
+        font-size: 2.5rem !important;
+    }
+    h2, .stSubheader {
+        font-size: 2rem !important;
+    }
+    h3 {
+        font-size: 1.6rem !important;
+    }
+
+    /* Enlarge input boxes and dropdowns */
+    input, textarea, select {
+        font-size: 18px !important;
+    }
+
+    /* Enlarge buttons */
+    button {
+        font-size: 18px !important;
+        padding: 0.6em 1.2em !important;
+    }
+
+    /* Enlarge table text */
+    .stDataFrame tbody td, .stDataFrame thead th {
+        font-size: 18px !important;
+    }
+
+    /* Enlarge Plotly charts axis labels & titles */
+    .js-plotly-plot .xtick text,
+    .js-plotly-plot .ytick text,
+    .js-plotly-plot .gtitle {
+        font-size: 18px !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # -----------------------
 # Tabs become available
 # -----------------------
@@ -29,7 +75,18 @@ with tab1:
         shares = st.text_input("Initial Shares (comma separated)", "0, 0, 0, 0")
         cash = st.number_input("Initial Cash", value=1_000_000, step=10000)
         hmax = st.number_input("Max Shares per Trade (hmax)", value=100)
-        model = st.selectbox("RL Model", ["ppo", "rppo", "sac"])
+        model = st.selectbox(
+            "RL Model",
+            [
+                "ppo-single-norm-raw",
+                "rppo-single-norm-raw",
+                "rppo-single-norm-risk",
+                "rppo-single-rand-raw",
+                "rppo-vec-norm-raw",
+                "rppo-vec-norm-risk",
+                "rppo-vec-rand-raw",
+            ]
+        )
         commission = st.number_input("Commission (%)", value=0.001, format="%.4f")
         reward_scaling = st.number_input("Reward Scaling", value=10.0)
 

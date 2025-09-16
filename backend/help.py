@@ -3,6 +3,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import ta
+import os
 from ta import add_all_ta_features
 from ta.trend import SMAIndicator, EMAIndicator, MACD, CCIIndicator
 from ta.momentum import RSIIndicator
@@ -38,6 +39,7 @@ from stable_baselines3.common.logger import configure
 from pypfopt import expected_returns, risk_models
 from pypfopt import EfficientFrontier
 from scipy.stats import skew, kurtosis
+from stable_baselines3.common.utils import get_linear_fn
 
 from typing import Optional
 
@@ -49,7 +51,7 @@ TRAIN_START_DATE = '2010-01-01'
 TRAIN_END_DATE = '2022-12-31'
 
 TRADE_START_DATE= '2023-01-01'
-TRADE_END_DATE = '2025-8-20'
+TRADE_END_DATE = '2025-8-31'
 
 DOW_30_TICKER = [
     "AAPL",
@@ -58,132 +60,91 @@ DOW_30_TICKER = [
     "JPM",
 ]
 
-INDICATORS_DOW_30 = [
-    # --- Trend Indicators ---
-    "ema_20",        # 20-day Exponential Moving Average, shows short-term trend
-    "ema_60",        # 60-day Exponential Moving Average, shows medium-term trend
-    "macd",          # Moving Average Convergence Divergence, trend-following momentum indicator
-    "macd_signal",   # Signal line of MACD, used to identify buy/sell crossovers
+INDICATORS = [
+    # Momentum / Trend
+    "mom_20d",       # 20-day momentum
+    "ema_20",        # short-term trend
+    "ema_60",        # medium-term trend
+    "macd",          # MACD
+    "macd_signal",   # MACD signal line
 
-    # --- Momentum Indicators ---
-    "rsi_14",        # 14-day Relative Strength Index, measures overbought/oversold conditions
-    "cci_14",        # 14-day Commodity Channel Index, measures deviation from average price
-    "mom_20d",       # 20-day Momentum, simple measure of price change over 20 days
+    # Overbought / Reversal
+    "rsi_14",        # relative strength index
 
-    # --- Volatility Indicators ---
-    "atr_14",        # 14-day Average True Range, measures market volatility
-    "boll_width",    # Bollinger Band width, indicates volatility expansion or contraction
-    "boll_lb",       # Bollinger lower band, often used for support or oversold conditions
+    # Volatility / Risk
+    "atr_14",        # average true range
+    "boll_width",    # Bollinger band width
 
-    # --- Volume Indicators ---
-    "obv",           # On-Balance Volume, cumulative volume to confirm trends
-    "vol_sma_20",    # 20-day simple moving average of volume, smooths daily volume
+    # Price / Returns
+    "zclose_60",     # normalized price
+    "ret_1d",        # daily return
 
-    # --- Market Sentiment / External Indicators ---
-    # "vix",           # Volatility Index, measures market expectations of near-term volatility
-    # "vix_rolling_30",# 30-day rolling average of VIX, smooths volatility trend
-    "finbert_future",# Sentiment score from FinBERT model for future stock news
-    "fingpt_future", # Sentiment or prediction from GPT-based financial model for future
+    # Sentiment / News
+    "finbert_future", # NLP-based market sentiment
+    "fingpt_future",
 
-    # --- Price / Return Indicators ---
-    "ret_1d",        # 1-day return, simple daily percentage change
-    "ret_5d",        # 5-day return, short-term performance
-    "zclose_60",     # Z-score of last 60 close prices, indicates relative price deviation
-    "rank_mom20",    # Ranked 20-day momentum across universe, relative strength measure
-    "rank_rsi_mom",  # Ranked combination of RSI and momentum, relative trend signal
-    "rank_rsi_mr",   # Ranked RSI mean reversion score, for detecting overbought/oversold
+    # Optional extras for SAC only
+    "obv",           # On-balance volume
 ]
 
-INDICATORS = {
-    "rppo": [
-        "mom_20d",
-        "ema_20", "ema_60",
-        "macd", "macd_signal",
-        "rsi_14",
-        "boll_width", "atr_14",
-        "finbert_future",
-        "zclose_60", "ret_1d"
-    ],
-    "sac": [
-        "mom_20d",
-        "ema_20", "ema_60",
-        "macd", "macd_signal",
-        "rsi_14",
-        "boll_width", "atr_14",
-        "finbert_future",
-        "zclose_60", "ret_1d"
-    ],
-    "ppo": [
-        "rsi_14",        # 14-day Relative Strength Index, measures overbought/oversold conditions
-        "mom_20d",       # 20-day Momentum, simple measure of price change over 20 days
-        "boll_width",    # Bollinger Band width, indicates volatility expansion or contraction
-        "finbert_future",# Sentiment score from FinBERT model for future stock news
-        "fingpt_future", # Sentiment or prediction from GPT-based financial model for future
-        "ret_1d",        # 1-day return, simple daily percentage change
-        "zclose_60",     # Z-score of last 60 close prices, indicates relative price deviation
-        "rank_mom20",    # Ranked 20-day momentum across universe, relative strength measure
-        "rank_rsi_mom",  # Ranked combination of RSI and momentum, relative trend signal
-        "rank_rsi_mr",   # Ranked RSI mean reversion score, for detecting overbought/oversold
-    ]
 
-}
+# Define schedules first
+lr_schedule = get_linear_fn(3e-4, 5e-5, 1.0)
 
+# Then define params
 PPO_PARAMS = {
     "policy": "MlpPolicy",
-    "n_steps": 1024,
-    "batch_size": 256,
-    "gamma": 0.99,
-    "learning_rate": 1e-4,     # ← add comma here
-    "ent_coef": 0.05,
-    "clip_range": 0.3,
+    "n_steps": 1024,         
+    "batch_size": 512,
+    "gamma": 0.995,           
+    "learning_rate": lr_schedule,    
+    "ent_coef": 0.03,        
+    "clip_range": 0.2,       
     "n_epochs": 8,
-    "gae_lambda": 0.95,
-    "max_grad_norm": 0.5,
+    "gae_lambda": 0.92,
+    "max_grad_norm": 0.7,
+    "vf_coef": 0.5,
+    "target_kl": 0.02,        
 }
 
-RECCURENT_PPO_PARAMS = {
-    "policy": "MlpLstmPolicy",  # recurrent for sequential/temporal data
-    "learning_rate": 2.5e-4,    # slightly lower for stability
-    "n_steps": 256,             # longer sequences, but not too long for LSTM
-    "batch_size": 128,          # minibatch size for PPO updates
-    "n_epochs": 10,             # updates per rollout
-    "gamma": 0.995,             # high discount for trading horizon
-    "gae_lambda": 0.95,         # usual default
-    "clip_range": 0.2,          # PPO clipping for stable updates
-    "normalize_advantage": True,# recommended for PPO
-    "vf_coef": 0.5,             # balance value loss
-    "max_grad_norm": 0.5,       # gradient clipping
-}
+# Slightly conservative LR decay for LSTMs
+lr_schedule = get_linear_fn(1e-4, 5e-6, 1.0)
 
-SAC_PARAMS = {
-    "policy": "MlpPolicy",
-    "learning_rate": 1e-4,         # standard, stable choice
-    "buffer_size": 50000,        # large replay buffer for finance
-    "batch_size": 128,             # bigger batch for stability
-    "gamma": 0.99,                 # discount factor
-    "tau": 0.005,                  # target smoothing coefficient
-    "ent_coef": "auto_0.1",        # auto entropy, smaller init for less randomness
-    "train_freq": 1,               # train every step
-    "gradient_steps": 2,           # gradient steps per env step
-    "learning_starts": 1000,      # warmup before training starts
-    "target_update_interval": 1,   # update target nets frequently
-}
+RECCURENT_PPO_PARAMS = dict(
+    policy="MlpLstmPolicy",
+    learning_rate=lr_schedule,    # your schedule is fine
+    n_steps=1024,
+    batch_size=512,
+    gamma=0.995,
+    ent_coef=0.015,
+    clip_range=0.2,
+    clip_range_vf=0.2,
+    n_epochs=8,
+    gae_lambda=0.95,
+    max_grad_norm=0.5,
+    vf_coef=0.5,
+    target_kl=0.02,
+)
 
 DEFAULT_PARAMS = {
     "ppo": PPO_PARAMS,
     "rppo": RECCURENT_PPO_PARAMS,
-    "sac": SAC_PARAMS
 }
 
 DEFAULT_PARAMS_POLICY = {
     "ppo": {
-        'net_arch': dict(pi=[128, 128], vf=[128, 128])
+        'net_arch': dict(pi=[128, 192], vf=[128, 192])
     },
-    "rppo": None,
-    "sac": None
+    "rppo": dict(
+        net_arch=[128, 192],
+        lstm_hidden_size=128,
+        n_lstm_layers=1,
+        shared_lstm=False,
+        ortho_init=False,
+    )
 }
 
-MODELS = {"ppo": PPO, "rppo": RecurrentPPO, "sac": SAC}
+MODELS = {"rppo": RecurrentPPO}
 
 NOISE = {
     "normal": NormalActionNoise,
@@ -196,13 +157,13 @@ NOISE = {
 }
 
 params = {
-    "ind_train": INDICATORS_DOW_30,
+    "ind_train": INDICATORS,
     "hmax_train": 100,
     "initial_amount_train": 1_000_000,
-    "reward_scaling_train": 10.0,   # scale = 1 because we normalized reward
+    "reward_scaling_train": 100.0,   # scale = 1 because we normalized reward
     "hmax_test": 100,
     "initial_amount_test": 1_000_000,
-    "reward_scaling_test": 10.0,
+    "reward_scaling_test": 100.0,
 }
 
 def _adjust_prices(data_df: pd.DataFrame) -> pd.DataFrame:
@@ -273,9 +234,6 @@ def get_data(start_date, end_date):
     data_df = data_df.dropna()
     data_df = data_df.reset_index(drop=True)
 
-    print("Shape of DataFrame: ", data_df.shape)
-    # print("Display DataFrame: ", data_df.head())
-
     data_df = data_df.sort_values(by=["date", "tic"]).reset_index(drop=True)
 
     return data_df
@@ -341,13 +299,12 @@ def add_indicators(df):
     df_indicators['rank_rsi_mom']  = by_date['rsi_14'].rank(pct=True, method='first')
     df_indicators['rank_rsi_mr']   = 1.0 - df_indicators['rank_rsi_mom']
 
-    for col in INDICATORS_DOW_30:
+    for col in INDICATORS:
         if col not in df_indicators.columns:
             df_indicators[col] = np.nan
 
     original_cols = [c for c in df.columns]  # keep original columns
-    print(original_cols)
-    cols_to_keep = original_cols + INDICATORS_DOW_30
+    cols_to_keep = original_cols + INDICATORS
     df_indicators = df_indicators[cols_to_keep]
 
     return df_indicators
@@ -462,6 +419,7 @@ def data_split(df, start, end, target_date_col="date"):
     data.index = data[target_date_col].factorize()[0]
     return data
 
+
 class StockTradingEnv(gym.Env):
     """
     A stock trading environment for OpenAI gym
@@ -504,6 +462,7 @@ class StockTradingEnv(gym.Env):
         mode="",
         iteration="",
         log_verbose: bool = True,  # NEW FLAG
+        randomize_episodes: bool = True
     ):
         # ---------------------------
         # 📝 Logger setup
@@ -511,7 +470,7 @@ class StockTradingEnv(gym.Env):
         import logging
         import os
 
-        log_file_path = "." + "trading_env.log"
+        log_file_path = "trading_env.log"
 
         self.logger = logging.getLogger("StockTradingEnv")
         self.logger.setLevel(logging.DEBUG if log_verbose else logging.CRITICAL)
@@ -537,6 +496,7 @@ class StockTradingEnv(gym.Env):
         # 🔧 Core attributes (as before)
         # ---------------------------
         self.day = day
+        self.sday = day
         self.df = df
         self.stock_dim = stock_dim
         self.hmax = hmax
@@ -554,47 +514,29 @@ class StockTradingEnv(gym.Env):
         # ---------------------------
         # 🧪 Dataset sanity logs
         # ---------------------------
-        self.logger.info(f"[INIT] df.shape = {self.df.shape}")
-        self.logger.info(f"[INIT] df.index.type = {type(self.df.index)}")
         try:
             head_idx = self.df.index[:5].tolist()
         except Exception:
             head_idx = str(self.df.index)[:80]
-        self.logger.info(f"[INIT] df.index[:5] = {head_idx}")
-        self.logger.info(f"[INIT] df.columns = {list(self.df.columns)}")
 
-        # Basic column checks
-        if "date" not in self.df.columns:
-            self.logger.warning("[WARN] 'date' column not found in df! Episode length/done logic may break.")
-        if "close" not in self.df.columns:
-            self.logger.warning("[WARN] 'close' column not found in df! Pricing/portfolio logic will break.")
-        if "tic" not in self.df.columns:
-            self.logger.warning("[WARN] 'tic' column not found in df. Multi-asset checks will be limited.")
-
-        # Count unique dates and tickers (if available)
         if "date" in self.df.columns:
             self.n_days = len(self.df["date"].unique())
-            self.logger.info(f"[INIT] unique trading days (n_days) = {self.n_days}")
         else:
             self.n_days = len(self.df.index.unique())
-            self.logger.info(f"[INIT] 'date' missing; fallback n_days via index.unique() = {self.n_days} (⚠️ may be wrong)")
+
+        # --- episode randomization knobsself.sday ---
+        self.randomize_episodes = randomize_episodes      # turn on/off
+        self.min_episode_len = 1500          # at least this many steps
+        self.episode_end_day = self.n_days  # will be set at reset
 
         if "tic" in self.df.columns:
             n_tics = int(self.df["tic"].nunique())
-            self.logger.info(f"[INIT] unique tickers (n_tics) = {n_tics}, stock_dim (arg) = {self.stock_dim}")
-            if n_tics != self.stock_dim:
-                self.logger.warning(f"[WARN] stock_dim ({self.stock_dim}) != unique tickers ({n_tics}). "
-                                    f"State/action sizes or price vector lengths may mismatch.")
-        else:
-            self.logger.info(f"[INFO] stock_dim (arg) = {self.stock_dim} (no 'tic' to verify).")
-
         # ---------------------------
         # 🎯 Spaces
         # ---------------------------
-        self.action_space = spaces.Box(low=-1, high=1, shape=(self.action_space,))
+        self.action_dim = self.action_space + 1
+        self.action_space = spaces.Box(low=-1, high=1, shape=(self.action_dim,))
         self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(self.state_space,))
-        self.logger.info(f"[INIT] action_space.shape = {self.action_space.shape}")
-        self.logger.info(f"[INIT] observation_space.shape = {self.observation_space.shape}")
 
         # ---------------------------
         # 📅 Initial day slice
@@ -606,8 +548,8 @@ class StockTradingEnv(gym.Env):
                           else self.data["date"])
         except Exception:
             first_date = "<?>"
-        self.logger.info(f"[INIT] starting day = {self.day}, starting date = {first_date}")
 
+        
         # ---------------------------
         # ✅ Thresholds (turbulence)
         # ---------------------------
@@ -623,20 +565,16 @@ class StockTradingEnv(gym.Env):
                 q995 = np.nanpercentile(values, 99.5)
                 self.turbulence_soft_threshold = (turbulence_soft_threshold if turbulence_soft_threshold else q95)
                 self.turbulence_hard_threshold = (turbulence_hard_threshold if turbulence_hard_threshold else q995)
-                self.logger.info(f"[INIT] turbulence thresholds -> soft={self.turbulence_soft_threshold:.4f}, "
-                                 f"hard={self.turbulence_hard_threshold:.4f} (from percentiles 95/99.5)")
             else:
                 self.turbulence_soft_threshold = turbulence_soft_threshold
                 self.turbulence_hard_threshold = turbulence_hard_threshold
-                self.logger.warning(f"[WARN] risk_indicator_col '{self.risk_indicator_col}' not in df; "
-                                    f"thresholds left as provided: soft={self.turbulence_soft_threshold}, "
-                                    f"hard={self.turbulence_hard_threshold}")
         else:
             self.turbulence_soft_threshold = turbulence_soft_threshold
             self.turbulence_hard_threshold = turbulence_hard_threshold
-            self.logger.info(f"[INIT] turbulence thresholds (user) -> soft={self.turbulence_soft_threshold}, "
-                             f"hard={self.turbulence_hard_threshold}")
 
+        self.turbulence_soft_threshold = 70
+        self.turbulence_hard_threshold = 100
+        
         # ---------------------------
         # 🔁 Previous state bookkeeping
         # ---------------------------
@@ -653,15 +591,6 @@ class StockTradingEnv(gym.Env):
         # ---------------------------
         self.state = self._initiate_state()
         state_len = len(self.state) if hasattr(self.state, "__len__") else None
-        self.logger.info(f"[INIT] initial state length = {state_len}, expected state_space = {self.state_space}")
-
-        try:
-            expected_len = 1 + self.stock_dim + self.stock_dim * len(self.tech_indicator_list)
-            if state_len is not None and state_len != expected_len:
-                self.logger.warning(f"[WARN] state length ({state_len}) != heuristic expected ({expected_len}). "
-                                    f"Check tech indicators per ticker and state assembly.")
-        except Exception:
-            pass
 
         # ---------------------------
         # 📈 Memories & counters
@@ -678,21 +607,13 @@ class StockTradingEnv(gym.Env):
 
         try:
             prices = self.data["close"].values
-            if "tic" in self.df.columns:
-                self.logger.info(f"[INIT] prices vector length (close) = {len(prices)} (should match stock_dim={self.stock_dim})")
-                if len(prices) != self.stock_dim:
-                    self.logger.warning(f"[WARN] len(close[{first_date}]) = {len(prices)} != stock_dim ({self.stock_dim}). "
-                                        f"Check day slicing and multi-asset alignment.")
+
         except Exception as e:
-            self.logger.error(f"[ERR] Could not extract initial 'close' prices: {e}")
             prices = np.zeros(self.stock_dim, dtype=float)
 
         self.asset_memory = [
             self.initial_amount + np.sum(np.array(self.num_stock_shares) * prices)
         ]
-        self.logger.info(f"[INIT] initial cash = {self.initial_amount:.2f}, "
-                         f"initial holdings value = {float(np.sum(np.array(self.num_stock_shares) * prices)):.2f}, "
-                         f"initial total asset = {self.asset_memory[0]:.2f}")
 
         # Sanity checks for list lengths
         def _check_len(name, arr, target):
@@ -701,7 +622,6 @@ class StockTradingEnv(gym.Env):
             except Exception:
                 ln = None
             ok = (ln == target)
-            self.logger.info(f"[INIT] len({name}) = {ln}  {'OK' if ok else f'≠ {target} (WARN)'}")
             return ok
 
         _check_len("num_stock_shares", self.num_stock_shares, self.stock_dim)
@@ -712,121 +632,51 @@ class StockTradingEnv(gym.Env):
         self.actions_memory = []
         self.state_memory = []
         self.date_memory = [self._get_date()]
-        self.logger.info(f"[INIT] first date_memory entry = {self.date_memory[0]}")
-        self.logger.info("[INIT] ===== Init complete =====\n")
 
         self._seed()
 
     def _sell_stock(self, index, action):
-        def _do_sell_normal():
-            sell_num_shares = 0
-            if self.num_stock_shares[index] > 0:
-                sell_num_shares = min(abs(action), self.num_stock_shares[index])
-
-                prices = self.data['close'].values
-                sell_amount = prices[index] * sell_num_shares * (1 - self.sell_cost_pct[index])
-
-                # update balance
-                self.cash += sell_amount
-                self.num_stock_shares[index] -= sell_num_shares
-                self.cost += prices[index] * sell_num_shares * self.sell_cost_pct[index]
-                self.step_cost += prices[index] * sell_num_shares * self.sell_cost_pct[index]
-                self.trades += 1
-
-                # Logs
-                self.logger.info(f"[SELL_NORMAL] index={index}, action={action}, sell_num_shares={sell_num_shares}")
-                self.logger.info(f"[SELL_NORMAL] price={prices[index]:.2f}, sell_amount={sell_amount:.2f}")
-                self.logger.info(f"[SELL_NORMAL] updated cash={self.cash:.2f}, "
-                                 f"num_stock_shares={self.num_stock_shares[index]}, "
-                                 f"cost={self.cost:.2f}, trades={self.trades}")
-
-                # Warnings
-                if self.cash < 0:
-                    self.logger.warning(f"[WARNING] Cash is negative after selling! cash={self.cash:.2f}")
-                if sell_num_shares > self.num_stock_shares[index] + sell_num_shares:
-                    self.logger.error(f"[ERROR] Sold more shares than available! "
-                                      f"index={index}, sell_num_shares={sell_num_shares}, "
-                                      f"num_stock_shares={self.num_stock_shares[index]}")
-            else:
-                self.logger.info(f"[SELL_NORMAL] index={index}, action={action}, no shares to sell (num_stock_shares=0)")
-            return sell_num_shares
-
-        # turbulence logic
-        if self.turbulence_hard_threshold is not None and self.turbulence >= self.turbulence_hard_threshold:
-            if self.num_stock_shares[index] > 0:
-                prices = self.data['close'].values
-                sell_num_shares = self.num_stock_shares[index]
-                sell_amount = prices[index] * sell_num_shares * (1 - self.sell_cost_pct[index])
-
-                self.cash += sell_amount
-                self.num_stock_shares[index] = 0
-                self.cost += prices[index] * sell_num_shares * self.sell_cost_pct[index]
-                self.step_cost += prices[index] * sell_num_shares * self.sell_cost_pct[index]
-                self.trades += 1
-
-                self.logger.info(f"[SELL_TURBULENCE] Hard threshold triggered, index={index}, forced sell all")
-                self.logger.info(f"[SELL_TURBULENCE] sell_num_shares={sell_num_shares}, "
-                                 f"price={prices[index]:.2f}, sell_amount={sell_amount:.2f}")
-                self.logger.info(f"[SELL_TURBULENCE] updated cash={self.cash:.2f}, "
-                                 f"num_stock_shares={self.num_stock_shares[index]}, "
-                                 f"cost={self.cost:.2f}, trades={self.trades}")
-
-                if self.cash < 0:
-                    self.logger.warning(f"[WARNING] Cash is negative after forced sell! cash={self.cash:.2f}")
-            else:
-                sell_num_shares = 0
-                self.logger.info(f"[SELL_TURBULENCE] index={index}, no shares to sell")
-        else:
-            sell_num_shares = _do_sell_normal()
-
-        return sell_num_shares
-
-
-
+        # action is negative: number of shares to sell
+        to_sell = int(min(abs(int(action)), int(self.num_stock_shares[index])))
+        if to_sell <= 0:
+            return 0
+            
+        price = float(self.data['close'].values[index])
+        fee = float(self.sell_cost_pct[index])
+        proceeds = price * to_sell * (1.0 - fee)
+        
+        self.cash += proceeds
+        self.num_stock_shares[index] -= to_sell
+        
+        self.cost += price * to_sell * fee
+        self.step_cost += price * to_sell * fee
+        
+        self.trades += 1
+        
+        return to_sell
+    
     def _buy_stock(self, index, action):
-        def _do_buy():
-            prices = self.data['close'].values
-
-            # Compute max shares we can buy considering cost
-            available_amount = self.cash // (prices[index] * (1 + self.buy_cost_pct[index]))
-            buy_num_shares = min(available_amount, action)
-            buy_amount = prices[index] * buy_num_shares * (1 + self.buy_cost_pct[index])
-
-            # Update balance and shares
-            self.cash -= buy_amount
-            self.num_stock_shares[index] += buy_num_shares
-            self.cost += prices[index] * buy_num_shares * self.buy_cost_pct[index]
-            self.step_cost += prices[index] * buy_num_shares * self.buy_cost_pct[index]
-            self.trades += 1
-
-            # Logs
-            self.logger.info(f"[BUY] index={index}, action={action}, buy_num_shares={buy_num_shares}")
-            self.logger.info(f"[BUY] price={prices[index]:.2f}, buy_amount={buy_amount:.2f}")
-            self.logger.info(f"[BUY] updated cash={self.cash:.2f}, "
-                             f"num_stock_shares={self.num_stock_shares[index]}, "
-                             f"cost={self.cost:.2f}, trades={self.trades}")
-
-            # Warnings
-            if self.cash < 0:
-                self.logger.warning(f"[WARNING] Cash is negative after buying! cash={self.cash:.2f}")
-            if buy_num_shares > available_amount:
-                self.logger.error(f"[ERROR] Bought more shares than allowed! "
-                                  f"buy_num_shares={buy_num_shares}, available_amount={available_amount}")
-
-            return buy_num_shares
-
-        # Apply turbulence logic
-        if self.turbulence_soft_threshold is None:
-            buy_num_shares = _do_buy()
-        else:
-            if self.turbulence < self.turbulence_soft_threshold:
-                buy_num_shares = _do_buy()
-            else:
-                buy_num_shares = 0
-                self.logger.info(f"[BUY] index={index}, turbulence={self.turbulence:.2f} >= "
-                                 f"soft threshold={self.turbulence_soft_threshold:.2f}, buy skipped")
-
-        return buy_num_shares
+        to_buy_req = max(0, int(action))
+        
+        if to_buy_req <= 0:
+            return 0
+            
+        price = float(self.data['close'].values[index])
+        fee = float(self.buy_cost_pct[index])
+        cps = price * (1.0 + fee)
+        max_afford = int(self.cash // max(cps, 1e-12))
+        to_buy = min(to_buy_req, max_afford)
+        if to_buy <= 0:
+            return 0
+            
+        spend = cps * to_buy
+        self.cash -= spend
+        
+        self.num_stock_shares[index] += to_buy
+        self.cost += price * to_buy * fee
+        self.step_cost += price * to_buy * fee
+        self.trades += 1
+        return to_buy
 
     def _make_plot(self):
         plt.plot(self.asset_memory, "r")
@@ -834,14 +684,12 @@ class StockTradingEnv(gym.Env):
         plt.close()
 
     def step(self, actions):
-        if self.day >= self.n_days - 1:
+        if self.day >= self.episode_end_day - 1:
             self.terminal = True
 
         if self.terminal:
-            self.logger.info(f"[TERMINAL] Episode: {self.episode}, Day: {self.day}")
             if self.make_plots:
                 self._make_plot()
-                self.logger.info("[TERMINAL] Plot saved for this episode.")
 
             current_prices = self.data['close'].values
             end_total_asset = self.cash + sum(np.array(self.num_stock_shares) * current_prices)
@@ -859,20 +707,17 @@ class StockTradingEnv(gym.Env):
             df_rewards = pd.DataFrame(self.rewards_memory, columns=["account_rewards"])
             df_rewards["date"] = self.date_memory[:-1]
 
-            if self.episode % self.print_verbosity == 0:
-                print(f"[SUMMARY] Begin total asset: {self.asset_memory[0]:.2f}")
-                print(f"[SUMMARY] End total asset: {end_total_asset:.2f}")
-                print(f"[SUMMARY] Total reward: {tot_reward:.2f}")
-                print(f"[SUMMARY] Total cost: {self.cost:.2f}")
-                print(f"[SUMMARY] Total trades: {self.trades}")
-                if sharpe is not None:
-                    print(f"[SUMMARY] Sharpe ratio: {sharpe:.3f}")
-                print(f"[SUMMARY] Final shares per stock: {self.num_stock_shares}")
-                print("=================================")
+            print(f"[SUMMARY] Begin total asset: {self.asset_memory[0]:.2f}")
+            print(f"[SUMMARY] End total asset: {end_total_asset:.2f}")
+            print(f"[SUMMARY] Total reward: {tot_reward:.2f}")
+            print(f"[SUMMARY] Total cost: {self.cost:.2f}")
+            print(f"[SUMMARY] Total trades: {self.trades}")
+            if sharpe is not None:
+                print(f"[SUMMARY] Sharpe ratio: {sharpe:.3f}")
+            print(f"[SUMMARY] Final shares per stock: {self.num_stock_shares}")
+            print("=================================")
 
-            # Colab-friendly saving
-            import os
-            results_dir = os.path.join(".", "results")
+            results_dir = os.path.join("results")
             os.makedirs(results_dir, exist_ok=True)
 
             if (self.model_name != "") and (self.mode != ""):
@@ -898,54 +743,75 @@ class StockTradingEnv(gym.Env):
                     os.path.join(results_dir, f"account_value_{self.mode}_{self.model_name}_{self.iteration}.png")
                 )
                 plt.close()
-                self.logger.info("[TERMINAL] All files and plots saved in /content/results.")
-
-            # Warnings
-            if end_total_asset < 0:
-                self.logger.warning(f"[WARNING] End total asset negative! {end_total_asset:.2f}")
-            if tot_reward < -1e6:
-                self.logger.warning(f"[WARNING] Extremely negative reward: {tot_reward:.2f}")
 
             return self.state, self.reward, self.terminal, False, {}
 
         else:
-            actions = actions * self.hmax  # scale actions to max shares
-            actions = actions.astype(int)  # convert to integer shares
-            self.logger.debug(f"[STEP] Day {self.day} - Raw actions scaled: {actions}")
-
-            if self.turbulence_hard_threshold is not None and self.turbulence >= self.turbulence_hard_threshold:
-                actions = np.array([-self.hmax] * self.stock_dim)
-                self.logger.debug(f"[STEP] Turbulence high ({self.turbulence:.2f}) -> forced sell all: {actions}")
-
             begin_prices = self.data['close'].values
             begin_total_asset = self.cash + sum(np.array(self.num_stock_shares) * begin_prices)
-            self.logger.debug(f"[STEP] Begin total asset: {begin_total_asset:.2f}, Cash: {self.cash:.2f}, Shares: {self.num_stock_shares}")
 
-            # determine buy/sell indices
-            argsort_actions = np.argsort(actions)
-            sell_index = argsort_actions[:np.where(actions < 0)[0].shape[0]]
-            buy_index = argsort_actions[::-1][:np.where(actions > 0)[0].shape[0]]
-            self.logger.debug(f"[STEP] Sell indices: {sell_index}, Buy indices: {buy_index}")
+            logits = actions.astype(float)
+            shift = logits.max()
+            exp = np.exp(logits - shift)
+            w_all = exp / (exp.sum() + 1e-12)
+            
+            w_stocks = w_all[:-1]
+
+            cap = 0.50
+            w_stocks = np.minimum(w_stocks, cap)
+            stock_sum = w_stocks.sum()
+            
+            target_dollars = w_stocks * begin_total_asset
+            target_shares  = np.floor(target_dollars / begin_prices).astype(int)
+
+            current_shares = np.array(self.num_stock_shares, dtype=int)
+            delta = target_shares - current_shares  # +ve = buy, -ve = sell
+
+            sell_index = np.flatnonzero(delta < 0)
+            buy_index  = np.flatnonzero(delta > 0)
 
             self.previous_cash = self.cash
             self.previous_state = self.state.copy()
             self.previous_num_stock_shares = self.num_stock_shares.copy()
 
-            # Execute sell actions
-            for index in sell_index:
-                sell_before = self.num_stock_shares[index]
-                actions[index] = self._sell_stock(index, actions[index]) * (-1)
-                sell_after = self.num_stock_shares[index]
-                self.logger.debug(f"[SELL] Stock {index}: sold {sell_before - sell_after} shares, Cash now: {self.cash:.2f}")
+            executed = np.zeros(self.stock_dim, dtype=int)
 
-            # Execute buy actions
-            for index in buy_index:
-                buy_before = self.num_stock_shares[index]
-                actions[index] = self._buy_stock(index, actions[index])
-                buy_after = self.num_stock_shares[index]
-                self.logger.debug(f"[BUY] Stock {index}: bought {buy_after - buy_before} shares, Cash now: {self.cash:.2f}")
+            hard_turb = self.turbulence_hard_threshold is not None and self.turbulence >= self.turbulence_hard_threshold
+            soft_turb = (self.turbulence_soft_threshold is not None) and (self.turbulence >= self.turbulence_soft_threshold)
 
-            self.actions_memory.append(actions)
+            for idx in range(self.stock_dim):
+                if hard_turb:
+                    if self.num_stock_shares[idx] > 0:
+                        sold = self._sell_stock(idx, -self.num_stock_shares[idx])
+                        executed[idx] -= int(sold)
+                else:
+                    if delta[idx] < 0:
+                        sold = self._sell_stock(idx, delta[idx])
+                        executed[idx] -= int(sold)
+
+            if not hard_turb and not soft_turb:
+                desired = np.zeros(self.stock_dim, dtype=int)
+                desired[buy_index] = delta[buy_index]
+            
+                if buy_index.size > 0:
+                    cps = begin_prices[buy_index] * (1.0 + self.buy_cost_pct[buy_index])
+                    max_afford = np.floor(self.cash / np.maximum(cps, 1e-12)).astype(int)
+            
+                    desired_cost = (desired[buy_index] * cps).sum()
+                    if desired_cost > self.cash + 1e-9:
+                        scale = float(self.cash / desired_cost)
+                        scaled = np.floor(desired[buy_index] * scale).astype(int)
+                    else:
+                        scaled = desired[buy_index]
+            
+                    scaled = np.maximum(0, np.minimum(scaled, max_afford))
+            
+                    for i, idx in enumerate(buy_index):
+                        if scaled[i] > 0:
+                            bought = self._buy_stock(idx, int(scaled[i]))  # positive
+                            executed[idx] += int(bought)
+
+            self.actions_memory.append(executed)
 
             # update day and state
             self.day += 1
@@ -955,7 +821,6 @@ class StockTradingEnv(gym.Env):
                     self.turbulence = self.data[self.risk_indicator_col]
                 else:
                     self.turbulence = self.data[self.risk_indicator_col].values[0]
-            self.logger.debug(f"[STEP] Turbulence updated: {self.turbulence:.2f}")
 
             self.state = self._update_state()
 
@@ -965,48 +830,25 @@ class StockTradingEnv(gym.Env):
             self.asset_memory.append(end_total_asset)
             self.date_memory.append(self._get_date())
 
-            # --- Reward hyperparameters ---
-            alpha = 1.0   # weight for portfolio return
-            beta = 0.1    # weight for Sharpe-like risk adjustment
-            
-            # --- Portfolio return ---
-            simple_return = (end_total_asset - begin_total_asset) / (begin_total_asset + 1e-8)
-            
-            # --- Recent returns for risk measures ---
-            window = len(self.asset_memory)
-            recent_assets = np.array(self.asset_memory[-window:])
-            recent_returns = np.diff(recent_assets) / (recent_assets[:-1] + 1e-8)
-            
-            # --- Sharpe-like term (stabilized) ---
-            mean_r = np.mean(recent_returns)
-            std_r = np.std(recent_returns)
-            
-            # variance floor avoids explosion
-            epsilon = 1e-3   # tuned to your return scale (10^-2 typical → 10^-3 floor is good)
-            sharpe_like = mean_r / max(std_r, epsilon)
-            
-            # squash extremes to [-1, 1]
-            sharpe_like = np.tanh(sharpe_like)
-            
-            # --- Final risk-adjusted reward ---
-            self.reward = (
-                alpha * simple_return               # reward for growth
-                + beta * sharpe_like                # reward for stability
-            )
-            
-            # --- Apply reward scaling ---
-            self.reward *= self.reward_scaling
+            # --- ONE-STEP return ---
+            if len(self.asset_memory) >= 2:
+                prev_asset = self.asset_memory[-2]
+            else:
+                prev_asset = end_total_asset  # no change on first step
+            r_t = (end_total_asset - prev_asset) / (prev_asset + 1e-12)  # instantaneous return
 
-            # Logging
+            # --- Apply reward scaling ---
+            self.reward = np.log(max(1e-3, 1.0 + r_t)) * self.reward_scaling
+
+            # --- Logging ---
             self.logger.info(
                 f"[STEP] End asset: {end_total_asset:.2f}, "
                 f"Reward: {self.reward:.6f}, "
-                f"ReturnTerm: {alpha * simple_return:.6f}, "
             )
-            
+                        
             # Logging
-            self.return_log.append(alpha * simple_return)
-            self.vol_log.append(beta * sharpe_like)
+            self.return_log.append(self.reward)
+            
             self.rewards_memory.append(self.reward)
             self.state_memory.append(self.state)
 
@@ -1020,8 +862,13 @@ class StockTradingEnv(gym.Env):
         seed=None,
         options=None,
     ):
-        # Reset day and data
+
+        total = self.n_days
+        self.sday = 0
         self.day = 0
+        self.episode_end_day = total
+
+        # Reset day and data
         self.data = self.df.loc[self.day, :]
 
         # Reset state and shares
@@ -1046,22 +893,11 @@ class StockTradingEnv(gym.Env):
         # Increment episode count
         self.episode += 1
 
-        # Logging
-        self.logger.info(f"Episode {self.episode} started")
-        self.logger.debug(f"Day: {self.day}")
-        self.logger.debug(f"Cash: {self.cash:.2f}")
-        self.logger.debug(f"Initial shares: {self.num_stock_shares}")
-        self.logger.debug(f"Initial total asset: {initial_total_asset:.2f}")
-        self.logger.debug("=" * 40)
-
         return self.state, {}
 
 
     def render(self, mode="human", close=False):
         # Simple render: return current state
-        self.logger.info(
-            f"[RENDER] Day: {self.day}, Cash: {self.cash:.2f}, Shares: {self.num_stock_shares}"
-        )
         return self.state
 
 
@@ -1073,22 +909,16 @@ class StockTradingEnv(gym.Env):
         total_asset = self.cash + np.sum(np.array(self.num_stock_shares) * current_prices)
         norm_cash = self.cash / (total_asset + 1e-8)
         norm_shares = [shares / (self.hmax + 1e-8) for shares in self.num_stock_shares]
-
+        vix_value = self.data["vix"].values[0]
+        
         state = (
             [norm_cash]
             + norm_shares
             + sum(
                 (self.data[tech].values.tolist() for tech in self.tech_indicator_list),
                 [],
-            )
+            ) + [vix_value]
         )
-
-        # Logging
-        self.logger.debug(f"[INIT_STATE] Day: {self.day}")
-        self.logger.debug(f"[INIT_STATE] Cash: {self.cash:.2f}, Shares: {self.num_stock_shares}")
-        self.logger.debug(f"[INIT_STATE] Total asset: {total_asset:.2f}")
-        self.logger.debug(f"[INIT_STATE] State length: {len(state)}")
-        self.logger.debug("=" * 40)
 
         return state
 
@@ -1098,6 +928,7 @@ class StockTradingEnv(gym.Env):
         total_asset = self.cash + np.sum(np.array(self.num_stock_shares) * current_prices)
         norm_cash = self.cash / (total_asset + 1e-8)
         norm_shares = [shares / (self.hmax + 1e-8) for shares in self.num_stock_shares]
+        vix_value = self.data["vix"].values[0]
 
         state = (
             [norm_cash]
@@ -1105,15 +936,8 @@ class StockTradingEnv(gym.Env):
             + sum(
                 (self.data[tech].values.tolist() for tech in self.tech_indicator_list),
                 [],
-            )
+            ) + [vix_value]
         )
-
-        # Logging
-        self.logger.debug(f"[UPDATE_STATE] Day: {self.day}")
-        self.logger.debug(f"[UPDATE_STATE] Cash: {self.cash:.2f}, Shares: {self.num_stock_shares}")
-        self.logger.debug(f"[UPDATE_STATE] Total asset: {total_asset:.2f}")
-        self.logger.debug(f"[UPDATE_STATE] State length: {len(state)}")
-        self.logger.debug("=" * 40)
 
         return state
 
@@ -1122,16 +946,12 @@ class StockTradingEnv(gym.Env):
             date = self.data.date.unique()[0]
         else:
             date = self.data.date
-        self.logger.debug(f"[GET_DATE] Day: {self.day}, Date: {date}")
         return date
 
 
     def save_asset_memory(self):
         date_list = self.date_memory
         asset_list = self.asset_memory
-
-        self.logger.debug(f"[SAVE_ASSET_MEMORY] Dates stored: {len(date_list)}, "
-                    f"Assets stored: {len(asset_list)}")
 
         df_account_value = pd.DataFrame(
             {"date": date_list, "account_value": asset_list}
@@ -1150,23 +970,19 @@ class StockTradingEnv(gym.Env):
         df_actions.columns = self.data.tic.values
         df_actions.index = df_date['date']
 
-        self.logger.debug(f"[SAVE_ACTION_MEMORY] Saved {len(action_list)} actions for "
-                    f"{len(self.data.tic.values)} tickers")
-
         return df_actions
 
 
     def _seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
-        self.logger.debug(f"[SEED] Environment seeded with: {seed}")
         return [seed]
 
 
     def get_sb_env(self):
         e = DummyVecEnv([lambda: self])
         obs = e.reset()
-        self.logger.info("[GET_SB_ENV] Stable-Baselines VecEnv created and reset")
         return e, obs
+
 
 class TensorboardCallback(BaseCallback):
     """
@@ -1189,49 +1005,66 @@ class TensorboardCallback(BaseCallback):
         self.logger.record("time/training_start", self.start_time)
         if self.verbose:
             print(f"[TB] Training started at {self.start_time}")
-
+    
     def _on_step(self) -> bool:
         try:
-            reward = self.locals.get("rewards", None) or self.locals.get("reward", None)
+            reward = None
+            if "rewards" in self.locals:   # SB3 VecEnv case
+                reward = self.locals["rewards"]
+            elif "reward" in self.locals:  # single env case
+                reward = self.locals["reward"]
+    
             if reward is not None:
-                reward_val = reward[0] if isinstance(reward, (list, np.ndarray)) else reward
+                if isinstance(reward, (list, np.ndarray)):
+                    reward_vals = np.array(reward).flatten()
+                    reward_val = float(np.mean(reward_vals))   # average across envs
+                else:
+                    reward_val = float(reward)
+    
                 self.current_episode_reward += reward_val
                 self.current_episode_length += 1
                 self.logger.record("train/step_reward", reward_val)
-
+    
             if self.track_actions and "actions" in self.locals:
                 act = self.locals["actions"]
                 if isinstance(act, (list, np.ndarray)):
                     self.actions_buffer.append(np.array(act).flatten())
                 else:
                     self.actions_buffer.append([act])
+    
         except Exception as e:
             if self.verbose:
                 print(f"[TB Warning] Step logging error: {e}")
-
-        done = self.locals.get("dones", [False])[0] or self.locals.get("done", False)
+    
+        # Handle dones (can also be an array in multi-envs)
+        done = None
+        if "dones" in self.locals:
+            done = np.any(self.locals["dones"])  # at least one env is done
+        elif "done" in self.locals:
+            done = bool(self.locals["done"])
+    
         if done:
             self.episode_rewards.append(self.current_episode_reward)
             self.episode_lengths.append(self.current_episode_length)
-
+    
             self.logger.record("train/episode_reward", self.current_episode_reward)
             self.logger.record("train/episode_length", self.current_episode_length)
-
+    
             if len(self.episode_rewards) >= 5:
                 self.logger.record(
                     "train/episode_reward_mean_5", np.mean(self.episode_rewards[-5:])
                 )
-
+    
             if self.verbose:
                 print(
                     f"[TB] Episode done. Reward: {self.current_episode_reward:.2f}, "
                     f"Length: {self.current_episode_length}"
                 )
-
+    
             self.current_episode_reward = 0
             self.current_episode_length = 0
             self.actions_buffer.clear()
-
+    
         return True
 
     def _on_rollout_end(self) -> None:
@@ -1268,6 +1101,7 @@ class TensorboardCallback(BaseCallback):
         self.logger.record("time/total_training_time_sec", total_time)
         if self.verbose:
             print(f"[TB] Training finished in {total_time:.2f} seconds.")
+
 
 class DRLAgent:
     """DRL agent helper for SB3 algorithms"""
@@ -1346,6 +1180,7 @@ class DRLAgent:
 
         print("[DRLAgent] Prediction finished.")
         return account_memory[0], actions_memory[0]
+
 
 def calculate_metrics(
     df_account_value,
@@ -1679,16 +1514,38 @@ def build_benchmarks(trade, train):
     price_df.index = pd.to_datetime(price_df.index)
 
     df_mvo, df_ew, df_bh, mvo_weights = build_mvo_and_baselines(train, price_df)
-    return df_mvo, df_ew, df_bh
 
-def analysis_metrics_rl_benchmarks(df_rl, df_mvo, df_ew, df_bh):
+    # Download DJIA data (ticker: ^DJI)
+    djia = yf.download('^DJI', start=TRADE_START_DATE, end=TRADE_END_DATE, progress=False)
+
+    # Reset index to convert DatetimeIndex into 'date' column
+    df_reset = djia.reset_index()
+
+    # Extract only 'Date' and 'Close' columns and rename
+    df_djia = df_reset[['Date', 'Close']].copy()
+    df_djia.columns = ['date', 'account_value']
+
+    # Ensure 'date' column is datetime dtype (should already be)
+    df_djia['date'] = pd.to_datetime(df_djia['date'])
+
+    # Normalize to initial capital (e.g., 1,000,000)
+    initial_capital = 1_000_000
+    first_close = df_djia['account_value'].iloc[0]
+
+    df_djia['account_value'] = df_djia['account_value'] / first_close * initial_capital
+
+    return df_mvo, df_ew, df_bh, df_djia
+
+def analysis_metrics_rl_benchmarks(df_rl, df_mvo, df_ew, df_bh, df_djia):
     metrics_rl = calculate_metrics(df_rl)
+    metrics_dija = calculate_metrics(df_djia)
     metrics_mvo = calculate_metrics(df_mvo)
     metrics_ew = calculate_metrics(df_ew)
     metrics_bh = calculate_metrics(df_bh)
 
     all_metrics = {
         'RL': metrics_rl,
+        "DIJA": metrics_dija,
         'MVO': metrics_mvo,
         'EW': metrics_ew,
         'BH': metrics_bh
@@ -1709,6 +1566,26 @@ def analysis_trade_metrics(trade, df_actions):
 def scale_features(df,
                    unscaled_cols=None,
                    global_scale_cols=None):
+    """
+    Scale features for RL trading agent.
+
+    - Cross-sectional z-score per date for ticker-varying features
+    - Global z-score across dataset for market-wide or probability features
+    - Leave some features unscaled (risk, categorical, ranks)
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Must contain columns ['date', 'tic'] and numerical features.
+    unscaled_cols : list
+        Columns to leave untouched.
+    global_scale_cols : list
+        Columns to scale with global z-score (not per day).
+
+    Returns
+    -------
+    scaled_df : pd.DataFrame
+    """
     df = df.copy()
 
     # Default groups
@@ -1729,7 +1606,7 @@ def scale_features(df,
     if global_scale_cols is None:
         global_scale_cols = [
             "finbert_future", "fingpt_future",   # sentiment probs
-            # "vix", "vix_rolling_30"              # market-wide risk measures
+            "vix", "vix_rolling_30"              # market-wide risk measures
         ]
 
     # Features to scale cross-sectionally (per day, across tickers)
@@ -1769,10 +1646,9 @@ def get_train_trade(train_start_date, train_end_date, trade_start_date, trade_en
     df = get_data(start_date=train_start_date, end_date=trade_end_date)
     df = clean_data(df)
     df = add_indicators(df)
-    # df = add_vix(df)
+    df = add_vix(df)
     df = df.sort_values(['tic', 'date']).reset_index(drop=True)
-    print(df.columns)
-    # df['vix_rolling_30'] = df['vix'].rolling(window=30, min_periods=1).mean()
+    df['vix_rolling_30'] = df['vix'].rolling(window=30, min_periods=1).mean()
     df = add_turbulence(df)
 
     df["date"] = pd.to_datetime(df["date"]).dt.strftime("%Y-%m-%d")
@@ -1786,43 +1662,48 @@ def get_train_trade(train_start_date, train_end_date, trade_start_date, trade_en
     processed_full["date"] = pd.to_datetime(processed_full["date"])
 
     tickers = ["AAPL", "BA", "GS", "JPM"]
-    sentiment_dfs = []
-    for tic in tickers:
-        with open(f"files/{tic}_final.json") as f:
-            news = json.load(f)
 
+    # Load JSONs and process sentiment
+    tickers = ["AAPL", "BA", "GS", "JPM"]
+    sentiment_dfs = []
+
+    for tic in tickers:
+        with open(f"../Final_Data/{tic}_merged.json") as f:
+            news = json.load(f)
         temp = pd.DataFrame(news)
         temp["tic"] = tic
         temp["date"] = pd.to_datetime(temp["date"])
 
-        def finbert_score(row):
-            s = row["sentiment"].lower()
-            if s == "positive":
-                return row["sentiment_score"]
-            elif s == "negative":
-                return -row["sentiment_score"]
-            else:
-                return 0.0
-            
-        temp["finbert"] = temp.apply(finbert_score, axis=1)
-        temp["fingpt"] = temp["fingpt_score"].apply(lambda x: x[1] - x[2])
+        temp["finbert"] = temp["finbert_score"].apply(lambda x: x['positive'] - x['negative'])
+        temp["fingpt"] = temp["fingpt_score"].apply(lambda x: x['positive'] - x['negative'])
+
+        # Keep only relevant columns
         sentiment_dfs.append(temp[["date", "tic", "finbert", "fingpt"]])
 
-
+    # Combine all tickers
     sentiment_df = pd.concat(sentiment_dfs)
+
+    # Aggregate per ticker+date (mean if multiple news items per day)
     sentiment_daily = sentiment_df.groupby(["tic","date"]).mean().reset_index()
+
+    # Merge with stock DataFrame
     processed_full = processed_full.merge(sentiment_daily, on=["tic","date"], how="left")
+
+    # Fill missing sentiment with 0.0
     processed_full["finbert"] = processed_full["finbert"].fillna(0.0)
     processed_full["fingpt"] = processed_full["fingpt"].fillna(0.0)
 
-    window = 5
-    decay_factor = 0.8  # decaying impact over days
+    window = 7
+    decay_factor = 0.85  # decaying impact over days
 
+    # Sort by ticker and date
     processed_full = processed_full.sort_values(["tic","date"])
 
+    # Create new columns
     processed_full["finbert_future"] = 0.0
     processed_full["fingpt_future"] = 0.0
 
+    # Apply decayed rolling influence
     for tic in processed_full["tic"].unique():
         df_tic = processed_full[processed_full["tic"] == tic].copy()
         finbert_vals = df_tic["finbert"].values
@@ -1842,7 +1723,7 @@ def get_train_trade(train_start_date, train_end_date, trade_start_date, trade_en
         processed_full.loc[processed_full["tic"] == tic, "fingpt_future"] = fingpt_future
 
     processed_full = processed_full.drop(columns = ["finbert", "fingpt"])
-
+    
     train = data_split(processed_full, train_start_date, train_end_date)
     trade = data_split(processed_full, trade_start_date, trade_end_date)
 
@@ -1850,6 +1731,7 @@ def get_train_trade(train_start_date, train_end_date, trade_start_date, trade_en
     trade_scaled = scale_features(trade)
 
     n_repeat = 4
+
     n_rows = len(train_scaled)
     new_index = np.arange(n_rows // n_repeat + 1).repeat(n_repeat)[:n_rows]
     train_scaled.index = new_index
@@ -1857,15 +1739,18 @@ def get_train_trade(train_start_date, train_end_date, trade_start_date, trade_en
     n_rows = len(trade_scaled)
     new_index = np.arange(n_rows // n_repeat + 1).repeat(n_repeat)[:n_rows]
     trade_scaled.index = new_index
-
+    
     return train_scaled, trade_scaled
+
 
 def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scaling, _num_stock_shares, _comission):
     stock_dimension = len(trade.tic.unique())
-    state_space = 1 + stock_dimension + len(_ind) * stock_dimension
+    state_space = 1 + stock_dimension + len(_ind) * stock_dimension + 1
     print(f"Stock Dimension: {stock_dimension}, State Space: {state_space}")
 
     buy_cost_list = sell_cost_list = [_comission] * stock_dimension
+    buy_cost_list = np.array(buy_cost_list)
+    sell_cost_list = np.array(sell_cost_list)
 
     env_kwargs = {
         "hmax": _hmax,
@@ -1891,8 +1776,8 @@ def backtest(trained, train, trade, _ind, _hmax, _initial_amount, _reward_scalin
     return e_trade_gym, df_account_value, df_actions
 
 def analysis_backtest(trade, train, df_account_value, df_actions):
-    df_mvo, df_ew, df_bh = build_benchmarks(trade, train)
-    df_result, results = analysis_metrics_rl_benchmarks(df_account_value, df_mvo, df_ew, df_bh)
+    df_mvo, df_ew, df_bh, df_djia  = build_benchmarks(trade, train)
+    df_result, results = analysis_metrics_rl_benchmarks(df_account_value, df_mvo, df_ew, df_bh, df_djia)
     trade_metrics, actions = analysis_trade_metrics(trade, df_actions)
 
     return df_result, results, trade_metrics, actions

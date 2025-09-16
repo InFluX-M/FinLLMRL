@@ -8,9 +8,8 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 
-from stable_baselines3 import PPO, SAC
 
-from help import MODELS, TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS, analysis_backtest, extract_trades_from_positions
+from help import TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, TRADE_END_DATE, get_train_trade, backtest, INDICATORS, analysis_backtest, extract_trades_from_positions
 
 # --- Setup Logging ---
 logging.basicConfig(
@@ -34,15 +33,27 @@ data = {
 
 }
 
+from stable_baselines3 import PPO
+from sb3_contrib import RecurrentPPO
+
+MODELS = {
+    "ppo-single-norm-raw": PPO,
+    "rppo-single-norm-raw": RecurrentPPO,
+    "rppo-single-norm-risk": RecurrentPPO,
+    "rppo-single-rand-raw": RecurrentPPO
+}
+
 # --- Startup Events ---
 @app.on_event("startup")
 async def startup_event():
     logger.info("FastAPI is starting up...")
 
-    # load models
-    for model in MODELS:
-        models[model] = MODELS[model].load(f"files/{model}.zip")
-
+    for model_name, ModelClass in MODELS.items():
+        path = f"files/{model_name}.zip"
+        print(f"Loading {model_name} from {path} ...")
+        models[model_name] = ModelClass.load(path)
+        print(f"{model_name} loaded")
+        
     # load data
     yesterday = datetime.now() - timedelta(days=1)
     train, trade = get_train_trade(TRAIN_START_DATE, TRAIN_END_DATE, TRADE_START_DATE, yesterday.strftime('%Y-%m-%d'))
@@ -67,9 +78,9 @@ class TradeRequest(BaseModel):
     shares: list[int] = [0, 0, 0, 0]
     cash: int = 1_000_000
     hmax: int = 100
-    model: str = "ppo"
+    model: str = "rppo-vec-rand-raw"
     comission: float = 0.001
-    reward_scaling: float = 10
+    reward_scaling: float = 100
 
 class TradeStats(BaseModel):
     Number_of_Trades: int
@@ -104,7 +115,7 @@ async def trade(request: TradeRequest):
         models[request.model],
         data["train"],
         df_trade_filtered,
-        INDICATORS[request.model],
+        INDICATORS,
         request.hmax,
         request.cash,
         request.reward_scaling,
